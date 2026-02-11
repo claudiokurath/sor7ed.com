@@ -46,7 +46,7 @@ export default function Home() {
                             <a href="https://wa.me/447360277713?text=Hi" className="btn-secondary">Message Concierge</a>
                         </div>
 
-                        <div className="mt-32 grid grid-cols-2 md:grid-cols-3 gap-12 border-y border-white/5 py-12 w-full max-w-4xl">
+                        <div className="mt-32 grid grid-cols-2 md:grid-cols-3 gap-12 border-y border-sor7ed-yellow py-12 w-full max-w-4xl">
                             {[
                                 { label: 'Latency', value: 'Zero' },
                                 { label: 'Friction', value: 'None' },
@@ -114,7 +114,7 @@ export default function Home() {
             </section>
 
             {/* Tools Section */}
-            <section id="tools" className="py-32 px-6 border-y border-white/5">
+            <section id="tools" className="py-32 px-6 border-y border-sor7ed-yellow">
                 <div className="container mx-auto max-w-7xl">
                     <div className="max-w-3xl mb-16">
                         <div className="text-[10px] font-mono-headline text-sor7ed-yellow mb-4">Functional Registry</div>
@@ -126,7 +126,7 @@ export default function Home() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {tools.map((tool) => (
-                            <div key={tool.name} className="stealth-card p-12 group cursor-pointer border-white/5 hover:border-sor7ed-yellow transition-all duration-500">
+                            <div key={tool.name} className="stealth-card p-12 group cursor-pointer hover:border-sor7ed-yellow transition-all duration-500">
                                 <h3 className="text-xl font-black uppercase tracking-widest text-white mb-6">{tool.name}</h3>
                                 <p className="text-sm text-zinc-500 font-light mb-10 leading-relaxed h-12 overflow-hidden">{tool.desc}</p>
                                 <div className="flex items-center space-x-3 text-[10px] font-black tracking-[0.3em] text-sor7ed-yellow transition-all">
@@ -160,7 +160,7 @@ export default function Home() {
                                     </div>
                                     <div className="flex items-center gap-12">
                                         <span className="text-[10px] font-mono-headline text-sor7ed-yellow italic">{post.category}</span>
-                                        <div className="w-12 h-12 rounded-full border border-white/5 flex items-center justify-center text-zinc-700 group-hover:border-sor7ed-yellow/30 group-hover:text-sor7ed-yellow transition-all">
+                                        <div className="w-12 h-12 rounded-full border border-sor7ed-yellow/30 flex items-center justify-center text-zinc-700 group-hover:border-sor7ed-yellow group-hover:text-sor7ed-yellow transition-all">
                                             <span className="text-xs">VIEW</span>
                                         </div>
                                     </div>
@@ -181,7 +181,7 @@ export default function Home() {
 
                     <div className="space-y-4">
                         {faqs.map((faq, i) => (
-                            <div key={i} className="stealth-card border border-white/5 overflow-hidden transition-all">
+                            <div key={i} className="stealth-card overflow-hidden transition-all">
                                 <button
                                     onClick={() => setActiveFaq(activeFaq === i ? null : i)}
                                     className="w-full text-left p-8 flex justify-between items-center group"
@@ -194,7 +194,7 @@ export default function Home() {
                                         <span className={`absolute w-0.5 h-4 bg-current transition-all duration-300 ${activeFaq === i ? 'opacity-0' : ''}`} />
                                     </div>
                                 </button>
-                                <div className={`transition-all duration-500 ease-in-out ${activeFaq === i ? 'max-h-screen opacity-100 border-t border-white/5 p-12' : 'max-h-0 opacity-0 overflow-hidden'}`}>
+                                <div className={`transition-all duration-500 ease-in-out ${activeFaq === i ? 'max-h-screen opacity-100 border-t border-sor7ed-yellow p-12' : 'max-h-0 opacity-0 overflow-hidden'}`}>
                                     <p className="text-zinc-500 font-light leading-relaxed text-lg uppercase tracking-wide">
                                         {faq.a}
                                     </p>
@@ -206,7 +206,7 @@ export default function Home() {
             </section>
 
             {/* Final CTA Layer */}
-            <section className="py-40 px-6 relative overflow-hidden border-t border-white/5">
+            <section className="py-40 px-6 relative overflow-hidden border-t border-sor7ed-yellow">
                 <div className="container mx-auto text-center relative z-10">
                     <h2 className="text-5xl md:text-8xl font-black mb-12 tracking-tighter uppercase leading-[0.9]">
                         Ready to <br /><span className="text-sor7ed-yellow accent-glow italic font-light">Evolve?</span>

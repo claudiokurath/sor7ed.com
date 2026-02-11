@@ -8,7 +8,7 @@ export default function Footer() {
     }
 
     return (
-        <footer className="bg-[#050505] border-t border-white/5 pt-32 pb-12 px-6">
+        <footer className="bg-[#050505] border-t border-sor7ed-yellow pt-32 pb-12 px-6">
             <div className="container mx-auto max-w-7xl">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-20 mb-32">
                     <div className="col-span-1 md:col-span-2">
@@ -57,7 +57,7 @@ export default function Footer() {
                     </div>
                 </div>
 
-                <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/5 gap-8">
+                <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-sor7ed-yellow gap-8">
                     <p className="text-[8px] font-black tracking-[0.4em] text-zinc-800 uppercase">
                         &copy; 2026 SOR7ED LIMITED (SYST#16398701)
                     </p>

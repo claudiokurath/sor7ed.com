@@ -27,7 +27,7 @@ export default function Header() {
     }
 
     return (
-        <header className={`fixed w-full top-0 z-50 transition-all duration-500 ${isScrolled ? 'py-4 bg-black/80 backdrop-blur-xl border-b border-white/10' : 'py-8 bg-transparent'}`}>
+        <header className={`fixed w-full top-0 z-50 transition-all duration-500 ${isScrolled ? 'py-4 bg-black/80 backdrop-blur-xl border-b border-sor7ed-yellow' : 'py-8 bg-transparent'}`}>
             <div className="container mx-auto px-6 flex items-center justify-between">
                 <a
                     href="#hero"
@@ -74,7 +74,7 @@ export default function Header() {
             </div>
 
             {/* Mobile Menu */}
-            <div className={`md:hidden absolute top-full left-0 w-full bg-black/95 backdrop-blur-2xl border-b border-white/10 transition-all duration-500 overflow-hidden ${isMenuOpen ? 'max-h-screen opacity-100 py-12' : 'max-h-0 opacity-0'}`}>
+            <div className={`md:hidden absolute top-full left-0 w-full bg-black/95 backdrop-blur-2xl border-b border-sor7ed-yellow transition-all duration-500 overflow-hidden ${isMenuOpen ? 'max-h-screen opacity-100 py-12' : 'max-h-0 opacity-0'}`}>
                 <nav className="container mx-auto px-6 flex flex-col space-y-8 items-center text-center">
                     {navItems.map((item) => (
                         <a

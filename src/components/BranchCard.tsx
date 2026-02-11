@@ -22,7 +22,7 @@ export default function BranchCard({ branch, delay = 0 }: BranchCardProps) {
                 {branch.description}
             </p>
 
-            <div className="pt-8 border-t border-white/5 flex justify-between items-center opacity-40 group-hover:opacity-100 transition-opacity">
+            <div className="pt-8 border-t border-sor7ed-yellow flex justify-between items-center opacity-40 group-hover:opacity-100 transition-opacity">
                 <span className="text-[9px] font-mono-headline text-zinc-700">Protocol 07</span>
                 <div className="w-1.5 h-1.5 bg-zinc-800 rounded-full group-hover:bg-sor7ed-yellow transition-colors" />
             </div>
