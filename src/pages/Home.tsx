@@ -28,7 +28,7 @@ export default function Home() {
                     <div className="flex flex-col items-center text-center">
                         <div className="inline-flex items-center space-x-3 bg-white/5 border border-white/10 px-4 py-2 rounded-full mb-12 backdrop-blur-sm">
                             <span className="w-1.5 h-1.5 bg-sor7ed-yellow rounded-full animate-ping" />
-                            <span className="text-[10px] uppercase tracking-[0.4em] font-black text-zinc-400">System Architecture for ADHD</span>
+                            <span className="text-[10px] font-mono-headline text-zinc-400">System Architecture for ADHD</span>
                         </div>
 
                         <h1 className="section-title leading-[0.9] lg:text-9xl mb-12">
@@ -53,7 +53,7 @@ export default function Home() {
                                 { label: 'Access', value: 'Global' }
                             ].map(stat => (
                                 <div key={stat.label} className="text-center">
-                                    <div className="text-[10px] uppercase tracking-[0.3em] text-zinc-500 mb-2 font-black">{stat.label}</div>
+                                    <div className="text-[10px] font-mono-headline text-zinc-500 mb-2">{stat.label}</div>
                                     <div className="text-2xl font-bold text-white tracking-widest uppercase">{stat.value}</div>
                                 </div>
                             ))}
@@ -84,7 +84,7 @@ export default function Home() {
 
                                 <div className="flex flex-wrap gap-4 pt-6">
                                     {['No Fluff', 'No Signup', 'Pure Data'].map(tag => (
-                                        <span key={tag} className="px-5 py-2 bg-white/5 border border-white/10 rounded-lg text-[10px] uppercase tracking-widest font-black text-zinc-500">
+                                        <span key={tag} className="px-5 py-2 bg-white/5 border border-white/10 rounded-lg text-[10px] font-mono-headline text-zinc-500">
                                             {tag}
                                         </span>
                                     ))}
@@ -117,7 +117,7 @@ export default function Home() {
             <section id="tools" className="py-32 px-6 border-y border-white/5">
                 <div className="container mx-auto max-w-7xl">
                     <div className="max-w-3xl mb-16">
-                        <div className="text-[10px] font-black uppercase tracking-[0.5em] text-sor7ed-yellow mb-4">Functional Registry</div>
+                        <div className="text-[10px] font-mono-headline text-sor7ed-yellow mb-4">Functional Registry</div>
                         <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white">INTERACTIVE <span className="accent-glow italic font-light">KITS.</span></h2>
                         <p className="text-xl text-zinc-500 font-light max-w-xl mt-6">
                             Low-latency systems for executive function. Zero cognitive load, maximum deployment speed.
@@ -143,7 +143,7 @@ export default function Home() {
             <section id="blog" className="py-32 px-6">
                 <div className="container mx-auto max-w-7xl">
                     <div className="max-w-3xl mb-32">
-                        <div className="text-[10px] font-black uppercase tracking-[0.5em] text-sor7ed-yellow mb-4">Central Repository</div>
+                        <div className="text-[10px] font-mono-headline text-sor7ed-yellow mb-4">Central Repository</div>
                         <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white">THE <span className="accent-glow italic font-light">INSIGHTS.</span></h2>
                         <p className="text-xl text-zinc-500 font-light mt-6">
                             High-fidelity writing for the neurodivergent operating system. Updated 3x weekly.
@@ -155,11 +155,11 @@ export default function Home() {
                             <div key={i} className="stealth-card p-6 group cursor-pointer hover:bg-white/[0.02]">
                                 <div className="flex flex-col md:flex-row items-center justify-between gap-8 px-6 py-4">
                                     <div className="flex flex-col md:flex-row md:items-center gap-16 flex-grow">
-                                        <span className="text-[10px] font-black tracking-[0.4em] text-zinc-600 font-mono italic uppercase min-w-[100px]">{post.date}</span>
+                                        <span className="text-[10px] font-mono-headline text-zinc-600 italic uppercase min-w-[100px]">{post.date}</span>
                                         <h2 className="text-xl font-bold text-zinc-400 group-hover:text-white transition-colors uppercase tracking-[0.1em]">{post.title}</h2>
                                     </div>
                                     <div className="flex items-center gap-12">
-                                        <span className="text-[10px] font-black tracking-[0.3em] text-sor7ed-yellow uppercase italic">{post.category}</span>
+                                        <span className="text-[10px] font-mono-headline text-sor7ed-yellow italic">{post.category}</span>
                                         <div className="w-12 h-12 rounded-full border border-white/5 flex items-center justify-center text-zinc-700 group-hover:border-sor7ed-yellow/30 group-hover:text-sor7ed-yellow transition-all">
                                             <span className="text-xs">VIEW</span>
                                         </div>
@@ -175,7 +175,7 @@ export default function Home() {
             <section id="faq" className="py-32 px-6 bg-zinc-900/10">
                 <div className="container mx-auto max-w-4xl">
                     <div className="text-center mb-24">
-                        <div className="text-[10px] font-black uppercase tracking-[0.5em] text-sor7ed-yellow mb-4">Manual / Documentation</div>
+                        <div className="text-[10px] font-mono-headline text-sor7ed-yellow mb-4">Manual / Documentation</div>
                         <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter">COMMON <span className="accent-glow italic font-light">QUERIES.</span></h2>
                     </div>
 
@@ -214,7 +214,7 @@ export default function Home() {
                     <a href="https://wa.me/447360277713?text=Hi" target="_blank" rel="noopener noreferrer" className="btn-primary transform hover:scale-110">
                         Initialize Connection
                     </a>
-                    <p className="mt-12 text-zinc-500 font-black uppercase tracking-[0.4em] text-[10px]">
+                    <p className="mt-12 text-zinc-500 font-mono-headline text-[10px]">
                         No friction. No noise. Just systems.
                     </p>
                 </div>
