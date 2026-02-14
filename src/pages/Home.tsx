@@ -101,7 +101,7 @@ export default function Home() {
 
                         <div className="flex flex-col sm:flex-row gap-8">
                             <a href="#tools" className="btn-primary">Initialize Tools</a>
-                            <a href="https://wa.me/447360277713?text=Hi" className="btn-secondary">Message Concierge</a>
+                            <button className="btn-secondary opacity-50 cursor-not-allowed">Concierge (Soon)</button>
                         </div>
 
                         <div className="mt-32 grid grid-cols-2 md:grid-cols-3 gap-12 border-y border-sor7ed-yellow py-12 w-full max-w-4xl">
