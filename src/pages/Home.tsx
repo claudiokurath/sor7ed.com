@@ -10,8 +10,7 @@ export default function Home() {
     const [dynamicTools, setDynamicTools] = useState<any[]>([
         { name: 'Dopamine Menu', icon: '⚡', desc: 'Strategic stimulation builder.', keyword: 'DOPAMINE', isPublic: true },
         { name: 'Crisis Triage', icon: '🆘', desc: 'Immediate cognitive stabilizing.', keyword: 'CRISIS' },
-        { name: 'Focus Lock', icon: '🔒', desc: 'Deep work environment protocol.', keyword: 'FOCUS' },
-        { name: 'Environmental Sync', icon: '🏠', desc: 'Sync smart home to current protocol.', keyword: 'IOT' }
+        { name: 'Focus Lock', icon: '🔒', desc: 'Deep work environment protocol.', keyword: 'FOCUS' }
     ])
     const [dynamicArticles, setDynamicArticles] = useState<any[]>([
         { title: 'The Architectural Mind: Systems for ADHD', date: '2026-02-13', category: 'Mind' },
@@ -102,7 +101,7 @@ export default function Home() {
 
                         <div className="flex flex-col sm:flex-row gap-8">
                             <a href="#tools" className="btn-primary">Initialize Tools</a>
-                            <button className="btn-secondary opacity-50 cursor-not-allowed">Concierge (Soon)</button>
+                            <a href="https://wa.me/447360277713?text=Hi" className="btn-secondary">Message Concierge</a>
                         </div>
 
                         <div className="mt-32 grid grid-cols-2 md:grid-cols-3 gap-12 border-y border-sor7ed-yellow py-12 w-full max-w-4xl">
@@ -182,63 +181,6 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* Environmental Engineering / IOT Section */}
-            <section id="iot" className="py-32 relative overflow-hidden flex flex-col items-center">
-                <div className="container mx-auto px-6 max-w-7xl flex flex-col items-center">
-                    <div className="text-center mb-24 flex flex-col items-center">
-                        <h2 className="section-title justify-center flex gap-4">
-                            <span className="title-white">ENVIRONMENTAL</span> <span className="title-yellow">ENGINEERING.</span>
-                        </h2>
-                        <p className="text-zinc-600 font-mono-headline text-[10px] tracking-widest uppercase">
-                            Hardware // Automation // Physical Optimization
-                        </p>
-                    </div>
-
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                        <div>
-                            <div className="mb-12">
-                                <span className="text-sor7ed-yellow font-mono-headline text-xs tracking-widest block mb-4 uppercase italic">Next Generation Agency</span>
-                                <h3 className="text-4xl font-black text-white uppercase tracking-tighter mb-8 leading-tight">
-                                    Your environment is the <span className="text-sor7ed-yellow">hardware</span> your mind runs on.
-                                </h3>
-                                <p className="text-zinc-500 font-light text-lg leading-relaxed mb-8">
-                                    We integrate your physical space with your digital protocols. From smart lighting that signals focus shifts to noise sensors that trigger somatic regulation, we bridge the gap between intent and environment.
-                                </p>
-                            </div>
-
-                            <div className="space-y-6">
-                                {[
-                                    { title: 'Smart Lighting Integration', desc: 'Circadian-aware focus signals and transition cues.' },
-                                    { title: 'Acoustic Monitoring', desc: 'Real-time decibel analysis with automated regulatory triggers.' },
-                                    { title: 'Physical Triggers', desc: 'Tactile buttons for instant system initialization.' }
-                                ].map((feature, i) => (
-                                    <div key={i} className="flex gap-6 p-6 stealth-card group hover:border-sor7ed-yellow transition-all">
-                                        <div className="w-12 h-12 rounded-full border border-zinc-800 flex items-center justify-center text-sor7ed-yellow group-hover:border-sor7ed-yellow transition-all">
-                                            <span className="font-mono-headline text-xs">{i + 1}</span>
-                                        </div>
-                                        <div>
-                                            <h4 className="text-white font-bold uppercase tracking-widest mb-2">{feature.title}</h4>
-                                            <p className="text-zinc-500 text-sm font-light">{feature.desc}</p>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-
-                        <div className="relative group">
-                            <div className="absolute -inset-4 bg-sor7ed-yellow/10 blur-2xl rounded-full opacity-50 group-hover:opacity-100 transition-opacity" />
-                            <div className="relative stealth-card p-4 overflow-hidden">
-                                <img
-                                    src="/images/iot-mockup.png"
-                                    alt="Environmental Engineering Dashboard"
-                                    className="w-full h-auto rounded-lg grayscale group-hover:grayscale-0 transition-all duration-700"
-                                />
-                                <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#050505] to-transparent pointer-events-none" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
 
             {/* Tools Section / Registry */}
             <section id="tools" className="py-32 px-6 border-y border-sor7ed-yellow/20 flex flex-col items-center">

@@ -1,4 +1,5 @@
 import { Client } from '@notionhq/client'
+import { parse } from 'querystring'
 
 // @ts-ignore
 const notion = new Client({ auth: process.env.NOTION_BLOG_TOKEN })
@@ -6,15 +7,18 @@ const notion = new Client({ auth: process.env.NOTION_BLOG_TOKEN })
 const BLOG_DATABASE_ID = process.env.NOTION_BLOG_DATABASE_ID
 
 export default async function handler(req: any, res: any) {
-    // Twilio sends data as application/x-www-form-urlencoded
-    // For WhatsApp, the message body is in req.body.Body
-
-    // Check if it's a POST (Twilio webhook)
     if (req.method !== 'POST') {
         return res.status(405).send('Method Not Allowed')
     }
 
-    const { Body, From } = req.body
+    // Twilio sends application/x-www-form-urlencoded. 
+    // Vercel only parses JSON by default.
+    let bodyData = req.body
+    if (typeof req.body === 'string') {
+        bodyData = parse(req.body)
+    }
+
+    const { Body, From } = bodyData || {}
     const trigger = (Body || '').trim().toUpperCase()
 
     console.log(`Bot received: "${trigger}" from ${From}`)
