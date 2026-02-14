@@ -47,5 +47,11 @@ export const branches: Branch[] = [
         icon: '',
         description: 'Environment design and sensory-friendly living.',
         color: 'from-violet-500/20 to-fuchsia-500/20'
+    },
+    {
+        name: 'IOT',
+        icon: '',
+        description: 'Automated physical environments and hardware triggers.',
+        color: 'from-amber-400/20 to-sor7ed-yellow/20'
     }
 ];
