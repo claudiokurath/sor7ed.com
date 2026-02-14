@@ -1,10 +1,5 @@
 import { useState } from 'react'
 
-interface DopamineItem {
-    id: string
-    text: string
-    type: 'starter' | 'main' | 'side' | 'dessert'
-}
 
 export default function DopamineMenu() {
     const [starter, setStarter] = useState<string[]>([])
