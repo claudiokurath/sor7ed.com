@@ -1,17 +1,19 @@
 import { Client } from '@notionhq/client'
 import { parse } from 'querystring'
 
-// @ts-ignore
-const notion = new Client({ auth: process.env.NOTION_BLOG_TOKEN })
-// @ts-ignore
+// Blog/Protocols Notion Client
+const blogNotion = new Client({ auth: process.env.NOTION_BLOG_TOKEN })
 const BLOG_DATABASE_ID = process.env.NOTION_BLOG_DATABASE_ID
+
+// Tools Notion Client
+const toolsNotion = new Client({ auth: process.env.NOTION_TOOLS_TOKEN })
+const TOOLS_DATABASE_ID = process.env.NOTION_TOOLS_DATABASE_ID
 
 export default async function handler(req: any, res: any) {
     if (req.method !== 'POST') {
         return res.status(405).send('Method Not Allowed')
     }
 
-    // Twilio sends application/x-www-form-urlencoded
     let bodyData = req.body
     if (typeof req.body === 'string') {
         bodyData = parse(req.body)
@@ -24,33 +26,55 @@ export default async function handler(req: any, res: any) {
     console.log(`Bot received: "${message}" from ${From}`)
 
     try {
-        if (!BLOG_DATABASE_ID) throw new Error('NOTION_BLOG_DATABASE_ID not set')
-
-        // Search for the matching Trigger in the database
-        const response = await (notion.databases as any).query({
-            database_id: BLOG_DATABASE_ID,
-            filter: {
-                property: 'Trigger',
-                rich_text: { equals: trigger }
-            }
-        })
-
         let replyMessage = ""
 
-        if (response.results.length > 0) {
-            const page = response.results[0]
-            const props = (page as any).properties
-            const templateProp = props['Template '] || props['Template']
+        // 1. Search Protocols (Blog) Database
+        if (BLOG_DATABASE_ID) {
+            const blogRes = await blogNotion.databases.query({
+                database_id: BLOG_DATABASE_ID,
+                filter: {
+                    property: 'Trigger',
+                    rich_text: { equals: trigger }
+                }
+            })
 
-            if (templateProp && templateProp.rich_text) {
-                // Join all rich text blocks to handle Notion's 2000-char limit chunking
-                replyMessage = templateProp.rich_text.map((t: any) => t.plain_text).join('')
+            if (blogRes.results.length > 0) {
+                const page = blogRes.results[0]
+                const props = (page as any).properties
+                const templateProp = props['Template '] || props['Template']
+
+                if (templateProp && templateProp.rich_text) {
+                    replyMessage = templateProp.rich_text.map((t: any) => t.plain_text).join('')
+                }
             }
         }
 
-        // If no protocol match, send a simple feedback message
+        // 2. Search Tools Database (if not found in Protocols)
+        if (!replyMessage && TOOLS_DATABASE_ID) {
+            const toolsRes = await toolsNotion.databases.query({
+                database_id: TOOLS_DATABASE_ID,
+                filter: {
+                    property: 'Keyword',
+                    rich_text: { equals: trigger }
+                }
+            })
+
+            if (toolsRes.results.length > 0) {
+                const page = toolsRes.results[0]
+                const props = (page as any).properties
+                // For tools, we might use Description or a specific WhatsApp field if it existed
+                // Based on previous inspections, Description is most likely
+                const descProp = props.Description
+                if (descProp && descProp.rich_text) {
+                    replyMessage = descProp.rich_text.map((t: any) => t.plain_text).join('')
+                }
+            }
+        }
+
+        // 3. Fallback if no keyword found in either DB
         if (!replyMessage) {
-            replyMessage = `Protocol "${trigger}" not found. \n\nText "INDEX" to see all available SOR7ED keywords.`
+            // No random AI info, just a strict lookup failure message
+            replyMessage = `Protocol "${trigger}" not found in S0R7ED registry. \n\nText "INDEX" for available keywords.`
         }
 
         // Return TwiML XML response
@@ -64,11 +88,7 @@ export default async function handler(req: any, res: any) {
 
     } catch (error: any) {
         console.error('Bot Error:', error)
-        const errorTwiml = `<?xml version="1.0" encoding="UTF-8"?>
-<Response>
-    <Message>The SOR7ED system is currently under maintenance. Please try again soon.</Message>
-</Response>`
         res.setHeader('Content-Type', 'text/xml')
-        return res.status(500).send(errorTwiml)
+        return res.status(500).send('<?xml version="1.0" encoding="UTF-8"?><Response><Message>System error. Try again later.</Message></Response>')
     }
 }
