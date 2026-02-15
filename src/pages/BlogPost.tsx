@@ -71,6 +71,14 @@ export default function BlogPost() {
                 </header>
 
                 <div className="prose prose-invert prose-zinc max-w-none">
+                    {/* Render Post Body property if available */}
+                    {post.propertyContent && (
+                        <div className="text-zinc-400 text-lg md:text-xl font-light leading-relaxed mb-12 tracking-wide whitespace-pre-wrap">
+                            {post.propertyContent}
+                        </div>
+                    )}
+
+                    {/* Render Page Blocks */}
                     {post.blocks?.map((block: any, i: number) => {
                         const type = block.type
                         const richText = block[type]?.rich_text || []

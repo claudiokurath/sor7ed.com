@@ -7,8 +7,6 @@ export default async function handler(req: any, res: any) {
     try {
         if (!TOKEN || !DB_ID) throw new Error('Vercel Config Error: Missing Notion Configuration.')
 
-        // 1. Fetch all pages to find the one with the matching title
-        // This is more robust than "equals" filters which are sensitive to minor formatting
         const queryResponse = await fetch(`https://api.notion.com/v1/databases/${DB_ID}/query`, {
             method: 'POST',
             headers: {
@@ -22,22 +20,17 @@ export default async function handler(req: any, res: any) {
         if (!queryResponse.ok) throw new Error("Notion API Connection Failed.")
 
         const queryData = await queryResponse.json()
-
-        // Find the page where Title matches the slug
         const page = queryData.results.find((p: any) => {
             const title = p.properties.Title?.title[0]?.plain_text || ""
             return title === slug || encodeURIComponent(title) === encodeURIComponent(slug || "")
         })
 
-        if (!page) {
-            console.error(`Post not found in Notion for slug: ${slug}`)
-            return res.status(404).json({ error: 'Post not found' })
-        }
+        if (!page) return res.status(404).json({ error: 'Post not found' })
 
         const pageId = page.id
         const props = page.properties
 
-        // 2. Get content blocks
+        // 2. Get blocks (Page Content)
         const blocksResponse = await fetch(`https://api.notion.com/v1/blocks/${pageId}/children`, {
             method: 'GET',
             headers: {
@@ -45,24 +38,25 @@ export default async function handler(req: any, res: any) {
                 'Notion-Version': '2022-06-28'
             }
         })
-
-        if (!blocksResponse.ok) throw new Error("Failed to fetch page content blocks.")
-
         const blocksData = await blocksResponse.json()
 
-        // 3. Construct post object
+        // 3. Extract content from "Post Body" property if blocks are empty
+        // This handles cases where content is in a property instead of the page body
+        const postBodyRichText = props['Post Body']?.rich_text || []
+        const propertyContent = postBodyRichText.map((t: any) => t.plain_text).join('')
+
         const post = {
             title: props.Title?.title[0]?.plain_text || 'Untitled',
             date: props['Publication Date']?.date?.start || '',
             category: props.Branch?.select?.name || 'Mind',
             image: page.cover?.external?.url || page.cover?.file?.url || '',
-            blocks: blocksData.results
+            propertyContent: propertyContent,
+            blocks: blocksData.results || []
         }
 
         return res.status(200).json(post)
 
     } catch (error: any) {
-        console.error('Post Sync Error:', error.message)
         return res.status(500).json({ error: error.message || 'Failed to fetch blog post' })
     }
 }
