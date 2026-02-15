@@ -11,51 +11,74 @@ export default async function handler(req: any, res: any) {
     const { Body, From } = bodyData || {}
     const trigger = (Body || '').trim().toUpperCase()
 
-    const TOKEN = (process.env.NOTION_BLOG_TOKEN || process.env.NOTION_TOKEN || '').trim()
-    const DB_ID = (process.env.NOTION_BLOG_DATABASE_ID || process.env.BLOG_DB_ID || '').trim()
+    const TOKEN_BLOG = (process.env.NOTION_BLOG_TOKEN || process.env.NOTION_TOKEN || '').trim()
+    const TOKEN_TOOLS = (process.env.NOTION_TOOLS_TOKEN || process.env.NOTION_TOKEN || '').trim()
+    const DB_BLOG = (process.env.NOTION_BLOG_DATABASE_ID || process.env.BLOG_DB_ID || '').trim()
+    const DB_TOOLS = (process.env.NOTION_TOOLS_DATABASE_ID || process.env.TOOLS_DB_ID || '').trim()
 
     try {
-        if (!TOKEN || !DB_ID) throw new Error("Vercel Config Error: Missing Notion Configuration.")
+        if (!TOKEN_BLOG || !DB_BLOG) throw new Error("Vercel Config Error: Missing Notion Configuration.")
 
-        // BULLETPROOF: Fetch all entries and filter in Javascript
-        // This avoids issues with Notion's strict filtering and whitespace
-        const response = await fetch(`https://api.notion.com/v1/databases/${DB_ID}/query`, {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${TOKEN}`,
-                'Notion-Version': '2022-06-28',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ page_size: 100 })
-        })
+        // PARALLEL SEARCH: Check both Protocols (Blog) and Tools databases simultaneously
+        const [blogRes, toolsRes] = await Promise.all([
+            fetch(`https://api.notion.com/v1/databases/${DB_BLOG}/query`, {
+                method: 'POST',
+                headers: { 'Authorization': `Bearer ${TOKEN_BLOG}`, 'Notion-Version': '2022-06-28', 'Content-Type': 'application/json' },
+                body: JSON.stringify({ page_size: 100 })
+            }),
+            DB_TOOLS ? fetch(`https://api.notion.com/v1/databases/${DB_TOOLS}/query`, {
+                method: 'POST',
+                headers: { 'Authorization': `Bearer ${TOKEN_TOOLS}`, 'Notion-Version': '2022-06-28', 'Content-Type': 'application/json' },
+                body: JSON.stringify({ page_size: 100 })
+            }) : Promise.resolve({ ok: true, json: () => Promise.resolve({ results: [] }) })
+        ])
 
-        if (!response.ok) throw new Error("Notion API Connection Failed.")
+        if (!blogRes.ok) throw new Error("Notion Blog API Failed.")
 
-        const data = await response.json()
+        const [blogData, toolsData]: [any, any] = await Promise.all([
+            blogRes.json(),
+            toolsRes.ok ? toolsRes.json() : Promise.resolve({ results: [] })
+        ])
+
         let replyMessage = ""
 
-        // Search for a matching trigger in the results
-        const match = data.results.find((page: any) => {
+        // 1. Check Blog/Protocols (Match on 'Trigger' property)
+        const blogMatch = blogData.results.find((page: any) => {
             const props = page.properties
             const nodeTrigger = props.Trigger?.rich_text?.[0]?.plain_text || ""
             return nodeTrigger.trim().toUpperCase() === trigger
         })
 
-        if (match) {
-            const props = (match as any).properties
+        if (blogMatch) {
+            const props = blogMatch.properties
             const templateProp = props['Template '] || props['Template'] || props['Reply']
-
-            if (templateProp && templateProp.rich_text && templateProp.rich_text.length > 0) {
+            if (templateProp?.rich_text?.[0]) {
                 replyMessage = templateProp.rich_text.map((t: any) => t.plain_text).join('')
             }
         }
 
+        // 2. Check Tools (Match on 'Keyword' property if not found in Blog)
         if (!replyMessage) {
-            // Check for hardcoded constants
-            if (trigger === 'HI' || trigger === 'HELLO') {
-                replyMessage = "Welcome to SOR7ED. Text any keyword from our website to receive the protocol instantly."
+            const toolMatch = toolsData.results.find((page: any) => {
+                const props = page.properties
+                const nodeKeyword = props.Keyword?.rich_text?.[0]?.plain_text || ""
+                return nodeKeyword.trim().toUpperCase() === trigger
+            })
+
+            if (toolMatch) {
+                const props = toolMatch.properties
+                const desc = props.Description?.rich_text?.[0]?.plain_text || props.desc?.rich_text?.[0]?.plain_text || ""
+                replyMessage = `Tool: ${props.Name?.title?.[0]?.plain_text}\n\n${desc}`
+            }
+        }
+
+        // 3. Fallbacks
+        if (!replyMessage) {
+            if (trigger === 'HI' || trigger === 'HELLO' || trigger === 'INDEX') {
+                const protocolCount = blogData.results.filter((p: any) => p.properties.Trigger?.rich_text?.[0]).length
+                replyMessage = `Welcome to SOR7ED Bot. We have ${protocolCount} protocols live. \n\nKeywords include: FRIEND, PARENTANGER, THERAPY, REGULATION. \n\nText any keyword to begin.`
             } else {
-                replyMessage = `SOR7ED Bot: "${trigger}" not found. Text a valid keyword from the website (e.g., FRIEND or DOPAMINE).`
+                replyMessage = `SOR7ED Bot: "${trigger}" not found. Text HI or INDEX for active keywords.`
             }
         }
 
