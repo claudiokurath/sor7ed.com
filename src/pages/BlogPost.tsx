@@ -73,36 +73,8 @@ export default function BlogPost() {
                 <div className="prose prose-invert prose-zinc max-w-none">
                     {/* Render Post Body property if available */}
                     {post.propertyContent && (
-                        <div className="mb-20">
-                            {post.propertyContent.split('\n\n').map((paragraph: string, idx: number) => {
-                                // List of keywords to identify as "Titles"
-                                const keywords = ['Opening', 'Source', 'Mechanism', 'Cost', 'Alternative', 'CTA'];
-                                const trimmed = paragraph.trim();
-                                const firstWord = trimmed.split(/\s/)[0].replace(/[:]/g, '');
-
-                                if (keywords.map(k => k.toLowerCase()).includes(firstWord.toLowerCase())) {
-                                    // It's a "Section Title"
-                                    const bodyText = trimmed.replace(new RegExp(`^${firstWord}[:]?`, 'i'), '').trim();
-                                    return (
-                                        <div key={idx} className="mt-16 mb-8">
-                                            <h4 className="text-sor7ed-yellow font-black uppercase tracking-[0.4em] text-sm mb-6 border-b border-sor7ed-yellow/20 pb-2 flex items-center">
-                                                <span className="mr-3">/</span> {firstWord.toUpperCase()}
-                                            </h4>
-                                            {bodyText && (
-                                                <p className="text-zinc-400 text-lg md:text-xl font-light leading-relaxed tracking-wide whitespace-pre-wrap">
-                                                    {bodyText}
-                                                </p>
-                                            )}
-                                        </div>
-                                    );
-                                }
-
-                                return (
-                                    <p key={idx} className="text-zinc-400 text-lg md:text-xl font-light leading-relaxed mb-10 tracking-wide whitespace-pre-wrap">
-                                        {paragraph}
-                                    </p>
-                                );
-                            })}
+                        <div className="text-zinc-400 text-lg md:text-xl font-light leading-relaxed mb-12 tracking-wide whitespace-pre-wrap">
+                            {post.propertyContent}
                         </div>
                     )}
 
