@@ -29,7 +29,7 @@ export default async function handler(req: any, res: any) {
                 body: JSON.stringify({
                     filter: {
                         property: property,
-                        rich_text: { equals: value }
+                        rich_text: { contains: value } // Using 'contains' for better matching
                     }
                 })
             })
@@ -40,8 +40,13 @@ export default async function handler(req: any, res: any) {
 
         // 1. Try Blog/Protocols
         const blogData = await queryNotion(BLOG_DB, 'Trigger', trigger)
-        if (blogData.results.length > 0) {
-            const props = blogData.results[0].properties
+        if (blogData.results && blogData.results.length > 0) {
+            // Find exact match in case 'contains' returns multiple
+            const match = blogData.results.find((p: any) =>
+                (p.properties.Trigger?.rich_text?.[0]?.plain_text || "").trim().toUpperCase() === trigger
+            )
+            const target = match || blogData.results[0]
+            const props = target.properties
             const templateProp = props['Template '] || props['Template'] || props['Reply']
             if (templateProp?.rich_text?.[0]) {
                 replyMessage = templateProp.rich_text.map((t: any) => t.plain_text).join('')
@@ -51,16 +56,12 @@ export default async function handler(req: any, res: any) {
         // 2. Try Tools
         if (!replyMessage && TOOLS_DB) {
             const toolsData = await queryNotion(TOOLS_DB, 'Keyword', trigger)
-            if (toolsData.results.length > 0) {
-                const props = toolsData.results[0].properties
+            if (toolsData.results && toolsData.results.length > 0) {
+                const target = toolsData.results[0]
+                const props = target.properties
                 const desc = props.Description?.rich_text?.[0]?.plain_text || props.desc?.rich_text?.[0]?.plain_text || ""
                 replyMessage = `Tool: ${props.Name?.title?.[0]?.plain_text}\n\n${desc}`
             }
-        }
-
-        // 3. Exact string match if filter failed (Backup)
-        if (!replyMessage && trigger === 'DOPAMINE') {
-            replyMessage = "DOPAMINE MENU: \n1. Movement (5m)\n2. Hydration\n3. Sun\n4. Task Switch. \n\n(Synced from Notion Registry)"
         }
 
         if (!replyMessage) {
