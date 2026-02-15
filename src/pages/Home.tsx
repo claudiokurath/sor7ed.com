@@ -14,6 +14,7 @@ export default function Home() {
     const [selectedTemplate, setSelectedTemplate] = useState('')
     const [whatsappUrl, setWhatsappUrl] = useState('')
     const [activeToolId, setActiveToolId] = useState<string | null>(null)
+    const [isMuted, setIsMuted] = useState(true)
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -87,21 +88,34 @@ export default function Home() {
                             <span className="title-white">THE</span> <span className="title-yellow">LAB.</span>
                         </h1>
 
-                        {/* Centered Video Container */}
-                        <div className="w-full max-w-5xl mb-20 overflow-hidden rounded-sm border border-white/10 bg-black/40 backdrop-blur-xl shadow-2xl relative group">
-                            <div className="absolute top-0 right-0 p-4 font-mono-headline text-[8px] text-zinc-600 uppercase tracking-widest z-20">
-                                / Intro_System_Briefing.mp4
-                            </div>
+                        {/* Centered Square Video Container */}
+                        <div className="w-full max-w-sm aspect-square mb-20 overflow-hidden rounded-sm border border-white/10 bg-black/40 backdrop-blur-xl shadow-2xl relative group">
                             <video
                                 autoPlay
-                                muted
+                                muted={isMuted}
                                 loop
                                 playsInline
-                                className="w-full aspect-video object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-1000 grayscale hover:grayscale-0"
+                                className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-1000 grayscale hover:grayscale-0"
                             >
                                 <source src="/Intro.mp4" type="video/mp4" />
                             </video>
-                            <div className="absolute inset-0 pointer-events-none border-[20px] border-black/20" />
+
+                            {/* Mute Button Overlay */}
+                            <button
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    setIsMuted(!isMuted);
+                                }}
+                                className="absolute bottom-4 right-4 z-30 p-3 rounded-full bg-black/40 border border-white/10 backdrop-blur-md text-white transition-all hover:bg-sor7ed-yellow hover:text-black opacity-0 group-hover:opacity-100"
+                            >
+                                {isMuted ? (
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"></path><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
+                                ) : (
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                                )}
+                            </button>
+
+                            <div className="absolute inset-0 pointer-events-none border-[10px] border-black/20" />
                         </div>
 
                         <p className="text-xl md:text-2xl text-zinc-400 max-w-2xl font-light leading-relaxed mb-16">
