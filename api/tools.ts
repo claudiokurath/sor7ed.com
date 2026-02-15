@@ -16,8 +16,8 @@ export default async function handler(req: any, res: any) {
             },
             body: JSON.stringify({
                 filter: {
-                    property: 'Public',
-                    checkbox: { equals: true }
+                    property: 'Status',
+                    status: { equals: 'Public' }
                 },
                 page_size: 100
             })
@@ -33,7 +33,7 @@ export default async function handler(req: any, res: any) {
                 icon: props.Icon?.rich_text[0]?.plain_text || '⚒️',
                 desc: props.Description?.rich_text[0]?.plain_text || props.desc?.rich_text[0]?.plain_text || '',
                 keyword: props.Keyword?.rich_text[0]?.plain_text || '',
-                isPublic: true // Since we filtered for public ones
+                isPublic: true // These are the ones marked as "Public" in Notion Status
             }
         })
 
