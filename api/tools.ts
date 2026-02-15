@@ -30,10 +30,10 @@ export default async function handler(req: any, res: any) {
             const props = page.properties
             return {
                 name: props.Name?.title[0]?.plain_text || 'Unnamed Tool',
-                icon: props.Icon?.rich_text[0]?.plain_text || '⚒️',
-                desc: props.Description?.rich_text[0]?.plain_text || props.desc?.rich_text[0]?.plain_text || '',
-                keyword: props.Keyword?.rich_text[0]?.plain_text || '',
-                isPublic: true // These are the ones marked as "Public" in Notion Status
+                icon: '⚒️', // Standardize on lab default or from Notion if added later
+                desc: props.Description?.rich_text[0]?.plain_text || '',
+                keyword: props['WhatsApp CTA']?.rich_text[0]?.plain_text || '',
+                isPublic: true
             }
         })
 
