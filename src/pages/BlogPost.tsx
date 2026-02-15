@@ -77,19 +77,22 @@ export default function BlogPost() {
                             {post.propertyContent.split('\n\n').map((paragraph: string, idx: number) => {
                                 // List of keywords to identify as "Titles"
                                 const keywords = ['Opening', 'Source', 'Mechanism', 'Cost', 'Alternative', 'CTA'];
-                                const firstWord = paragraph.split(/\s/)[0].replace(/[:]/g, '');
+                                const trimmed = paragraph.trim();
+                                const firstWord = trimmed.split(/\s/)[0].replace(/[:]/g, '');
 
-                                if (keywords.includes(firstWord)) {
-                                    // It's a "Small Title"
-                                    const body = paragraph.replace(new RegExp(`^${firstWord}[:]?`, 'i'), '').trim();
+                                if (keywords.map(k => k.toLowerCase()).includes(firstWord.toLowerCase())) {
+                                    // It's a "Section Title"
+                                    const bodyText = trimmed.replace(new RegExp(`^${firstWord}[:]?`, 'i'), '').trim();
                                     return (
-                                        <div key={idx} className="mb-12">
-                                            <h4 className="text-sor7ed-yellow font-black uppercase tracking-[0.3em] text-sm mb-6 border-b border-sor7ed-yellow/10 pb-2 inline-block">
-                                                {firstWord}
+                                        <div key={idx} className="mt-16 mb-8">
+                                            <h4 className="text-sor7ed-yellow font-black uppercase tracking-[0.4em] text-sm mb-6 border-b border-sor7ed-yellow/20 pb-2 flex items-center">
+                                                <span className="mr-3">/</span> {firstWord.toUpperCase()}
                                             </h4>
-                                            <p className="text-zinc-400 text-lg md:text-xl font-light leading-relaxed tracking-wide whitespace-pre-wrap">
-                                                {body}
-                                            </p>
+                                            {bodyText && (
+                                                <p className="text-zinc-400 text-lg md:text-xl font-light leading-relaxed tracking-wide whitespace-pre-wrap">
+                                                    {bodyText}
+                                                </p>
+                                            )}
                                         </div>
                                     );
                                 }
