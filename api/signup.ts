@@ -18,7 +18,7 @@ export default async function handler(req: any, res: any) {
     }
 
     try {
-        const { name, email, phone, template } = req.body
+        const { name, email, phone, template, timezone, checkInHours } = req.body
 
         if (!name || !email) {
             return res.status(400).json({ error: 'Name and Email are required' })
@@ -42,6 +42,12 @@ export default async function handler(req: any, res: any) {
                 },
                 'Template Requested': {
                     rich_text: [{ text: { content: template } }]
+                },
+                'Timezone': {
+                    rich_text: [{ text: { content: timezone || '' } }]
+                },
+                'Check-in Hours': {
+                    rich_text: [{ text: { content: checkInHours || '' } }]
                 },
                 'Signup Date': {
                     date: { start: new Date().toISOString() }

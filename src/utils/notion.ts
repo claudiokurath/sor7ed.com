@@ -24,6 +24,8 @@ export async function saveSignup(data: {
     email: string
     phone?: string
     template: string
+    timezone?: string
+    checkInHours?: string
 }) {
     try {
         return await apiFetch('/api/signup', {
@@ -55,4 +57,3 @@ export async function getTools() {
         return [];
     }
 }
-

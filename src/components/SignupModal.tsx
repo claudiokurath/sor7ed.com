@@ -12,6 +12,8 @@ export default function SignupModal({ isOpen, onClose, template, whatsappUrl }: 
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
+    const [timezone, setTimezone] = useState(Intl.DateTimeFormat().resolvedOptions().timeZone)
+    const [checkInHours, setCheckInHours] = useState('09:00 - 18:00')
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState('')
 
@@ -24,7 +26,7 @@ export default function SignupModal({ isOpen, onClose, template, whatsappUrl }: 
 
         try {
             // Save to Notion CRM
-            await saveSignup({ name, email, phone, template })
+            await saveSignup({ name, email, phone, template, timezone, checkInHours })
 
             // Redirect to WhatsApp
             window.location.href = whatsappUrl
@@ -81,6 +83,29 @@ export default function SignupModal({ isOpen, onClose, template, whatsappUrl }: 
                             className="w-full px-4 py-3 bg-sor7ed-gray border border-sor7ed-gray-light rounded-lg focus:border-sor7ed-yellow focus:outline-none text-white"
                             placeholder="+44..."
                         />
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4">
+                        <div>
+                            <label className="block text-sm font-medium mb-2">Timezone</label>
+                            <input
+                                type="text"
+                                value={timezone}
+                                onChange={(e) => setTimezone(e.target.value)}
+                                className="w-full px-4 py-3 bg-sor7ed-gray border border-sor7ed-gray-light rounded-lg focus:border-sor7ed-yellow focus:outline-none text-white text-xs"
+                                placeholder="Europe/London"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium mb-2">Check-in Hours</label>
+                            <input
+                                type="text"
+                                value={checkInHours}
+                                onChange={(e) => setCheckInHours(e.target.value)}
+                                className="w-full px-4 py-3 bg-sor7ed-gray border border-sor7ed-gray-light rounded-lg focus:border-sor7ed-yellow focus:outline-none text-white text-xs"
+                                placeholder="09:00 - 18:00"
+                            />
+                        </div>
                     </div>
 
                     {error && (

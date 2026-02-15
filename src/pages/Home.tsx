@@ -406,6 +406,15 @@ export default function Home() {
                                 <span className="text-lg">×</span>
                             </button>
 
+                            <div className="absolute -top-12 left-0 flex space-x-6">
+                                <button
+                                    onClick={() => window.print()}
+                                    className="text-white/30 hover:text-sor7ed-yellow font-mono-headline text-[10px] tracking-[0.2em] flex items-center space-x-2 transition-all"
+                                >
+                                    <span>[ DOWNLOAD PDF ]</span>
+                                </button>
+                            </div>
+
                             {activeToolId === 'dopamine-menu' && <DopamineMenu onDeploy={handleDeployClick} />}
                             {activeToolId === 'time-visualizer' && <TimeVisualizer onDeploy={handleDeployClick} />}
                             {activeToolId === 'task-triage' && <TaskTriage onDeploy={handleDeployClick} />}
