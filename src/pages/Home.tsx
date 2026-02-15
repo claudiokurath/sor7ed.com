@@ -75,23 +75,8 @@ export default function Home() {
             </div>
 
             {/* Hero Section */}
-            <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-                {/* Background Video */}
-                <div className="absolute inset-0 z-0">
-                    <video
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
-                        className="w-full h-full object-cover opacity-30 grayscale saturate-0 contrast-125"
-                    >
-                        <source src="/Intro.mp4" type="video/mp4" />
-                    </video>
-                    <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black" />
-                    <div className="absolute inset-0 bg-grid-large opacity-10" />
-                </div>
-
-                <div className="container mx-auto max-w-7xl relative z-10 px-6 pt-20 flex flex-col items-center">
+            <section id="hero" className="relative pt-48 pb-32 px-6">
+                <div className="container mx-auto max-w-7xl">
                     <div className="flex flex-col items-center text-center">
                         <div className="inline-flex items-center space-x-3 bg-white/5 border border-white/10 px-4 py-2 rounded-full mb-12 backdrop-blur-sm">
                             <span className="w-1.5 h-1.5 bg-sor7ed-yellow rounded-full animate-ping" />
@@ -101,6 +86,23 @@ export default function Home() {
                         <h1 className="section-title leading-[0.8] lg:text-[12rem] md:text-[8rem] text-[4rem] mb-12 tracking-tighter">
                             <span className="title-white">THE</span> <span className="title-yellow">LAB.</span>
                         </h1>
+
+                        {/* Centered Video Container */}
+                        <div className="w-full max-w-5xl mb-20 overflow-hidden rounded-sm border border-white/10 bg-black/40 backdrop-blur-xl shadow-2xl relative group">
+                            <div className="absolute top-0 right-0 p-4 font-mono-headline text-[8px] text-zinc-600 uppercase tracking-widest z-20">
+                                / Intro_System_Briefing.mp4
+                            </div>
+                            <video
+                                autoPlay
+                                muted
+                                loop
+                                playsInline
+                                className="w-full aspect-video object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-1000 grayscale hover:grayscale-0"
+                            >
+                                <source src="/Intro.mp4" type="video/mp4" />
+                            </video>
+                            <div className="absolute inset-0 pointer-events-none border-[20px] border-black/20" />
+                        </div>
 
                         <p className="text-xl md:text-2xl text-zinc-400 max-w-2xl font-light leading-relaxed mb-16">
                             Sophisticated, low-friction tools for executive function.
