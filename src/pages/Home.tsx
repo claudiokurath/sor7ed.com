@@ -249,12 +249,23 @@ export default function Home() {
                                     </div>
 
                                     <div className="p-10 flex flex-col items-center w-full">
-                                        <div className="text-[10px] font-mono-headline text-zinc-600 italic uppercase mb-6 tracking-[0.2em]">{post.date}</div>
-                                        <h3 className="text-xl font-black text-white group-hover:text-sor7ed-yellow transition-colors uppercase tracking-widest mb-8 flex items-center justify-center text-center">
+                                        <div className="text-[10px] font-mono-headline text-zinc-600 italic uppercase mb-4 tracking-[0.2em]">{post.date}</div>
+
+                                        <h3 className="text-xl font-black text-white group-hover:text-sor7ed-yellow transition-colors uppercase tracking-widest mb-4 flex items-center justify-center text-center">
                                             {post.title}
                                         </h3>
+
+                                        {/* Excerpt Preview */}
+                                        {post.excerpt && (
+                                            <p className="text-[13px] text-zinc-500 font-light leading-relaxed mb-8 h-12 overflow-hidden italic">
+                                                {post.excerpt}
+                                            </p>
+                                        )}
+
                                         <div className="mt-auto pt-6 border-t border-zinc-900 w-full flex items-center justify-between">
-                                            <span className="text-[9px] font-mono-headline text-sor7ed-yellow uppercase tracking-widest italic">{post.category}</span>
+                                            <span className="text-[11px] font-mono-headline text-sor7ed-yellow uppercase tracking-[0.2em] italic font-bold">
+                                                {post.category}
+                                            </span>
                                             <div className="w-8 h-8 rounded-full border border-sor7ed-yellow/30 flex items-center justify-center text-zinc-700 group-hover:border-sor7ed-yellow group-hover:text-sor7ed-yellow transition-all">
                                                 <span className="text-[10px]">&rarr;</span>
                                             </div>

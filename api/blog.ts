@@ -32,18 +32,24 @@ export default async function handler(req: any, res: any) {
         const posts = data.results.map((page: any) => {
             const props = page.properties
 
-            // Extract image from "Files & media" property
+            // 1. Extract image from "Files & media" property
             const files = props['Files & media']?.files || []
             const imageUrl = files.length > 0
                 ? (files[0].external?.url || files[0].file?.url || '')
                 : (page.cover?.external?.url || page.cover?.file?.url || '')
+
+            // 2. Extract excerpt from "Post Body" property
+            const bodyRichText = props['Post Body']?.rich_text || []
+            const fullBody = bodyRichText.map((t: any) => t.plain_text).join('')
+            const excerpt = fullBody.length > 120 ? fullBody.substring(0, 117) + '...' : fullBody
 
             return {
                 title: props.Title?.title[0]?.plain_text || 'Untitled',
                 date: props['Publication Date']?.date?.start || '',
                 category: props.Branch?.select?.name || 'Mind',
                 readTime: '5 min',
-                image: imageUrl
+                image: imageUrl,
+                excerpt: excerpt
             }
         })
 
