@@ -89,13 +89,12 @@ export default function Home() {
                         </h1>
 
                         {/* Centered Square Video Container */}
-                        <div className="w-full max-w-sm aspect-square mb-20 overflow-hidden rounded-sm border border-white/10 bg-black/40 backdrop-blur-xl shadow-2xl relative group">
+                        <div className="w-full max-w-sm aspect-square mb-20 overflow-hidden rounded-[2rem] bg-black/40 backdrop-blur-xl shadow-2xl relative group">
                             <video
                                 autoPlay
                                 muted={isMuted}
-                                loop
                                 playsInline
-                                className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-1000 grayscale hover:grayscale-0"
+                                className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-1000 grayscale hover:grayscale-0 rounded-[2rem]"
                             >
                                 <source src="/Intro.mp4" type="video/mp4" />
                             </video>
@@ -106,7 +105,7 @@ export default function Home() {
                                     e.stopPropagation();
                                     setIsMuted(!isMuted);
                                 }}
-                                className="absolute bottom-4 right-4 z-30 p-3 rounded-full bg-black/40 border border-white/10 backdrop-blur-md text-white transition-all hover:bg-sor7ed-yellow hover:text-black opacity-0 group-hover:opacity-100"
+                                className="absolute bottom-6 right-6 z-30 p-3 rounded-full bg-black/40 border border-white/10 backdrop-blur-md text-white transition-all hover:bg-sor7ed-yellow hover:text-black opacity-0 group-hover:opacity-100"
                             >
                                 {isMuted ? (
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"></path><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
@@ -115,7 +114,6 @@ export default function Home() {
                                 )}
                             </button>
 
-                            <div className="absolute inset-0 pointer-events-none border-[10px] border-black/20" />
                         </div>
 
                         <p className="text-xl md:text-2xl text-zinc-400 max-w-2xl font-light leading-relaxed mb-16">
