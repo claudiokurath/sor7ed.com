@@ -43,7 +43,7 @@ def update_notion_page(page_id, content):
     
     data = {
         "properties": {
-            "Content": {"rich_text": rich_text}
+            "Template ": {"rich_text": rich_text}
         }
     }
     req = urllib.request.Request(url, method='PATCH')
@@ -100,10 +100,12 @@ def process_blog():
         elif props.get('Name') and props['Name'].get('title'):
             title = props['Name']['title'][0]['plain_text']
             
-        # SMART RESUME: Check if 'Content' already matches the template
+        # SMART RESUME: Check if 'Template ' already matches the template
         current_content = ""
-        if props.get('Content') and props['Content'].get('rich_text'):
-            current_content = props['Content']['rich_text'][0]['plain_text']
+        if props.get('Template ') and props['Template '].get('rich_text'):
+            current_content = props['Template ']['rich_text'][0]['plain_text']
+        elif props.get('Template') and props['Template'].get('rich_text'):
+            current_content = props['Template']['rich_text'][0]['plain_text']
         
         if current_content.startswith('#') and "TL;DR:" in current_content:
             print(f"[{i+1}/{len(pages)}] Skipping: {title} (Already processed)")
