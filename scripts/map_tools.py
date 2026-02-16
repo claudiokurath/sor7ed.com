@@ -1,8 +1,9 @@
+import os
 import json
 import urllib.request
 
-TOKEN = "ntn_Y35904089084QfAR73SCzJllwpTRgonCJuCXxdQBWJH07g"
-DB_ID = "2d80d6014acc8057bbb9e15e74bf70c6"
+TOKEN = os.environ.get('NOTION_BLOG_TOKEN')
+DB_ID = os.environ.get('NOTION_BLOG_DATABASE_ID')
 
 def notion_api(endpoint, method, data=None):
     url = f"https://api.notion.com/v1/{endpoint}"

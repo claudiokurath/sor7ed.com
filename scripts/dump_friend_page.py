@@ -15,7 +15,7 @@ def dump_page():
     body = {
         "filter": {
             "property": "Trigger",
-            "rich_text": { "contains": "DOPAMINE" }
+            "rich_text": { "contains": "FRIEND" }
         }
     }
     
@@ -23,11 +23,17 @@ def dump_page():
         with urllib.request.urlopen(req, data=json.dumps(body).encode()) as response:
             res = json.loads(response.read().decode())
             if res['results']:
-                for page in res['results']:
-                    trigger = page['properties']['Trigger']['rich_text'][0]['plain_text']
-                    print(f"Full Trigger: '{trigger}'")
+                page = res['results'][0]
+                # Print specifically CTA 1 and Post Body excerpt
+                props = page['properties']
+                print("CTA 1 Content:")
+                print(json.dumps(props.get('CTA 1', {}), indent=2))
+                print("\nPost Body Preview:")
+                pb = props.get('Post Body', {}).get('rich_text', [])
+                if pb:
+                    print(pb[0].get('plain_text', '')[:200])
             else:
-                print("No page found for trigger DOPAMINE")
+                print("No page found for trigger FRIEND")
     except Exception as e:
         print(f"Error: {e}")
 

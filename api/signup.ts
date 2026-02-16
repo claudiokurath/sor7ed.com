@@ -31,13 +31,13 @@ export default async function handler(req: any, res: any) {
         const response = await crmNotion.pages.create({
             parent: { database_id: CRM_DATABASE_ID },
             properties: {
-                'Name': {
+                'Customer Name': {
                     title: [{ text: { content: name } }]
                 },
                 'Email': {
                     email: email
                 },
-                'Phone': {
+                'Phone Number': {
                     phone_number: phone || ''
                 },
                 'Template Requested': {

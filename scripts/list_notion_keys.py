@@ -5,31 +5,25 @@ import urllib.request
 TOKEN = os.environ.get('NOTION_BLOG_TOKEN')
 DB_ID = os.environ.get('NOTION_BLOG_DATABASE_ID')
 
-def dump_page():
+def list_keys():
     url = f"https://api.notion.com/v1/databases/{DB_ID}/query"
     req = urllib.request.Request(url, method="POST")
     req.add_header('Authorization', f'Bearer {TOKEN}')
     req.add_header('Notion-Version', '2022-06-28')
     req.add_header('Content-Type', 'application/json')
     
-    body = {
-        "filter": {
-            "property": "Trigger",
-            "rich_text": { "contains": "DOPAMINE" }
-        }
-    }
-    
     try:
-        with urllib.request.urlopen(req, data=json.dumps(body).encode()) as response:
+        with urllib.request.urlopen(req, data=json.dumps({"page_size": 1}).encode()) as response:
             res = json.loads(response.read().decode())
             if res['results']:
-                for page in res['results']:
-                    trigger = page['properties']['Trigger']['rich_text'][0]['plain_text']
-                    print(f"Full Trigger: '{trigger}'")
+                props = res['results'][0]['properties']
+                print("Property Keys:")
+                for key in props.keys():
+                    print(f"- {key}")
             else:
-                print("No page found for trigger DOPAMINE")
+                print("No results found.")
     except Exception as e:
         print(f"Error: {e}")
 
 if __name__ == "__main__":
-    dump_page()
+    list_keys()
