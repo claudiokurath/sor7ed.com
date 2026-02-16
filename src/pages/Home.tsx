@@ -105,7 +105,7 @@ export default function Home() {
                     muted
                     loop
                     playsInline
-                    className="w-full h-full object-cover opacity-20 filter grayscale scale-105"
+                    className="w-full h-full object-cover opacity-40 filter grayscale scale-105"
                 >
                     <source src="/Intro.mp4" type="video/mp4" />
                 </video>
