@@ -90,10 +90,11 @@ export default function Home() {
 
 
     const faqs = [
-        { q: "What is SOR7ED?", a: "SOR7ED is a premium system delivering high-fidelity tools and insights specifically for neurodivergent minds." },
-        { q: "How do I use the tools?", a: "Select a tool from our registry. You can use it instantly on the site or send the listed keyword to our WhatsApp concierge for mobile deployment." },
-        { q: "Is it really free?", a: "Yes. All our core tools and articles are free. We believe in removing friction, not adding subscription fatigue." },
-        { q: "How does the WhatsApp concierge work?", a: "Once you have a keyword (like 'DOPAMINE'), just text it to +44 7966 628285. Our system will immediately return the relevant protocol or template." }
+        { q: "Is this an app?", a: "No. SOR7ED is a web-based system that connects directly to WhatsApp. No downloads, no updates, no friction." },
+        { q: "Is it tailored for ADHD?", a: "Yes. Every tool is built on neuro-architecture principles designed specifically for executive dysfunction, time blindness, and sensory overload." },
+        { q: "Does it work outside the UK?", a: "Yes. Our tools are accessible globally via the web. The WhatsApp deployment works on any number with international texting." },
+        { q: "Is it really free?", a: "The core interactive Lab tools are free to use on the web. Premium WhatsApp integration and advanced protocols may require credits." },
+        { q: "Can I use it with medication?", a: "Absolutely. SOR7ED is a behavioural scaffold that complements medication, therapy, or coaching." }
     ]
 
     return (
@@ -135,15 +136,53 @@ export default function Home() {
                             />
                         </div>
 
-                        <p className="text-xl md:text-2xl text-zinc-400 max-w-2xl font-light leading-relaxed mb-16">
-                            Sophisticated, low-friction tools for executive function.
-                            <span className="text-white"> Instant deployment via WhatsApp.</span>
+                        <h2 className="text-xl md:text-3xl text-white font-black uppercase tracking-tight mb-6 mt-[-20px]">
+                            Tiny phone-based tools for ADHD brains
+                        </h2>
+                        <p className="text-lg text-zinc-400 max-w-2xl font-light leading-relaxed mb-10">
+                            Unstick yourself from <span className="text-white">time blindness</span>, <span className="text-white">overwhelm</span>, and <span className="text-white">sensory overload</span>.
+                            <br />
+                            <span className="text-sor7ed-yellow/80 block mt-2">Tap a 2-5 minute interactive tool. Get instant relief.</span>
                         </p>
 
-                        <div className="flex flex-col sm:flex-row gap-8 mb-24">
-                            <a href="#lab" className="btn-primary">Initialize Tools</a>
-                            <a href="https://wa.me/447360277713?text=Hi" className="btn-secondary">Message Concierge</a>
+                        {/* Outcome Bullets */}
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-16 w-full max-w-3xl">
+                            {[
+                                "Feel less overwhelmed starting tasks",
+                                "Catch yourself before hyperfocus hits",
+                                "Regulate sensory input instantly"
+                            ].map((item, i) => (
+                                <div key={i} className="flex items-center space-x-3 bg-white/5 border border-white/10 px-4 py-3 rounded-lg backdrop-blur-sm">
+                                    <span className="text-sor7ed-yellow">✓</span>
+                                    <span className="text-[11px] text-zinc-300 font-medium leading-tight text-left">{item}</span>
+                                </div>
+                            ))}
                         </div>
+
+                        <div className="flex flex-col sm:flex-row gap-8 mb-24">
+                            <a href="#lab" className="btn-primary w-full sm:w-auto">Initialize Tools</a>
+                            <a href="https://wa.me/447360277713?text=Hi" className="btn-secondary w-full sm:w-auto">Message Concierge</a>
+                        </div>
+
+
+                        {/* How It Works Section */}
+                        <section className="py-24 border-b border-white/5 relative z-10 bg-black/50 backdrop-blur-md">
+                            <div className="container mx-auto max-w-7xl px-6">
+                                <div className="flex flex-col md:flex-row justify-center items-center gap-12 md:gap-24 text-center">
+                                    {[
+                                        { step: "01", title: "Select", desc: "Choose a micro-tool (Time, Task, Sensory) based on your current block." },
+                                        { step: "02", title: "Engage", desc: "Answer 3-5 interactive prompts designed to bypass executive dysfunction." },
+                                        { step: "03", title: "Release", desc: "Get an instant Micro-Plan or shifted state directly on your device." }
+                                    ].map((s) => (
+                                        <div key={s.step} className="flex flex-col items-center max-w-xs group">
+                                            <div className="text-[10px] font-mono-headline text-sor7ed-yellow mb-4 border border-sor7ed-yellow/20 px-3 py-1 rounded-full">{s.step}</div>
+                                            <h3 className="text-2xl font-black text-white uppercase tracking-widest mb-4 group-hover:text-sor7ed-yellow transition-colors">{s.title}</h3>
+                                            <p className="text-sm text-zinc-500 font-light leading-relaxed">{s.desc}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </section>
 
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-12 border-y border-sor7ed-yellow/20 py-12 w-full max-w-4xl backdrop-blur-sm bg-black/10">
                             {[
@@ -331,6 +370,32 @@ export default function Home() {
                     </div>
                 </div>
             </section >
+
+            {/* Social Proof Section */}
+            <section className="py-32 border-t border-b border-sor7ed-yellow/10 bg-zinc-900/20">
+                <div className="container mx-auto max-w-6xl px-6">
+                    <div className="text-center mb-16">
+                        <span className="text-[10px] font-mono-headline text-zinc-500 uppercase tracking-[0.3em]">
+                            Validated by Neurodivergent Minds
+                        </span>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        {[
+                            { quote: "For the first time I can actually start tasks on time without the shame spiral.", role: "ADHD Creative" },
+                            { quote: "The Body Double tool is the only thing that gets me through my admin backlog.", role: "AuDHD Founder" },
+                            { quote: "Finally a system that doesn't demand perfection. It just asks for 2 minutes.", role: "Late Diagnosed" }
+                        ].map((t, i) => (
+                            <div key={i} className="bg-black/40 border border-white/5 p-8 relative">
+                                <div className="text-4xl text-sor7ed-yellow/20 absolute top-4 left-4">“</div>
+                                <p className="text-zinc-300 font-light italic leading-loose mb-6 relative z-10">"{t.quote}"</p>
+                                <div className="text-[10px] font-mono-headline text-sor7ed-yellow uppercase tracking-widest text-right">
+                                     // {t.role}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
 
             {/* FAQ Section / Documentation */}
             < section id="faq" className="py-32 px-6 bg-zinc-900/10 border-t border-white/5" >
