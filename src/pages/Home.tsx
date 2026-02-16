@@ -237,21 +237,23 @@ export default function Home() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {dynamicTools.length > 0 ? (
-                            dynamicTools.map((tool) => (
-                                <div
-                                    key={tool.name}
-                                    onClick={() => handleToolClick(tool)}
-                                    className="stealth-card p-12 group cursor-pointer hover:border-sor7ed-yellow transition-all duration-500"
-                                >
-                                    <div className="text-4xl mb-6">{tool.icon}</div>
-                                    <h3 className="text-xl font-black uppercase tracking-widest text-white mb-6">{tool.name}</h3>
-                                    <p className="text-sm text-zinc-500 font-light mb-10 leading-relaxed h-12 overflow-hidden">{tool.desc}</p>
-                                    <div className="flex items-center space-x-3 text-[10px] font-black tracking-[0.3em] text-sor7ed-yellow transition-all">
-                                        <span className="uppercase">Run Protocol</span>
-                                        <span className="w-8 h-px bg-sor7ed-yellow/30 group-hover:w-12 transition-all" />
+                            dynamicTools
+                                .filter(tool => ['noise mixer', 'body double', 'communication bridge'].some(name => tool.name.toLowerCase().includes(name)))
+                                .map((tool) => (
+                                    <div
+                                        key={tool.name}
+                                        onClick={() => handleToolClick(tool)}
+                                        className="stealth-card p-12 group cursor-pointer hover:border-sor7ed-yellow transition-all duration-500"
+                                    >
+                                        <div className="text-4xl mb-6">{tool.icon}</div>
+                                        <h3 className="text-xl font-black uppercase tracking-widest text-white mb-6">{tool.name}</h3>
+                                        <p className="text-sm text-zinc-500 font-light mb-10 leading-relaxed h-12 overflow-hidden">{tool.desc}</p>
+                                        <div className="flex items-center space-x-3 text-[10px] font-black tracking-[0.3em] text-sor7ed-yellow transition-all">
+                                            <span className="uppercase">Run Protocol</span>
+                                            <span className="w-8 h-px bg-sor7ed-yellow/30 group-hover:w-12 transition-all" />
+                                        </div>
                                     </div>
-                                </div>
-                            ))
+                                ))
                         ) : (
                             <div className="col-span-full py-20 text-center border border-dashed border-white/10 rounded-2xl">
                                 <p className="text-zinc-600 font-mono-headline text-xs">Registry Empty // Check Notion Status: Live</p>
