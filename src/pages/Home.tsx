@@ -127,9 +127,13 @@ export default function Home() {
                             <span className="text-[10px] font-mono-headline text-zinc-400">System Architecture for ADHD</span>
                         </div>
 
-                        <h1 className="section-title leading-[0.8] lg:text-[12rem] md:text-[8rem] text-[4rem] mb-12 tracking-tighter">
-                            <span className="title-white">THE</span> <span className="title-yellow">LAB.</span>
-                        </h1>
+                        <div className="mb-24 flex justify-center animate-in fade-in duration-1000">
+                            <img
+                                src="/logo.png"
+                                alt="SOR7ED"
+                                className="h-32 md:h-56 w-auto object-contain drop-shadow-2xl"
+                            />
+                        </div>
 
                         <p className="text-xl md:text-2xl text-zinc-400 max-w-2xl font-light leading-relaxed mb-16">
                             Sophisticated, low-friction tools for executive function.
@@ -137,7 +141,7 @@ export default function Home() {
                         </p>
 
                         <div className="flex flex-col sm:flex-row gap-8 mb-24">
-                            <a href="#tools" className="btn-primary">Initialize Tools</a>
+                            <a href="#lab" className="btn-primary">Initialize Tools</a>
                             <a href="https://wa.me/447360277713?text=Hi" className="btn-secondary">Message Concierge</a>
                         </div>
 
@@ -220,11 +224,11 @@ export default function Home() {
 
 
             {/* Tools Section / Registry */}
-            < section id="tools" className="py-32 px-6 border-y border-sor7ed-yellow/20 flex flex-col items-center" >
+            < section id="lab" className="py-32 px-6 border-y border-sor7ed-yellow/20 flex flex-col items-center" >
                 <div className="container mx-auto max-w-7xl text-center flex flex-col items-center">
                     <div className="max-w-3xl mb-16">
                         <h2 className="section-title justify-center flex gap-4">
-                            <span className="title-white">THE</span> <span className="title-yellow">REGISTRY.</span>
+                            <span className="title-white">THE</span> <span className="title-yellow">LAB.</span>
                         </h2>
                         <p className="text-zinc-600 font-mono-headline text-xs tracking-widest uppercase">
                             Operational protocols for immediate cognitive relief.
