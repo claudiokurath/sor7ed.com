@@ -9,13 +9,13 @@ interface BranchCardProps {
 export default function BranchCard({ branch, delay = 0, className = "" }: BranchCardProps) {
     return (
         <div
-            className={`bg-sor7ed-yellow p-8 md:p-12 group transition-all duration-700 hover:-translate-y-2 flex flex-col justify-between h-full ${className}`}
+            className={`stealth-card p-10 group cursor-default hover:border-sor7ed-yellow/30 flex flex-col justify-between h-full ${className}`}
             style={{ animationDelay: `${delay}ms` }}
         >
-            <h3 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter text-black mb-4 leading-[0.85]">
+            <h3 className="text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter text-white group-hover:text-sor7ed-yellow transition-colors duration-500 mb-4 leading-[0.85]">
                 {branch.name}
             </h3>
-            <p className="text-black/80 font-medium text-sm md:text-base leading-relaxed max-w-sm">
+            <p className="text-zinc-500 font-medium text-sm leading-relaxed max-w-sm group-hover:text-zinc-300 transition-colors">
                 {branch.description}
             </p>
         </div>
