@@ -7,6 +7,8 @@ import Blog from './pages/Blog'
 import About from './pages/About'
 import Signup from './pages/Signup'
 
+import BlogPost from './pages/BlogPost'
+
 function App() {
     return (
         <Router>
@@ -17,6 +19,7 @@ function App() {
                         <Route path="/" element={<Home />} />
                         <Route path="/tools" element={<Tools />} />
                         <Route path="/blog" element={<Blog />} />
+                        <Route path="/blog/:title" element={<BlogPost />} />
                         <Route path="/about" element={<About />} />
                         <Route path="/signup" element={<Signup />} />
                     </Routes>
