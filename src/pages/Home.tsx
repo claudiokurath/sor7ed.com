@@ -183,21 +183,21 @@ export default function Home() {
                             <span className="title-white">THE</span> <span className="title-yellow">LAB.</span>
                         </h2>
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-7xl">
                         {dynamicTools.length > 0 ? (
                             dynamicTools.map((tool) => (
                                 <div
                                     key={tool.id}
                                     onClick={() => handleToolClick(tool)}
-                                    className="stealth-card p-12 group cursor-pointer hover:border-sor7ed-yellow/30 transition-all duration-500 text-left"
+                                    className="stealth-card rounded-2xl p-10 group cursor-pointer hover:border-sor7ed-yellow/30 transition-all duration-500 text-left h-[400px] flex flex-col justify-center"
                                 >
-                                    <div className="text-4xl mb-8 opacity-50 group-hover:opacity-100 transition-opacity grayscale group-hover:grayscale-0">{tool.emoji}</div>
-                                    <h3 className="text-xl font-bold uppercase tracking-widest text-white mb-4">{tool.name}</h3>
-                                    <p className="text-sm text-zinc-500 font-light mb-0 leading-relaxed max-h-20 overflow-hidden">{tool.description}</p>
+                                    <div className="text-5xl mb-8 opacity-50 group-hover:opacity-100 transition-opacity grayscale group-hover:grayscale-0">{tool.emoji || '🛠️'}</div>
+                                    <h3 className="text-2xl font-bold uppercase tracking-tight text-white mb-4 group-hover:text-sor7ed-yellow transition-colors">{tool.name}</h3>
+                                    <p className="text-sm text-zinc-500 font-medium leading-relaxed max-h-32 overflow-hidden">{tool.description}</p>
                                 </div>
                             ))
                         ) : (
-                            <div className="col-span-full py-20 text-center border border-dashed border-white/5 rounded-3xl">
+                            <div className="col-span-full py-20 text-center border border-dashed border-white/5 rounded-2xl">
                                 <p className="text-zinc-600 font-mono-headline text-xs">Registry Empty // Check Notion Status: Live</p>
                             </div>
                         )}
@@ -213,35 +213,37 @@ export default function Home() {
                             <span className="title-white">THE</span> <span className="title-yellow">INSIGHTS.</span>
                         </h2>
                     </div>
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full max-w-7xl">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-7xl">
                         {dynamicArticles.length > 0 ? (
                             dynamicArticles.map((post, i) => (
                                 <div
                                     key={i}
                                     onClick={() => handlePostClick(post)}
-                                    className="stealth-card group cursor-pointer hover:border-white/20 transition-all duration-700 flex flex-col overflow-hidden"
+                                    className="stealth-card rounded-2xl group cursor-pointer hover:border-white/20 transition-all duration-700 flex flex-col overflow-hidden h-[400px]"
                                 >
-                                    <div className="p-10 flex flex-col flex-grow">
-                                        <div className="flex justify-between items-start mb-6">
-                                            <span className="text-[9px] font-mono-headline text-sor7ed-yellow uppercase tracking-[0.2em]">{post.branch}</span>
-                                            <span className="text-[9px] font-mono-headline text-zinc-600 uppercase tracking-[0.2em]">{post.date}</span>
+                                    <div className="p-10 flex flex-col h-full justify-between">
+                                        <div>
+                                            <div className="flex justify-between items-start mb-6">
+                                                <span className="text-[10px] font-mono-headline text-sor7ed-yellow uppercase tracking-[0.2em]">{post.branch}</span>
+                                                <span className="text-[10px] font-mono-headline text-zinc-600 uppercase tracking-[0.2em]">{post.date}</span>
+                                            </div>
+                                            <h3 className="text-2xl font-bold text-white group-hover:text-sor7ed-yellow transition-colors uppercase tracking-tight mb-4 leading-tight">
+                                                {post.title}
+                                            </h3>
+                                            {post.excerpt && (
+                                                <p className="text-sm text-zinc-500 font-medium leading-relaxed line-clamp-3">
+                                                    {post.excerpt}
+                                                </p>
+                                            )}
                                         </div>
-                                        <h3 className="text-2xl font-bold text-white group-hover:text-sor7ed-yellow transition-colors uppercase tracking-tight mb-6 leading-none">
-                                            {post.title}
-                                        </h3>
-                                        {post.excerpt && (
-                                            <p className="text-sm text-zinc-500 font-light leading-relaxed mb-8 line-clamp-3">
-                                                {post.excerpt}
-                                            </p>
-                                        )}
-                                        <div className="mt-auto pt-6 border-t border-white/5 flex justify-end">
+                                        <div className="pt-6 border-t border-white/5 flex justify-end">
                                             <span className="text-zinc-700 group-hover:text-white transition-colors text-lg">→</span>
                                         </div>
                                     </div>
                                 </div>
                             ))
                         ) : (
-                            <div className="col-span-full py-20 text-center border border-dashed border-white/5 rounded-3xl w-full">
+                            <div className="col-span-full py-20 text-center border border-dashed border-white/5 rounded-2xl w-full">
                                 <p className="text-zinc-600 font-mono-headline text-xs">Repository Syncing // Check Notion Status: Published</p>
                             </div>
                         )}
