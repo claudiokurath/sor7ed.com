@@ -189,7 +189,7 @@ export default function Home() {
                                 <div
                                     key={tool.id}
                                     onClick={() => handleToolClick(tool)}
-                                    className="stealth-card rounded-2xl p-10 group cursor-pointer hover:border-sor7ed-yellow/30 transition-all duration-500 text-left h-[400px] flex flex-col justify-center"
+                                    className="stealth-card rounded-2xl p-10 group cursor-pointer hover:border-sor7ed-yellow/30 transition-all duration-500 text-left h-[320px] flex flex-col justify-center"
                                 >
                                     <div className="text-5xl mb-8 opacity-50 group-hover:opacity-100 transition-opacity grayscale group-hover:grayscale-0">{tool.emoji || '🛠️'}</div>
                                     <h3 className="text-2xl font-bold uppercase tracking-tight text-white mb-4 group-hover:text-sor7ed-yellow transition-colors">{tool.name}</h3>
@@ -198,7 +198,7 @@ export default function Home() {
                             ))
                         ) : (
                             <div className="col-span-full py-20 text-center border border-dashed border-white/5 rounded-2xl">
-                                <p className="text-zinc-600 font-mono-headline text-xs">Registry Empty // Check Notion Status: Live</p>
+                                <p className="text-zinc-600 font-mono-headline text-xs">Registry Empty // Check Notion Status: Published</p>
                             </div>
                         )}
                     </div>
@@ -219,7 +219,7 @@ export default function Home() {
                                 <div
                                     key={i}
                                     onClick={() => handlePostClick(post)}
-                                    className="stealth-card rounded-2xl group cursor-pointer hover:border-white/20 transition-all duration-700 flex flex-col overflow-hidden h-[400px]"
+                                    className="stealth-card rounded-2xl group cursor-pointer hover:border-white/20 transition-all duration-700 flex flex-col overflow-hidden h-[320px]"
                                 >
                                     <div className="p-10 flex flex-col h-full justify-between">
                                         <div>
