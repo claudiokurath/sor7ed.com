@@ -8,6 +8,9 @@ interface Article {
     id: string
     title: string
     excerpt: string
+    content: string
+    cta: string
+    coverImage: string
     branch: string
     branchColor: string
     readTime: string
@@ -38,8 +41,8 @@ const Blog = () => {
                     <button
                         onClick={() => setSelectedBranch(null)}
                         className={`px-4 py-2 rounded-full font-semibold transition-colors ${selectedBranch === null
-                                ? 'bg-sor7ed-yellow text-black'
-                                : 'bg-gray-900 text-gray-400 hover:bg-gray-800'
+                            ? 'bg-sor7ed-yellow text-black'
+                            : 'bg-gray-900 text-gray-400 hover:bg-gray-800'
                             }`}
                     >
                         All
@@ -49,8 +52,8 @@ const Blog = () => {
                             key={branch.id} // Assuming branches have .id, based on branches.ts
                             onClick={() => setSelectedBranch(branch.name)}
                             className={`px-4 py-2 rounded-full font-semibold transition-colors ${selectedBranch === branch.name
-                                    ? 'bg-sor7ed-yellow text-black'
-                                    : 'bg-gray-900 text-gray-400 hover:bg-gray-800'
+                                ? 'bg-sor7ed-yellow text-black'
+                                : 'bg-gray-900 text-gray-400 hover:bg-gray-800'
                                 }`}
                         >
                             <span className="mr-1">{branch.emoji}</span>

@@ -4,6 +4,9 @@ interface Article {
     id: string
     title: string
     excerpt: string
+    content: string
+    cta: string
+    coverImage: string
     branch: string
     branchColor: string
     readTime: string
@@ -28,7 +31,7 @@ const BlogCard = ({ article }: BlogCardProps) => {
                 <span className="text-xs text-gray-500">{article.readTime}</span>
             </div>
             <h3 className="text-xl font-bold mb-2 text-white">
-                <Link to={`/blog/${article.id}`} className="hover:text-sor7ed-yellow transition-colors">
+                <Link to={`/blog/${encodeURIComponent(article.title)}`} className="hover:text-sor7ed-yellow transition-colors">
                     {article.title}
                 </Link>
             </h3>
@@ -36,7 +39,7 @@ const BlogCard = ({ article }: BlogCardProps) => {
             <div className="flex items-center justify-between mt-auto">
                 <span className="text-xs text-gray-500">{article.date}</span>
                 <Link
-                    to={`/blog/${article.id}`}
+                    to={`/blog/${encodeURIComponent(article.title)}`}
                     className="text-sor7ed-yellow hover:text-yellow-500 text-sm font-semibold transition-colors"
                 >
                     Read More →
