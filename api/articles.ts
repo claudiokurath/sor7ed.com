@@ -14,9 +14,10 @@ const BRANCH_COLORS: Record<string, string> = {
     GROWTH: '#16A085',
 }
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+export default async function handler(_req: VercelRequest, res: VercelResponse) {
     try {
-        const response = await notion.databases.query({
+        // Use 'any' here to bypass Vercel's strict type check on the SDK namespace
+        const response = await (notion.databases as any).query({
             database_id: BLOG_DB_ID,
             filter: {
                 property: 'Status',
@@ -25,7 +26,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             sorts: [{ property: 'Publish Date', direction: 'descending' }],
         })
 
-        const articles = response.results.map((page: any) => {
+        const articles = (response.results as any[]).map((page: any) => {
             const props = page.properties
             const branch = props.Branch?.select?.name || ''
             const publishDate = props['Publish Date']?.date?.start || ''
