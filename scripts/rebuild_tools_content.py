@@ -4,8 +4,8 @@ import urllib.request
 import re
 import time
 
-NOTION_TOKEN = os.environ.get('NOTION_TOOLS_TOKEN')
-NOTION_DB_ID = os.environ.get('NOTION_TOOLS_DATABASE_ID')
+NOTION_API_KEY = os.environ.get('NOTION_API_KEY')
+NOTION_DB_ID = os.environ.get('NOTION_TOOLS_DB_ID')
 GEMINI_KEY = os.environ.get('GEMINI_API_KEY')
 
 def call_gemini(prompt, retries=10):
@@ -45,7 +45,7 @@ def update_notion_page(page_id, updates):
     url = f"https://api.notion.com/v1/pages/{page_id}"
     data = { "properties": updates }
     req = urllib.request.Request(url, method='PATCH')
-    req.add_header("Authorization", f"Bearer {NOTION_TOKEN}")
+    req.add_header("Authorization", f"Bearer {NOTION_API_KEY}")
     req.add_header("Notion-Version", "2022-06-28")
     req.add_header("Content-Type", "application/json")
     try:
@@ -61,7 +61,7 @@ def update_notion_page(page_id, updates):
 def get_all_pages():
     url = f"https://api.notion.com/v1/databases/{NOTION_DB_ID}/query"
     req = urllib.request.Request(url, method='POST', headers={
-        "Authorization": f"Bearer {NOTION_TOKEN}",
+        "Authorization": f"Bearer {NOTION_API_KEY}",
         "Notion-Version": "2022-06-28",
         "Content-Type": "application/json"
     })

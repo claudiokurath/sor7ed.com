@@ -9,15 +9,15 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 // @ts-ignore
-const notion = new Client({ auth: process.env.NOTION_TOOLS_TOKEN })
+const notion = new Client({ auth: process.env.NOTION_API_KEY })
 // @ts-ignore
-const databaseId = process.env.NOTION_TOOLS_DATABASE_ID
+const databaseId = process.env.NOTION_TOOLS_DB_ID
 
 async function syncTools() {
     console.log('🚀 Starting Tool Sync...')
 
     if (!databaseId) {
-        console.error('❌ NOTION_TOOLS_DATABASE_ID missing')
+        console.error('❌ NOTION_TOOLS_DB_ID missing')
         return
     }
 

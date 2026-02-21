@@ -17,7 +17,7 @@ try {
     console.error('Error loading .env file', e)
 }
 
-const notion = new Client({ auth: process.env.NOTION_BLOG_TOKEN })
+const notion = new Client({ auth: process.env.NOTION_API_KEY })
 const databaseId = process.env.NOTION_BLOG_DB_ID
 
 const TRIGGER_TO_BRANCH: Record<string, string> = {
@@ -46,7 +46,7 @@ async function populateBlog() {
     console.log('🚀 Starting Blog Population...')
 
     if (!databaseId) {
-        console.error('❌ NOTION_BLOG_DATABASE_ID missing')
+        console.error('❌ NOTION_BLOG_DB_ID missing')
         return
     }
 

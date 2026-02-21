@@ -3,8 +3,8 @@ import urllib.request
 import os
 import re
 
-TOKEN = os.environ.get('NOTION_BLOG_TOKEN')
-DB_ID = os.environ.get('NOTION_BLOG_DATABASE_ID')
+TOKEN = os.environ.get('NOTION_API_KEY')
+DB_ID = os.environ.get('NOTION_BLOG_DB_ID')
 
 def parse_md(file_path):
     if not os.path.exists(file_path):

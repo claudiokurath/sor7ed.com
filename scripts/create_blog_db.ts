@@ -3,7 +3,7 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 
-const notion = new Client({ auth: process.env.NOTION_TOOLS_TOKEN })
+const notion = new Client({ auth: process.env.NOTION_API_KEY })
 const parentPageId = process.env.NOTION_PARENT_PAGE_ID // You need a parent page ID to host the database
 
 async function setupBlogDatabase() {
@@ -86,7 +86,7 @@ async function setupBlogDatabase() {
         console.log('✅ New Blog Database Created!')
         console.log('🔗 Database ID:', response.id)
         console.log('🔗 View it here:', response.url)
-        console.log('\n⚠️  Please update your .env file with this new Database ID as NOTION_BLOG_DATABASE_ID')
+        console.log('\n⚠️  Please update your .env file with this new Database ID as NOTION_BLOG_DB_ID')
 
     } catch (error: any) {
         console.error('❌ Error creating database:', error.message)

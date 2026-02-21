@@ -5,12 +5,12 @@ REPLACEMENTS = {
     os.environ.get('TWILIO_ACCOUNT_SID'): "os.environ.get('TWILIO_ACCOUNT_SID')",
     os.environ.get('TWILIO_AUTH_TOKEN'): "os.environ.get('TWILIO_AUTH_TOKEN')",
     os.environ.get('TWILIO_MESSAGING_SERVICE_SID'): "os.environ.get('TWILIO_MESSAGING_SERVICE_SID')",
-    os.environ.get('NOTION_BLOG_TOKEN'): "os.environ.get('NOTION_BLOG_TOKEN')",
-    os.environ.get('NOTION_TOOLS_TOKEN'): "os.environ.get('NOTION_TOOLS_TOKEN')",
-    os.environ.get('NOTION_CRM_TOKEN'): "os.environ.get('NOTION_CRM_TOKEN')",
-    os.environ.get('NOTION_BLOG_DATABASE_ID'): "os.environ.get('NOTION_BLOG_DATABASE_ID')",
-    os.environ.get('NOTION_TOOLS_DATABASE_ID'): "os.environ.get('NOTION_TOOLS_DATABASE_ID')",
-    os.environ.get('NOTION_CRM_DATABASE_ID'): "os.environ.get('NOTION_CRM_DATABASE_ID')",
+    os.environ.get('NOTION_API_KEY'): "os.environ.get('NOTION_API_KEY')",
+    os.environ.get('NOTION_API_KEY'): "os.environ.get('NOTION_API_KEY')",
+    os.environ.get('NOTION_API_KEY'): "os.environ.get('NOTION_API_KEY')",
+    os.environ.get('NOTION_BLOG_DB_ID'): "os.environ.get('NOTION_BLOG_DB_ID')",
+    os.environ.get('NOTION_TOOLS_DB_ID'): "os.environ.get('NOTION_TOOLS_DB_ID')",
+    os.environ.get('NOTION_CRM_DB_ID'): "os.environ.get('NOTION_CRM_DB_ID')",
     os.environ.get('GEMINI_API_KEY'): "os.environ.get('GEMINI_API_KEY')",
 }
 

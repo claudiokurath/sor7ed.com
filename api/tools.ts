@@ -1,7 +1,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 import { Client } from '@notionhq/client'
 
-const notion = new Client({ auth: process.env.NOTION_TOOLS_KEY || process.env.NOTION_API_KEY })
+const notion = new Client({ auth: process.env.NOTION_API_KEY })
 const TOOLS_DB_ID = process.env.NOTION_TOOLS_DB_ID!
 
 const BRANCH_COLORS: Record<string, string> = {

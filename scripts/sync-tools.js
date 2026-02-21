@@ -11,14 +11,14 @@ envFile.split('\n').forEach(line => {
     }
 })
 
-const notion = new Client({ auth: process.env.NOTION_TOOLS_TOKEN })
-const databaseId = process.env.NOTION_TOOLS_DATABASE_ID
+const notion = new Client({ auth: process.env.NOTION_API_KEY })
+const databaseId = process.env.NOTION_TOOLS_DB_ID
 
 async function syncTools() {
     console.log('🚀 Starting Tool Sync...')
 
     if (!databaseId) {
-        console.error('❌ NOTION_TOOLS_DATABASE_ID missing')
+        console.error('❌ NOTION_TOOLS_DB_ID missing')
         return
     }
 

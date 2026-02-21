@@ -1,11 +1,11 @@
-const TOOLS_KEY = 'ntn_v35904089083VjK8sE1ZyGTQQs6lmPVJNdSzGF10RlL19e'; // Trying User Key first (since Blog worked)? 
+const TOOLS_KEY = 'ntn_X35904089085dj81e9AJCIrVsEbWQ8gPoL5e4iKqGXv69W'; // Trying User Key first (since Blog worked)? 
 // Wait, Step 990 failed with User Key.
 // So I will try ENV KEY.
 // But Step 527 used 'ntn_v...' for everything successfully? Maybe ID mismatch?
 // I will try BOTH keys in sequence, just in case.
 
 const ENV_KEY = 'ntn_X35904089085dj81e9AJCIrVsEbWQ8gPoL5e4iKqGXv69W';
-const USER_KEY = 'ntn_v35904089083VjK8sE1ZyGTQQs6lmPVJNdSzGF10RlL19e';
+const USER_KEY = 'ntn_X35904089085dj81e9AJCIrVsEbWQ8gPoL5e4iKqGXv69W';
 
 const TOOLS_ID = '08ac767d313845ca91886ce45c379b99';
 

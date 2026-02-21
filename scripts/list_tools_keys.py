@@ -2,8 +2,8 @@ import os
 import json
 import urllib.request
 
-TOKEN = os.environ.get('NOTION_TOOLS_TOKEN')
-DB_ID = os.environ.get('NOTION_TOOLS_DATABASE_ID')
+TOKEN = os.environ.get('NOTION_API_KEY')
+DB_ID = os.environ.get('NOTION_TOOLS_DB_ID')
 
 def list_keys():
     url = f"https://api.notion.com/v1/databases/{DB_ID}/query"

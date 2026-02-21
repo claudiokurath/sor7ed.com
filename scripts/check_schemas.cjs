@@ -1,4 +1,4 @@
-const TOKEN = 'ntn_v35904089083VjK8sE1ZyGTQQs6lmPVJNdSzGF10RlL19e';
+const TOKEN = 'ntn_X35904089085dj81e9AJCIrVsEbWQ8gPoL5e4iKqGXv69W';
 const DBS = [
   { name: 'DOCUMENTS (User Linked)', id: '2b80d6014acc80c2a871cde808fc3fd6' },
   { name: 'CRM (User Linked)', id: '2e90d6014acc80c0b603ffa9e74f7f7d' },

@@ -56,10 +56,10 @@ export default async function handler(req: any, res: any) {
         return res.status(200).send(`<?xml version="1.0" encoding="UTF-8"?><Response><Message>${UTILITY_RESPONSES[trigger]}</Message></Response>`)
     }
 
-    const TOKEN = (process.env.NOTION_TOKEN || process.env.NOTION_BLOG_TOKEN || process.env.NOTION_CRM_TOKEN || '').trim()
-    const BLOG_DB_ID = (process.env.NOTION_BLOG_DATABASE_ID || process.env.BLOG_DB_ID || process.env.BLOG_DATABASE_ID || '').trim()
-    const TOOLS_DB_ID = (process.env.NOTION_TOOLS_DATABASE_ID || process.env.TOOLS_DB_ID || process.env.TOOLS_DATABASE_ID || '').trim()
-    const CRM_DB_ID = (process.env.NOTION_CRM_DATABASE_ID || '').trim()
+    const TOKEN = (process.env.NOTION_API_KEY || '').trim()
+    const BLOG_DB_ID = (process.env.NOTION_BLOG_DB_ID || '').trim()
+    const TOOLS_DB_ID = (process.env.NOTION_TOOLS_DB_ID || '').trim()
+    const CRM_DB_ID = (process.env.NOTION_CRM_DB_ID || '').trim()
 
     try {
         if (!TOKEN) throw new Error("Vercel Config Error: Missing Notion Token.")

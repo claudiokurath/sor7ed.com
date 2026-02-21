@@ -3,10 +3,10 @@ import { config } from 'dotenv'; config({ path: '/Users/claudiokurath/NEXT LEVEL
 
 
 const TOOLS_ID = process.env.NOTION_TOOLS_DB_ID;
-const TOOLS_KEY = process.env.NOTION_TOOLS_KEY;
+const TOOLS_KEY = process.env.NOTION_API_KEY;
 
 const BLOG_ID = process.env.NOTION_BLOG_DB_ID;
-const BLOG_KEY = process.env.NOTION_BLOG_KEY;
+const BLOG_KEY = process.env.NOTION_API_KEY;
 
 // Also check INSIGHTS if they are different
 const INSIGHTS_ID = process.env.NOTION_INSIGHTS_DB_ID;

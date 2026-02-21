@@ -1,4 +1,4 @@
-const TOKEN = 'ntn_v35904089083VjK8sE1ZyGTQQs6lmPVJNdSzGF10RlL19e';
+const TOKEN = 'ntn_X35904089085dj81e9AJCIrVsEbWQ8gPoL5e4iKqGXv69W';
 const BLOG_ID = 'db668e4687ed455498357b8d11d2c714';
 
 async function listBlogItems() {

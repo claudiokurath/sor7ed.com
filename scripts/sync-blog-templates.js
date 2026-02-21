@@ -11,14 +11,14 @@ envFile.split('\n').forEach(line => {
     }
 })
 
-const notion = new Client({ auth: process.env.NOTION_BLOG_TOKEN })
-const databaseId = process.env.NOTION_BLOG_DATABASE_ID
+const notion = new Client({ auth: process.env.NOTION_API_KEY })
+const databaseId = process.env.NOTION_BLOG_DB_ID
 
 async function syncBlogTemplates() {
     console.log('🚀 Starting Blog Template Sync...')
 
     if (!databaseId) {
-        console.error('❌ NOTION_BLOG_DATABASE_ID missing')
+        console.error('❌ NOTION_BLOG_DB_ID missing')
         return
     }
 

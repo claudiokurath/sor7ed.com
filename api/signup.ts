@@ -1,7 +1,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 import { Client } from '@notionhq/client'
 
-const notion = new Client({ auth: process.env.NOTION_CRM_KEY })
+const notion = new Client({ auth: process.env.NOTION_API_KEY })
 const CRM_DB_ID = process.env.NOTION_CRM_DB_ID!
 const TWILIO_ACCOUNT_SID = process.env.TWILIO_ACCOUNT_SID!
 const TWILIO_AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN!

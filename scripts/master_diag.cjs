@@ -1,4 +1,4 @@
-const TOOLS_ID = '2fb0d6014acc80699332d6e01539deb2'; const MASTER_KEY = 'ntn_v35904089083VjK8sE1ZyGTQQs6lmPVJNdSzGF10RlL19e'; const BLOG_ID = '30a0d6014acc81ebbf18ea14125173e3'; const INSIGHTS_ID = '30a0d6014acc81809644c6769eebefac';
+const TOOLS_ID = '2fb0d6014acc80699332d6e01539deb2'; const MASTER_KEY = 'ntn_X35904089085dj81e9AJCIrVsEbWQ8gPoL5e4iKqGXv69W'; const BLOG_ID = '30a0d6014acc81ebbf18ea14125173e3'; const INSIGHTS_ID = '30a0d6014acc81809644c6769eebefac';
 
 async function checkDB(name, id, token) {
   console.log(`\n🔍 Checking ${name} (${id})`);

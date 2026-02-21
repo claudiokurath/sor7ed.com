@@ -48,7 +48,7 @@
                 "operation": "getAll",
                 "databaseId": {
                     "__rl": true,
-                    "value": "={{ $env.NOTION_BLOG_DATABASE_ID }}",
+                    "value": "={{ $env.NOTION_BLOG_DB_ID }}",
                     "mode": "id"
                 },
                 "filterType": "manual",

@@ -2,7 +2,7 @@
 import fs from 'fs'
 import path from 'path'
 
-const NOTION_TOKEN = 'ntn_Y35904089084QfAR73SCzJllwpTRgonCJuCXxdQBWJH07g'
+const NOTION_API_KEY = 'ntn_X35904089085dj81e9AJCIrVsEbWQ8gPoL5e4iKqGXv69W'
 const DATABASE_ID = '30a0d6014acc81ebbf18ea14125173e3'
 
 function slugify(text) {
@@ -20,7 +20,7 @@ async function notionRequest(endpoint, method, body) {
     const response = await fetch(url, {
         method: method,
         headers: {
-            'Authorization': `Bearer ${NOTION_TOKEN}`,
+            'Authorization': `Bearer ${NOTION_API_KEY}`,
             'Notion-Version': '2022-06-28',
             'Content-Type': 'application/json'
         },

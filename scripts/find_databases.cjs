@@ -1,4 +1,4 @@
-const TOKEN = 'ntn_v35904089083VjK8sE1ZyGTQQs6lmPVJNdSzGF10RlL19e';
+const TOKEN = 'ntn_X35904089085dj81e9AJCIrVsEbWQ8gPoL5e4iKqGXv69W';
 
 async function listDatabases() {
   console.log('🔍 Searching for accesible databases...');

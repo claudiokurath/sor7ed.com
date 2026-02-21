@@ -1,6 +1,6 @@
 
 const DB_ID = '30a0d6014acc81ebbf18ea14125173e3';
-const TOKEN = 'ntn_Y35904089084QfAR73SCzJllwpTRgonCJuCXxdQBWJH07g';
+const TOKEN = 'ntn_X35904089085dj81e9AJCIrVsEbWQ8gPoL5e4iKqGXv69W';
 
 async function verifyAccess() {
   console.log('🔍 Checking Access to Database:', DB_ID);

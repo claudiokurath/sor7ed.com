@@ -1,7 +1,7 @@
 export default async function handler(req: any, res: any) {
     const { slug } = req.query
 
-    const TOKEN = (process.env.NOTION_BLOG_KEY || '').trim()
+    const TOKEN = (process.env.NOTION_API_KEY || '').trim()
     const DB_ID = (process.env.NOTION_BLOG_DB_ID || '').trim()
 
     try {

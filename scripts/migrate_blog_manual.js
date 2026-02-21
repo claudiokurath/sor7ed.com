@@ -1,6 +1,6 @@
 
 // Hardcoded credentials to bypass permission issues
-const NOTION_TOKEN = 'ntn_m35904089086ppdrvL5RvYTm4gSHMn8Iibaj44dCC2daef'
+const NOTION_API_KEY = 'ntn_X35904089085dj81e9AJCIrVsEbWQ8gPoL5e4iKqGXv69W'
 const OLD_DATABASE_ID = '2d80d6014acc8057bbb9e15e74bf70c6' // Old
 const NEW_DATABASE_ID = '30a0d6014acc81809644c6769eebefac' // New
 
@@ -19,7 +19,7 @@ async function notionRequest(endpoint, method, body) {
     const response = await fetch(url, {
         method: method,
         headers: {
-            'Authorization': `Bearer ${NOTION_TOKEN}`,
+            'Authorization': `Bearer ${NOTION_API_KEY}`,
             'Notion-Version': '2022-06-28',
             'Content-Type': 'application/json'
         },
