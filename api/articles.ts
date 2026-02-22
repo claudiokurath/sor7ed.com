@@ -1,8 +1,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node'
-import { Client } from '@notionhq/client'
 
-const notion = new Client({ auth: process.env.NOTION_API_KEY })
-const BLOG_DB_ID = process.env.NOTION_BLOG_DB_ID!
+const NOTION_API_KEY = (process.env.NOTION_API_KEY || '').trim()
+const BLOG_DB_ID = (process.env.NOTION_BLOG_DB_ID || '').trim()
 
 const BRANCH_COLORS: Record<string, string> = {
     MIND: '#9B59B6',
@@ -16,17 +15,39 @@ const BRANCH_COLORS: Record<string, string> = {
 
 export default async function handler(_req: VercelRequest, res: VercelResponse) {
     try {
-        // Use 'any' here to bypass Vercel's strict type check on the SDK namespace
-        const response = await (notion.databases as any).query({
-            database_id: BLOG_DB_ID,
-            filter: {
-                property: 'Status',
-                status: { equals: 'Published' }
+        if (!NOTION_API_KEY || !BLOG_DB_ID) {
+            console.error('Missing Notion Configuration: NOTION_API_KEY or NOTION_BLOG_DB_ID')
+            return res.status(500).json({ error: 'System configuration error' })
+        }
+
+        const response = await fetch(`https://api.notion.com/v1/databases/${BLOG_DB_ID}/query`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${NOTION_API_KEY}`,
+                'Notion-Version': '2022-06-28',
+                'Content-Type': 'application/json'
             },
-            sorts: [{ property: 'Publish Date', direction: 'descending' }],
+            body: JSON.stringify({
+                filter: {
+                    property: 'Status',
+                    status: { equals: 'Published' }
+                },
+                sorts: [{ property: 'Publish Date', direction: 'descending' }]
+            })
         })
 
-        const articles = (response.results as any[]).map((page: any) => {
+        if (!response.ok) {
+            const errorBody = await response.text()
+            console.error('Notion API Error:', errorBody)
+            return res.status(response.status).json({ error: 'Notion connection failed' })
+        }
+
+        const data = await response.json()
+        if (!data.results) {
+            return res.status(200).json([])
+        }
+
+        const articles = data.results.map((page: any) => {
             const props = page.properties
             const branch = props.Branch?.select?.name || ''
             const publishDate = props['Publish Date']?.date?.start || ''
@@ -48,7 +69,7 @@ export default async function handler(_req: VercelRequest, res: VercelResponse) 
                 cta,
                 coverImage: page.cover?.external?.url || page.cover?.file?.url || props['Files & media']?.files?.[0]?.file?.url || props['Files & media']?.files?.[0]?.external?.url || '',
                 branch,
-                branchColor: BRANCH_COLORS[branch] || '#F5C614',
+                branchColor: BRANCH_COLORS[branch.toUpperCase()] || '#F5C614',
                 readTime: props['Read Time']?.rich_text?.[0]?.plain_text || '',
                 date: publishDate
                     ? new Date(publishDate).toLocaleDateString('en-GB', {
@@ -65,6 +86,7 @@ export default async function handler(_req: VercelRequest, res: VercelResponse) 
         return res.status(200).json(articles)
     } catch (error: any) {
         console.error('Failed to fetch articles:', error.message)
-        return res.status(500).json({ error: 'Failed to fetch articles', message: error.message })
+        return res.status(500).json({ error: 'Internal Server Error' })
     }
 }
+

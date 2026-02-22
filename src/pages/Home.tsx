@@ -16,8 +16,8 @@ export default function Home() {
     const navigate = useNavigate()
 
     // Fetch tools and articles from API routes
-    const { data: dynamicTools } = useNotionData<any>('/api/tools')
-    const { data: dynamicArticles } = useNotionData<any>('/api/articles')
+    const { data: dynamicTools, loading: toolsLoading, error: toolsError } = useNotionData<any>('/api/tools')
+    const { data: dynamicArticles, loading: articlesLoading, error: articlesError } = useNotionData<any>('/api/articles')
 
     // Unified tool interaction handling
     const handleToolClick = (tool: any) => {
@@ -181,8 +181,17 @@ export default function Home() {
                         </h2>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-7xl">
-                        {dynamicTools.length > 0 ? (
-                            dynamicTools.map((tool) => (
+                        {toolsLoading ? (
+                            <div className="col-span-full py-20 text-center">
+                                <p className="text-zinc-500 animate-pulse font-mono-headline text-xs uppercase tracking-widest">Initialising Labs...</p>
+                            </div>
+                        ) : toolsError ? (
+                            <div className="col-span-full py-20 text-center border border-dashed border-red-900/30 rounded-2xl">
+                                <p className="text-red-500/50 font-mono-headline text-[10px] uppercase tracking-widest mb-2 font-bold">Sync Failed</p>
+                                <p className="text-zinc-600 font-mono-headline text-[9px] uppercase tracking-widest">{toolsError}</p>
+                            </div>
+                        ) : dynamicTools.length > 0 ? (
+                            dynamicTools.map((tool: any) => (
                                 <div
                                     key={tool.id}
                                     onClick={() => handleToolClick(tool)}
@@ -211,8 +220,17 @@ export default function Home() {
                         </h2>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-7xl">
-                        {dynamicArticles.length > 0 ? (
-                            dynamicArticles.map((post, i) => (
+                        {articlesLoading ? (
+                            <div className="col-span-full py-20 text-center">
+                                <p className="text-zinc-500 animate-pulse font-mono-headline text-xs uppercase tracking-widest">Retrieving Insights...</p>
+                            </div>
+                        ) : articlesError ? (
+                            <div className="col-span-full py-20 text-center border border-dashed border-red-900/30 rounded-2xl">
+                                <p className="text-red-500/50 font-mono-headline text-[10px] uppercase tracking-widest mb-2 font-bold">Sync Failed</p>
+                                <p className="text-zinc-600 font-mono-headline text-[9px] uppercase tracking-widest">{articlesError}</p>
+                            </div>
+                        ) : dynamicArticles.length > 0 ? (
+                            dynamicArticles.map((post: any, i: number) => (
                                 <div
                                     key={i}
                                     onClick={() => handlePostClick(post)}
