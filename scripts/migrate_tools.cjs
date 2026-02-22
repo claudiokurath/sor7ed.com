@@ -1,5 +1,5 @@
 const TOKEN = 'ntn_X35904089085dj81e9AJCIrVsEbWQ8gPoL5e4iKqGXv69W';
-const OLD_TOOLS_ID = '2fb0ce014acc8064befbc36e4f3f4c6a';
+const OLD_TOOLS_ID = '08ac767d313845ca91886ce45c379b99';
 const NEW_TOOLS_ID = '08ac767d313845ca91886ce45c379b99';
 
 async function migrateTools() {

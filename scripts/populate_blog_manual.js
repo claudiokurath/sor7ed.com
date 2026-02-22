@@ -4,7 +4,7 @@ import path from 'path'
 
 // Hardcoded credentials to bypass permission issues
 const NOTION_API_KEY = 'ntn_X35904089085dj81e9AJCIrVsEbWQ8gPoL5e4iKqGXv69W'
-const DATABASE_ID = '30a0d6014acc81ebbf18ea14125173e3'
+const DATABASE_ID = 'db668e4687ed455498357b8d11d2c714'
 
 const TRIGGER_TO_BRANCH = {
     'CRISIS': 'Mind',

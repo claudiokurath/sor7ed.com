@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-export function useNotionData<T>(endpoint: string, fallback: T[]): {
+export function useNotionData<T>(endpoint: string, fallback: T[] = []): {
     data: T[]
     loading: boolean
     error: string | null
@@ -24,8 +24,8 @@ export function useNotionData<T>(endpoint: string, fallback: T[]): {
                     console.error(`Fetch error for ${endpoint}:`, err.message)
                     setError(err.message)
                 }
-                // fallback data stays in place
             })
+
             .finally(() => {
                 if (!cancelled) setLoading(false)
             })

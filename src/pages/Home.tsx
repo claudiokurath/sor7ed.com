@@ -1,9 +1,7 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { branches } from '../data/branches'
 import { useNotionData } from '../hooks/useNotionData'
-import { tools as fallbackTools } from '../data/tools'
-import { articles as fallbackArticles } from '../data/articles'
 import SignupModal from '../components/SignupModal'
 
 // Re-using the updated BranchCard that I just fixed in previous turns
@@ -15,22 +13,20 @@ export default function Home() {
     const [isSignupOpen, setIsSignupOpen] = useState(false)
     const [selectedTemplate, setSelectedTemplate] = useState('')
     const [whatsappUrl, setWhatsappUrl] = useState('')
-    const [activeToolId, setActiveToolId] = useState<string | null>(null)
-    const [activeToolObject, setActiveToolObject] = useState<any>(null)
     const navigate = useNavigate()
 
     // Fetch tools and articles from API routes
-    const { data: dynamicTools } = useNotionData<any>('/api/tools', fallbackTools)
-    const { data: dynamicArticles } = useNotionData<any>('/api/articles', fallbackArticles)
+    const { data: dynamicTools } = useNotionData<any>('/api/tools')
+    const { data: dynamicArticles } = useNotionData<any>('/api/articles')
 
     // Unified tool interaction handling
     const handleToolClick = (tool: any) => {
-        setActiveToolObject(tool)
         setSelectedTemplate(tool.name)
         const url = `https://wa.me/447966628285?text=${tool.whatsappKeyword || tool.name}`
         setWhatsappUrl(url)
         setIsSignupOpen(true)
     }
+
 
     const handlePostClick = (post: any) => {
         navigate(`/blog/${encodeURIComponent(post.title)}`)

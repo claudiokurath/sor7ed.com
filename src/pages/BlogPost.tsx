@@ -1,6 +1,5 @@
 import { useParams, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import { articles as fallbackArticles } from '../data/articles'
 import { useNotionData } from '../hooks/useNotionData'
 
 interface Article {
@@ -20,8 +19,9 @@ interface Article {
 export default function BlogPost() {
     const { title } = useParams()
     const navigate = useNavigate()
-    const { data: articles, loading } = useNotionData<Article>('/api/articles', fallbackArticles)
+    const { data: articles, loading } = useNotionData<Article>('/api/articles')
     const [article, setArticle] = useState<Article | null>(null)
+
 
     useEffect(() => {
         if (articles.length > 0 && title) {

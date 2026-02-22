@@ -13,6 +13,9 @@ declare namespace NodeJS {
 }
 
 declare var process: NodeJS.Process;
+declare var Buffer: {
+    from(str: string, encoding?: string): { toString(encoding?: string): string };
+};
 
 declare namespace NodeJS {
     interface Process {

@@ -17,10 +17,10 @@ export default async function handler(req: any, res: any) {
             body: JSON.stringify({
                 filter: {
                     property: 'Status',
-                    status: { equals: 'Done' } // Updated to match 'Done' status in populated DB
+                    status: { equals: 'Published' }
                 },
                 sorts: [{
-                    property: 'Publication Date',
+                    property: 'Publish Date',
                     direction: 'descending'
                 }]
             })
@@ -46,7 +46,7 @@ export default async function handler(req: any, res: any) {
             return {
                 id: page.id,
                 title: props.Title?.title[0]?.plain_text || 'Untitled',
-                date: props['Publication Date']?.date?.start || '',
+                date: props['Publish Date']?.date?.start || '',
                 category: props.Branch?.select?.name || 'Mind',
                 readTime: '5 min',
                 image: imageUrl,

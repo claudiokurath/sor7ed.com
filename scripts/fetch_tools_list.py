@@ -3,7 +3,7 @@ import urllib.request
 import os
 
 TOKEN = 'ntn_X35904089085dj81e9AJCIrVsEbWQ8gPoL5e4iKqGXv69W'
-DB_ID = '2fb0d6014acc80699332d6e01539deb2'
+DB_ID = '08ac767d313845ca91886ce45c379b99'
 
 def get_tools():
     url = f'https://api.notion.com/v1/databases/{DB_ID}/query'

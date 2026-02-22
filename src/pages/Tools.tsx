@@ -1,5 +1,4 @@
 import ToolCard from '../components/ToolCard'
-import { tools as fallbackTools } from '../data/tools'
 import { useNotionData } from '../hooks/useNotionData'
 
 interface Tool {
@@ -12,7 +11,8 @@ interface Tool {
 }
 
 const Tools = () => {
-    const { data: tools, loading } = useNotionData<Tool>('/api/tools', fallbackTools)
+    const { data: tools, loading } = useNotionData<Tool>('/api/tools')
+
 
     return (
         <div className="bg-black">

@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import BlogCard from '../components/BlogCard'
-import { articles as fallbackArticles } from '../data/articles'
 import { branches } from '../data/branches'
 import { useNotionData } from '../hooks/useNotionData'
 
@@ -19,7 +18,8 @@ interface Article {
 }
 
 const Blog = () => {
-    const { data: articles, loading } = useNotionData<Article>('/api/articles', fallbackArticles)
+    const { data: articles, loading } = useNotionData<Article>('/api/articles')
+
     const [selectedBranch, setSelectedBranch] = useState<string | null>(null)
 
     const filteredArticles = selectedBranch

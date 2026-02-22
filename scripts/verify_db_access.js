@@ -1,5 +1,5 @@
 
-const DB_ID = '30a0d6014acc81ebbf18ea14125173e3';
+const DB_ID = 'db668e4687ed455498357b8d11d2c714';
 const TOKEN = 'ntn_X35904089085dj81e9AJCIrVsEbWQ8gPoL5e4iKqGXv69W';
 
 async function verifyAccess() {
