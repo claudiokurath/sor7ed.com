@@ -23,7 +23,6 @@ export default function BlogPost() {
     const { data: articles, loading } = useNotionData<Article>('/api/articles')
     const [article, setArticle] = useState<Article | null>(null)
 
-
     useEffect(() => {
         if (articles.length > 0 && title) {
             const decodedTitle = decodeURIComponent(title).trim().toLowerCase()
@@ -39,109 +38,115 @@ export default function BlogPost() {
         }
     }, [articles, title, loading])
 
-
     if (loading) {
         return (
-            <div className="min-h-screen bg-black flex items-center justify-center">
-                <div className="text-zinc-500 animate-pulse">Loading Protocol...</div>
+            <div className="bg-[#050505] min-h-screen flex items-center justify-center">
+                <div className="text-zinc-500 font-mono-headline text-xs animate-pulse">Initializing Protocol...</div>
             </div>
         )
     }
 
     if (!article) {
         return (
-            <div className="min-h-screen bg-black flex flex-col items-center justify-center p-6">
-                <div className="text-white text-2xl mb-4">Protocol Not Found</div>
-                <button onClick={() => navigate('/blog')} className="text-sor7ed-yellow hover:underline">
-                    Return to Insights
+            <div className="bg-[#050505] min-h-screen flex flex-col items-center justify-center p-6 bg-grid">
+                <div className="text-white text-2xl font-black uppercase tracking-tighter mb-8">// PROTOCOL_NOT_FOUND</div>
+                <button
+                    onClick={() => navigate('/blog')}
+                    className="text-[10px] font-mono-headline text-sor7ed-yellow hover:text-white uppercase tracking-[0.3em] transition-colors"
+                >
+                    Return to Repository
                 </button>
             </div>
         )
     }
 
     return (
-        <div className="min-h-screen bg-black text-white pt-24 pb-20">
-            <div className="container mx-auto px-6 max-w-3xl">
+        <div className="bg-[#050505] min-h-screen bg-grid relative overflow-hidden text-white font-sans">
+            {/* Full-Screen Background Video */}
+            <div className="fixed inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
+                <video autoPlay muted loop playsInline className="w-full h-full object-cover opacity-10 filter grayscale scale-105">
+                    <source src="/Intro.mp4" type="video/mp4" />
+                </video>
+                <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black" />
+            </div>
 
-                {/* Back Link */}
-                <button
-                    onClick={() => navigate('/blog')}
-                    className="mb-8 text-zinc-500 hover:text-white transition-colors text-sm uppercase tracking-widest flex items-center gap-2"
-                >
-                    ← Back to Index
-                </button>
+            <div className="relative z-10 pt-32 pb-20 px-6">
+                <div className="container mx-auto max-w-4xl">
+                    {/* Back Link */}
+                    <button
+                        onClick={() => navigate('/blog')}
+                        className="mb-12 text-zinc-600 hover:text-sor7ed-yellow transition-colors text-[10px] font-mono-headline uppercase tracking-[0.4em] flex items-center gap-4 animate-in slide-in-from-left-20"
+                    >
+                        <span>←</span> <span>Back to Index</span>
+                    </button>
 
-                {/* Header */}
-                <div className="mb-12">
-                    <div className="flex items-center gap-4 mb-6">
-                        <span className="text-xs font-mono-headline px-3 py-1 rounded bg-white/5 text-sor7ed-yellow uppercase tracking-wider">
-                            {article.branch}
-                        </span>
-                        <span className="text-xs font-mono-headline text-zinc-600 uppercase tracking-wider">
-                            {article.readTime}
-                        </span>
-                    </div>
-                    <h1 className="text-3xl md:text-5xl font-bold mb-8 leading-tight uppercase tracking-tight">
-                        {article.title}
-                    </h1>
+                    <article className="animate-in fade-in duration-1000">
+                        {/* Header */}
+                        <div className="mb-16">
+                            <div className="flex items-center gap-6 mb-8 text-[10px] font-mono-headline uppercase tracking-[0.4em]">
+                                <span className="text-sor7ed-yellow">// {article.branch}</span>
+                                <span className="text-zinc-600">{article.readTime}</span>
+                                <span className="text-zinc-600">{article.date}</span>
+                            </div>
+                        </div>
+
+                        {/* Cover Image */}
+                        {article.coverImage && (
+                            <div className="w-full aspect-video rounded-3xl overflow-hidden mb-20 border border-white/5 shadow-2xl relative group">
+                                <img
+                                    src={article.coverImage}
+                                    alt={article.title}
+                                    className="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-1000"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                            </div>
+                        )}
+
+                        {/* Article Header (Inside content area as requested) */}
+                        <div className="mb-16">
+                            <h1 className="text-4xl md:text-7xl font-black uppercase tracking-tighter text-white leading-none">
+                                {article.title}
+                            </h1>
+                        </div>
+
+                        {/* Content Area */}
+                        <div className="stealth-card p-10 md:p-20 mb-20">
+                            <div
+                                className="blog-content text-zinc-400 font-light leading-relaxed text-lg space-y-8"
+                                dangerouslySetInnerHTML={{ __html: formatContent(article.content) }}
+                            />
+
+                            {/* Ending logic */}
+                            <div className="mt-24 pt-12 border-t border-white/5 text-center">
+                                <span className="text-[10px] font-mono-headline text-zinc-700 uppercase tracking-[0.5em] italic">
+                                    [End of Post]
+                                </span>
+                            </div>
+                        </div>
+
+                        {/* CTA Section - Re-styled as Requested */}
+                        <div className="stealth-card p-12 md:p-16 text-center relative border-sor7ed-yellow/20 bg-gradient-to-br from-sor7ed-yellow/5 to-transparent mb-20">
+                            <div className="space-y-8">
+                                <div className="h-px w-24 bg-sor7ed-yellow/30 mx-auto"></div>
+                                <h3 className="text-2xl font-black text-white uppercase tracking-tighter">Ready to hand this off?</h3>
+                                <p className="text-zinc-500 font-light leading-relaxed max-w-lg mx-auto">
+                                    Initialize the operational protocol on your primary device. No friction. Just help.
+                                </p>
+                                <a
+                                    href={`https://wa.me/447360277713?text=${encodeURIComponent(article.whatsappKeyword || article.title)}`}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="btn-primary"
+                                >
+                                    Initialize Protocol
+                                </a>
+                                <div className="text-[9px] font-mono-headline text-zinc-600 uppercase tracking-widest">
+                                    // Deployment via WhatsApp Secure Node
+                                </div>
+                            </div>
+                        </div>
+                    </article>
                 </div>
-
-                {/* Cover Image */}
-                {article.coverImage && (
-                    <div className="w-full aspect-video rounded-2xl overflow-hidden mb-12 border border-white/10">
-                        <img
-                            src={article.coverImage}
-                            alt={article.title}
-                            className="w-full h-full object-cover"
-                        />
-                    </div>
-                )}
-
-                {/* Content */}
-                <div className="prose prose-invert prose-lg max-w-none mb-16">
-                    <div
-                        className="blog-content text-zinc-300 leading-relaxed"
-                        dangerouslySetInnerHTML={{ __html: formatContent(article.content) }}
-                    />
-                </div>
-
-                {/* CTA Section */}
-                <div className="bg-white/5 border border-white/10 rounded-2xl p-8 md:p-12 text-center relative overflow-hidden">
-                    <div className="absolute top-0 left-0 w-full h-1 bg-sor7ed-yellow/50"></div>
-
-                    {localStorage.getItem('sor7ed_guest') === 'true' ? (
-                        <>
-                            <h3 className="text-2xl font-bold mb-4 text-white">Action Required</h3>
-                            <p className="text-zinc-400 mb-8 max-w-lg mx-auto uppercase tracking-widest text-[10px]">
-                                This is an operational protocol. To deploy this logic to your device and initialize the AI-assisted flow, you must be a member.
-                            </p>
-                            <button
-                                onClick={() => navigate('/')}
-                                className="btn-primary inline-flex items-center gap-2"
-                            >
-                                <span>Sign Up to Deploy</span>
-                            </button>
-                        </>
-                    ) : (
-                        <>
-                            <h3 className="text-2xl font-bold mb-4 text-white">Ready to deploy this system?</h3>
-                            <p className="text-zinc-400 mb-8 max-w-lg mx-auto">
-                                {article.cta || "Get this protocol sent directly to your WhatsApp for instant access when you need it most."}
-                            </p>
-                            <a
-                                href={`https://wa.me/447360277713?text=${article.whatsappKeyword || 'Hi'}`}
-                                target="_blank"
-                                rel="noreferrer"
-                                className="btn-primary inline-flex items-center gap-2"
-                            >
-                                <span>Initialize Protocol</span>
-                                <span className="text-xs opacity-70">via WhatsApp</span>
-                            </a>
-                        </>
-                    )}
-                </div>
-
-
             </div>
         </div>
     )

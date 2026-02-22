@@ -20,29 +20,30 @@ interface BlogCardProps {
 
 const BlogCard = ({ article }: BlogCardProps) => {
     return (
-        <div className="bg-gray-900 p-6 rounded-lg border border-gray-800 hover:border-sor7ed-yellow transition-all card-hover flex flex-col h-full">
-            <div className="flex items-center gap-2 mb-3">
-                <span
-                    className="text-xs font-bold px-3 py-1 rounded-full"
-                    style={{ backgroundColor: article.branchColor, color: '#000' }}
-                >
+        <div className="stealth-card p-10 group hover:border-white/20 transition-all duration-700 flex flex-col h-full">
+            <div className="flex justify-between items-start mb-6">
+                <span className="text-[9px] font-mono-headline text-sor7ed-yellow uppercase tracking-[0.2em]">
                     {article.branch}
                 </span>
-                <span className="text-xs text-gray-500">{article.readTime}</span>
+                <span className="text-[9px] font-mono-headline text-zinc-600 uppercase tracking-[0.2em]">
+                    {article.date}
+                </span>
             </div>
-            <h3 className="text-xl font-bold mb-2 text-white">
-                <Link to={`/blog/${encodeURIComponent(article.title)}`} className="hover:text-sor7ed-yellow transition-colors">
+            <h3 className="text-2xl font-bold text-white group-hover:text-sor7ed-yellow transition-colors uppercase tracking-tight mb-6 leading-none">
+                <Link to={`/blog/${encodeURIComponent(article.title)}`}>
                     {article.title}
                 </Link>
             </h3>
-            <p className="text-gray-400 text-sm mb-4 flex-grow">{article.excerpt}</p>
-            <div className="flex items-center justify-between mt-auto">
-                <span className="text-xs text-gray-500">{article.date}</span>
+            <p className="text-sm text-zinc-500 font-light leading-relaxed mb-8 line-clamp-3">
+                {article.excerpt}
+            </p>
+            <div className="mt-auto pt-6 border-t border-white/5 flex justify-end items-center gap-4">
+                <span className="text-[9px] font-mono-headline text-zinc-600 uppercase tracking-widest">{article.readTime}</span>
                 <Link
                     to={`/blog/${encodeURIComponent(article.title)}`}
-                    className="text-sor7ed-yellow hover:text-yellow-500 text-sm font-semibold transition-colors"
+                    className="text-zinc-700 group-hover:text-white transition-colors text-lg"
                 >
-                    Read More →
+                    →
                 </Link>
             </div>
         </div>

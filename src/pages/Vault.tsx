@@ -23,7 +23,6 @@ const Vault = () => {
 
         if (urlToken) {
             localStorage.setItem('sor7ed_vault_token', urlToken)
-            // Clear the token from the URL
             window.history.replaceState({}, document.title, window.location.pathname)
             fetchVaultContent(urlToken)
         } else {
@@ -35,7 +34,6 @@ const Vault = () => {
             }
         }
     }, [])
-
 
     const fetchVaultContent = async (token: string) => {
         setIsLoading(true)
@@ -82,144 +80,132 @@ const Vault = () => {
 
     if (isLoading) {
         return (
-            <div className="min-h-[70vh] flex items-center justify-center">
+            <div className="bg-[#050505] min-h-screen flex items-center justify-center">
                 <div className="w-8 h-8 border-2 border-sor7ed-yellow border-t-transparent rounded-full animate-spin"></div>
             </div>
         )
     }
 
-    if (!user) {
-        return (
-            <div className="max-w-md mx-auto px-6 py-24">
-                <div className="text-center mb-12">
-                    <h1 className="text-4xl font-bold text-white mb-4 italic tracking-tight">The Vault</h1>
-                    <p className="text-zinc-500">Access your claimed protocols and ND toolkits.</p>
-                </div>
-
-                <div className="bg-zinc-900/50 border border-white/10 rounded-2xl p-8 backdrop-blur-sm">
-                    <form onSubmit={handleLogin} className="space-y-6">
-                        <div>
-                            <label className="block text-xs text-zinc-400 mb-2 uppercase tracking-widest">Registered Email</label>
-                            <input
-                                type="email"
-                                required
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-sor7ed-yellow focus:outline-none transition-colors"
-                                placeholder="alex@example.com"
-                            />
-                        </div>
-
-                        <button
-                            type="submit"
-                            disabled={isSending}
-                            className="w-full bg-sor7ed-yellow text-black font-bold py-4 rounded-xl hover:bg-yellow-400 transition-all disabled:opacity-50 uppercase tracking-widest text-sm shadow-[0_0_20px_rgba(245,198,20,0.15)]"
-                        >
-                            {isSending ? 'Verifying...' : 'Access Vault'}
-                        </button>
-
-                        {message && (
-                            <div className={`p-4 rounded-xl text-sm ${message.type === 'success'
-                                ? 'bg-green-500/10 border border-green-500/20 text-green-400'
-                                : 'bg-red-500/10 border border-red-500/20 text-red-400'
-                                }`}>
-                                {message.text}
-                            </div>
-                        )}
-                    </form>
-                </div>
-
-                <p className="text-center text-xs text-zinc-600 mt-8">
-                    No account yet? <Link to="/" className="text-sor7ed-yellow hover:underline">Get your first protocol</Link> to create one.
-                </p>
-            </div>
-        )
-    }
-
     return (
-        <div className="max-w-7xl mx-auto px-6 py-12">
-            <header className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
-                <div>
-                    <h1 className="text-4xl font-bold text-white mb-2 italic tracking-tight">Welcome, {user.name}</h1>
-                    <p className="text-zinc-500">Your curated collection of neuro-architecture kits.</p>
-                </div>
-                <div className="flex gap-4">
-                    <button
-                        onClick={() => { localStorage.removeItem('sor7ed_vault_token'); window.location.reload(); }}
-                        className="px-4 py-2 text-xs text-zinc-500 hover:text-white uppercase tracking-widest border border-white/10 rounded-lg transition-colors"
-                    >
-                        Sign Out
-                    </button>
-                </div>
-            </header>
+        <div className="bg-[#050505] min-h-screen bg-grid relative overflow-hidden text-white font-sans">
+            {/* Full-Screen Background Video */}
+            <div className="fixed inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
+                <video autoPlay muted loop playsInline className="w-full h-full object-cover opacity-20 filter grayscale scale-105">
+                    <source src="/Intro.mp4" type="video/mp4" />
+                </video>
+                <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black" />
+            </div>
 
-            {protocols.length === 0 ? (
-                <div className="bg-zinc-900/50 border border-white/10 rounded-2xl p-12 text-center">
-                    <p className="text-zinc-500 mb-6">You haven't claimed any protocols yet.</p>
-                    <Link
-                        to="/tools"
-                        className="inline-block bg-sor7ed-yellow text-black font-bold px-8 py-3 rounded-full hover:bg-yellow-400 transition-all uppercase tracking-widest text-xs"
-                    >
-                        Claim Your First Tool
-                    </Link>
+            {user ? (
+                <div className="relative z-10 max-w-7xl mx-auto px-6 py-24">
+                    <header className="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-8 animate-in fade-in">
+                        <div>
+                            <span className="text-[10px] font-mono-headline text-sor7ed-yellow uppercase tracking-[0.4em] block mb-4">// VAULT_ACCESS_GRANTED</span>
+                            <h1 className="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter">Welcome, <span className="text-sor7ed-yellow">{user.name}</span></h1>
+                            <p className="text-zinc-500 mt-4 font-light tracking-wide max-w-xl">Your secure repository of neural protocols and architectural frameworks.</p>
+                        </div>
+                        <button
+                            onClick={() => { localStorage.removeItem('sor7ed_vault_token'); window.location.reload(); }}
+                            className="px-8 py-3 text-[10px] font-black text-zinc-500 hover:text-white uppercase tracking-[0.2em] border border-white/10 rounded-full transition-all"
+                        >
+                            De-authorize Session
+                        </button>
+                    </header>
+
+                    {protocols.length === 0 ? (
+                        <div className="stealth-card p-20 text-center animate-in zoom-in">
+                            <p className="text-zinc-500 mb-8 font-light tracking-widest uppercase text-xs">// Repository Empty</p>
+                            <Link to="/tools" className="btn-primary">Initialize Tools</Link>
+                        </div>
+                    ) : (
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {protocols.map((protocol, i) => (
+                                <div key={protocol.id} className="stealth-card p-10 group animate-in fade-in slide-in-from-bottom-20" style={{ animationDelay: `${i * 100}ms` }}>
+                                    <div className="flex justify-between items-start mb-8">
+                                        <span className="text-[9px] font-mono-headline text-zinc-600 uppercase tracking-[0.3em]">// {protocol.branch}</span>
+                                        <div className="w-10 h-1 bg-sor7ed-yellow/20 rounded-full group-hover:bg-sor7ed-yellow/40 transition-colors"></div>
+                                    </div>
+                                    <h3 className="text-2xl font-black text-white mb-8 group-hover:text-sor7ed-yellow transition-colors uppercase tracking-tight leading-none">
+                                        {protocol.title}
+                                    </h3>
+                                    <div className="space-y-4">
+                                        <Link
+                                            to={`/blog/${encodeURIComponent(protocol.title)}`}
+                                            className="block w-full text-center border border-white/10 bg-white/5 text-white py-4 rounded-xl hover:bg-white/10 transition-all text-xs font-bold uppercase tracking-widest"
+                                        >
+                                            View Analysis
+                                        </Link>
+                                        <button
+                                            onClick={() => window.open(`https://wa.me/447360277713?text=${encodeURIComponent(protocol.trigger)}`, '_blank')}
+                                            className="block w-full text-center border border-sor7ed-yellow/20 text-sor7ed-yellow py-4 rounded-xl hover:bg-sor7ed-yellow/10 transition-all text-xs font-bold uppercase tracking-widest"
+                                        >
+                                            Re-deploy Protocol
+                                        </button>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+
+                    <section className="mt-40 animate-in fade-in delay-1000">
+                        <div className="stealth-card p-12 md:p-16 border-sor7ed-yellow/20 bg-gradient-to-br from-sor7ed-yellow/5 to-transparent">
+                            <div className="flex flex-col md:flex-row items-center justify-between gap-12">
+                                <div className="max-w-xl text-center md:text-left">
+                                    <h2 className="text-3xl font-black text-white uppercase tracking-tighter mb-4">The Evolution Continues.</h2>
+                                    <p className="text-zinc-400 font-light leading-relaxed">Our interactive lab tools are migrating into a high-performance neural dashboard. Beta access is active.</p>
+                                </div>
+                                <Link to="/tools" className="btn-primary whitespace-nowrap">Explore Beta Tools</Link>
+                            </div>
+                        </div>
+                    </section>
                 </div>
             ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {protocols.map((protocol) => (
-                        <div
-                            key={protocol.id}
-                            className="group bg-zinc-900/40 border border-white/5 hover:border-sor7ed-yellow/30 rounded-2xl p-6 transition-all hover:translate-y-[-4px] backdrop-blur-sm relative overflow-hidden"
-                        >
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-sor7ed-yellow/5 rounded-full blur-3xl -mr-16 -mt-16 group-hover:bg-sor7ed-yellow/10 transition-colors"></div>
+                <div className="relative z-10 min-h-screen flex items-center justify-center p-6">
+                    <div className="w-full max-w-md animate-in zoom-in">
+                        <div className="text-center mb-16">
+                            <img src="/logo.png" className="w-48 mx-auto mb-12 opacity-80" />
+                            <h1 className="text-2xl font-black text-white uppercase tracking-[0.3em] mb-4">The Vault</h1>
+                            <p className="text-zinc-600 font-mono-headline text-[10px] uppercase tracking-[0.2em]">Authentication Required</p>
+                        </div>
 
-                            <div className="flex items-center gap-2 mb-4">
-                                <span className="px-2 py-1 bg-white/5 rounded text-[10px] uppercase tracking-widest text-zinc-400 border border-white/5">
-                                    {protocol.branch}
-                                </span>
-                            </div>
+                        <div className="stealth-card p-10">
+                            <form onSubmit={handleLogin} className="space-y-8">
+                                <div>
+                                    <label className="block text-[10px] font-mono-headline text-zinc-500 mb-3 uppercase tracking-widest">Registry ID (Email)</label>
+                                    <input
+                                        type="email"
+                                        required
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-4 text-white focus:border-sor7ed-yellow focus:outline-none transition-all font-light"
+                                        placeholder="Enter registered email..."
+                                    />
+                                </div>
 
-                            <h3 className="text-xl font-bold text-white mb-4 group-hover:text-sor7ed-yellow transition-colors leading-tight">
-                                {protocol.title}
-                            </h3>
-
-                            <div className="space-y-4">
-                                <Link
-                                    to={`/blog/${protocol.title}`}
-                                    className="block w-full text-center border border-white/10 bg-white/5 text-white py-3 rounded-xl hover:bg-white/10 transition-all text-sm font-medium"
-                                >
-                                    Review Full Analysis
-                                </Link>
                                 <button
-                                    onClick={() => {
-                                        const text = encodeURIComponent(protocol.trigger);
-                                        window.open(`https://wa.me/447360277713?text=${text}`, '_blank');
-                                    }}
-                                    className="block w-full text-center border border-sor7ed-yellow/20 text-sor7ed-yellow py-3 rounded-xl hover:bg-sor7ed-yellow/10 transition-all text-sm font-medium"
+                                    type="submit"
+                                    disabled={isSending}
+                                    className="w-full bg-white text-black font-black py-5 rounded-xl hover:bg-sor7ed-yellow transition-all disabled:opacity-50 uppercase tracking-[0.3em] text-[10px] shadow-[0_0_30px_rgba(255,255,255,0.05)]"
                                 >
-                                    Re-deploy to WhatsApp
+                                    {isSending ? 'Verifying...' : 'Initialize Access'}
                                 </button>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            )}
 
-            <section className="mt-24">
-                <div className="bg-gradient-to-r from-sor7ed-yellow/20 to-transparent p-[1px] rounded-2xl">
-                    <div className="bg-black/90 rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8">
-                        <div className="max-w-xl text-center md:text-left">
-                            <h2 className="text-2xl font-bold text-white mb-4">The Next Level is coming.</h2>
-                            <p className="text-zinc-400">Our interactive lab tools (Time Calculators, Triage Bots, and Sensory Audits) are moving into a high-performance web dashboard.</p>
+                                {message && (
+                                    <div className={`p-4 rounded-xl text-[10px] font-mono-headline uppercase tracking-widest text-center ${message.type === 'success'
+                                        ? 'bg-green-500/10 border border-green-500/20 text-green-400'
+                                        : 'bg-red-500/10 border border-red-500/20 text-red-400'
+                                        }`}>
+                                        {message.text}
+                                    </div>
+                                )}
+                            </form>
                         </div>
-                        <Link
-                            to="/tools"
-                            className="whitespace-nowrap bg-sor7ed-yellow text-black font-bold px-10 py-4 rounded-full hover:bg-yellow-400 transition-all uppercase tracking-widest text-sm shadow-[0_0_30px_rgba(245,198,20,0.2)]"
-                        >
-                            Explore Beta Tools
-                        </Link>
+                        <p className="text-center text-[10px] font-mono-headline text-zinc-700 mt-12 uppercase tracking-widest">
+                            No credentials? <Link to="/" className="text-zinc-500 hover:text-white transition-colors">Return to Surface</Link>
+                        </p>
                     </div>
                 </div>
-            </section>
+            )}
         </div>
     )
 }

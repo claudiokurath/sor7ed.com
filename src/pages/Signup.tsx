@@ -2,55 +2,72 @@ import SignupForm from '../components/SignupForm'
 
 const Signup = () => {
     return (
-        <div className="min-h-screen bg-black py-20 px-4">
-            <div className="max-w-6xl mx-auto">
-                {/* Hero Section */}
-                <div className="text-center mb-16 animate-fade-in">
-                    <h1 className="text-5xl md:text-7xl font-black mb-6">
-                        Get <span className="text-sor7ed-yellow">2 Free</span> Tool Requests
-                    </h1>
-                    <p className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto">
-                        Try our ADHD-friendly concierge service. No credit card. No commitment.
-                    </p>
-                </div>
+        <div className="bg-[#050505] min-h-screen bg-grid relative overflow-hidden text-white font-sans">
+            {/* Full-Screen Background Video */}
+            <div className="fixed inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
+                <video autoPlay muted loop playsInline className="w-full h-full object-cover opacity-20 filter grayscale scale-105">
+                    <source src="/Intro.mp4" type="video/mp4" />
+                </video>
+                <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black" />
+            </div>
 
-                {/* What You Get Section */}
-                <div className="grid md:grid-cols-3 gap-6 mb-16">
-                    <div className="bg-gray-900 border-2 border-gray-800 rounded-xl p-6 text-center">
-                        <div className="text-4xl mb-4">⚡</div>
-                        <h3 className="text-xl font-bold mb-2 text-sor7ed-yellow">Instant Setup</h3>
-                        <p className="text-gray-400">Get a welcome message on WhatsApp within 60 seconds</p>
-                    </div>
-                    <div className="bg-gray-900 border-2 border-gray-800 rounded-xl p-6 text-center">
-                        <div className="text-4xl mb-4">🎁</div>
-                        <h3 className="text-xl font-bold mb-2 text-sor7ed-yellow">2 Free Tools</h3>
-                        <p className="text-gray-400">Try any tools from our library, completely free</p>
-                    </div>
-                    <div className="bg-gray-900 border-2 border-gray-800 rounded-xl p-6 text-center">
-                        <div className="text-4xl mb-4">💬</div>
-                        <h3 className="text-xl font-bold mb-2 text-sor7ed-yellow">WhatsApp Only</h3>
-                        <p className="text-gray-400">No apps. No logins. Just text us.</p>
-                    </div>
-                </div>
+            {/* Dynamic Background Glows */}
+            <div className="absolute top-0 left-0 w-full h-screen pointer-events-none z-1">
+                <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-sor7ed-yellow/5 blur-[150px] animate-stealth-glow rounded-full" />
+                <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-white/5 blur-[120px] rounded-full" />
+            </div>
 
-                {/* Form */}
-                <SignupForm />
+            <div className="relative z-10 py-32 px-6">
+                <div className="container mx-auto max-w-6xl">
+                    {/* Hero Section */}
+                    <div className="text-center mb-24 animate-in fade-in">
+                        <span className="text-[10px] font-mono-headline text-sor7ed-yellow uppercase tracking-[0.4em] block mb-4">// TRIAL_ENROLLMENT</span>
+                        <h1 className="section-title justify-center flex gap-4">
+                            <span className="title-white">GET</span> <span className="title-yellow">2 FREE.</span>
+                        </h1>
+                        <p className="text-zinc-500 max-w-2xl mx-auto font-light leading-relaxed mt-6">
+                            Experience the ADHD-friendly concierge service. No credit card required. No commitment. Just helpful systems.
+                        </p>
+                    </div>
 
-                {/* FAQ Section */}
-                <div className="mt-20 max-w-3xl mx-auto">
-                    <h2 className="text-3xl font-bold mb-8 text-center">Quick Questions</h2>
-                    <div className="space-y-6">
-                        <div className="bg-gray-900 border-2 border-gray-800 rounded-xl p-6">
-                            <h3 className="font-bold text-lg mb-2 text-sor7ed-yellow">What happens after I sign up?</h3>
-                            <p className="text-gray-400">You'll get a WhatsApp message within 60 seconds with instructions on how to request your first tool.</p>
+                    {/* What You Get Section */}
+                    <div className="grid md:grid-cols-3 gap-8 mb-24">
+                        {[
+                            { icon: "⚡", title: "Instant Setup", desc: "Receive your welcome sequence on WhatsApp in < 60s." },
+                            { icon: "🎁", title: "2 Free Tools", desc: "Request any 2 protocols from our registry at no cost." },
+                            { icon: "💬", title: "WhatsApp First", desc: "No app downloads. No logins. High-performance help." }
+                        ].map((item, i) => (
+                            <div key={i} className="stealth-card p-10 text-center group transition-all duration-500 hover:border-white/20 animate-in fade-in slide-in-from-bottom-20" style={{ animationDelay: `${i * 100}ms` }}>
+                                <div className="text-4xl mb-8 grayscale group-hover:grayscale-0 transition-all opacity-50 group-hover:opacity-100">{item.icon}</div>
+                                <h3 className="text-lg font-black uppercase tracking-widest text-white mb-4">{item.title}</h3>
+                                <p className="text-zinc-500 text-sm font-light leading-relaxed">{item.desc}</p>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Form */}
+                    <div className="animate-in fade-in delay-500">
+                        <SignupForm />
+                    </div>
+
+                    {/* FAQ Section */}
+                    <div className="mt-40 max-w-4xl mx-auto">
+                        <div className="text-center mb-16">
+                            <span className="text-[10px] font-mono-headline text-zinc-600 uppercase tracking-[0.4em] block mb-4">// LOGISTICS</span>
+                            <h2 className="text-4xl font-black text-white uppercase tracking-tighter">Quick Queries.</h2>
                         </div>
-                        <div className="bg-gray-900 border-2 border-gray-800 rounded-xl p-6">
-                            <h3 className="font-bold text-lg mb-2 text-sor7ed-yellow">Do I need to pay?</h3>
-                            <p className="text-gray-400">No. Your first 2 tool requests are completely free. After that, you can buy credits if you want to continue.</p>
-                        </div>
-                        <div className="bg-gray-900 border-2 border-gray-800 rounded-xl p-6">
-                            <h3 className="font-bold text-lg mb-2 text-sor7ed-yellow">Can I cancel anytime?</h3>
-                            <p className="text-gray-400">There's nothing to cancel. Just stop texting us. No subscriptions, ever.</p>
+                        <div className="grid md:grid-cols-2 gap-8">
+                            {[
+                                { q: "What happens next?", a: "You'll receive a WhatsApp message immediately with instructions to request your first protocol." },
+                                { q: "Is there a catch?", a: "No. Your first 2 tools are free. After that, buy credits only if you find value." },
+                                { q: "Can I cancel?", a: "There's nothing to cancel. No subscriptions. No spam. Just stop texting whenever." },
+                                { q: "Is it secure?", a: "We use enterprise-grade encryption for all data and never sell your information." }
+                            ].map((faq, i) => (
+                                <div key={i} className="stealth-card p-8">
+                                    <h3 className="text-sm font-black text-sor7ed-yellow uppercase tracking-widest mb-4">{faq.q}</h3>
+                                    <p className="text-zinc-500 text-sm font-light leading-relaxed">{faq.a}</p>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div>

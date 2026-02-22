@@ -19,7 +19,6 @@ interface Article {
 
 const Blog = () => {
     const { data: articles, loading } = useNotionData<Article>('/api/articles')
-
     const [selectedBranch, setSelectedBranch] = useState<string | null>(null)
 
     const filteredArticles = selectedBranch
@@ -27,51 +26,73 @@ const Blog = () => {
         : articles
 
     return (
-        <div className="bg-black">
-            <section className="container mx-auto px-6 py-20">
-                <div className="text-center mb-12">
-                    <h1 className="text-5xl font-bold mb-4">Blog</h1>
-                    <p className="text-gray-400 max-w-2xl mx-auto">
-                        Real talk about ADHD, neurodivergence, and building a life that actually works.
-                    </p>
-                </div>
+        <div className="bg-[#050505] min-h-screen bg-grid relative overflow-hidden text-white font-sans">
+            {/* Full-Screen Background Video */}
+            <div className="fixed inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
+                <video autoPlay muted loop playsInline className="w-full h-full object-cover opacity-20 filter grayscale scale-105">
+                    <source src="/Intro.mp4" type="video/mp4" />
+                </video>
+                <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black" />
+            </div>
 
-                {/* Branch Filter */}
-                <div className="flex flex-wrap gap-3 justify-center mb-12">
-                    <button
-                        onClick={() => setSelectedBranch(null)}
-                        className={`px-4 py-2 rounded-full font-semibold transition-colors ${selectedBranch === null
-                            ? 'bg-sor7ed-yellow text-black'
-                            : 'bg-gray-900 text-gray-400 hover:bg-gray-800'
-                            }`}
-                    >
-                        All
-                    </button>
-                    {branches.map(branch => (
+            {/* Dynamic Background Glows */}
+            <div className="absolute top-0 left-0 w-full h-screen pointer-events-none z-1">
+                <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-white/5 blur-[120px] rounded-full" />
+            </div>
+
+            <div className="relative z-10 pt-32 pb-20 px-6">
+                <div className="container mx-auto max-w-7xl flex flex-col items-center">
+                    <div className="max-w-3xl mb-24 text-center">
+                        <span className="text-[10px] font-mono-headline text-zinc-500 uppercase tracking-[0.4em] block mb-4 animate-in slide-in-from-bottom-20">// REPOSITORY_CONTENT</span>
+                        <h1 className="section-title justify-center flex gap-4 animate-in slide-in-from-bottom-20 delay-100">
+                            <span className="title-white">THE</span> <span className="title-yellow">INSIGHTS.</span>
+                        </h1>
+                        <p className="text-zinc-500 font-light leading-relaxed max-w-xl mx-auto animate-in slide-in-from-bottom-20 delay-200">
+                            A curated feed of strategies, neuro-architecture research, and architectural guides for the neurodivergent brain.
+                        </p>
+                    </div>
+
+                    {/* Branch Filter */}
+                    <div className="flex flex-wrap gap-4 justify-center mb-24 animate-in fade-in delay-300">
                         <button
-                            key={branch.id} // Assuming branches have .id, based on branches.ts
-                            onClick={() => setSelectedBranch(branch.name)}
-                            className={`px-4 py-2 rounded-full font-semibold transition-colors ${selectedBranch === branch.name
-                                ? 'bg-sor7ed-yellow text-black'
-                                : 'bg-gray-900 text-gray-400 hover:bg-gray-800'
+                            onClick={() => setSelectedBranch(null)}
+                            className={`px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-500 border ${selectedBranch === null
+                                    ? 'bg-sor7ed-yellow border-sor7ed-yellow text-black'
+                                    : 'bg-transparent border-white/10 text-zinc-500 hover:text-white hover:border-white/30'
                                 }`}
                         >
-                            <span className="mr-1">{branch.emoji}</span>
-                            {branch.name}
+                            ALL
                         </button>
-                    ))}
-                </div>
+                        {branches.map(branch => (
+                            <button
+                                key={branch.id}
+                                onClick={() => setSelectedBranch(branch.name)}
+                                className={`px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-500 border ${selectedBranch === branch.name
+                                        ? 'bg-sor7ed-yellow border-sor7ed-yellow text-black'
+                                        : 'bg-transparent border-white/10 text-zinc-500 hover:text-white hover:border-white/30'
+                                    }`}
+                            >
+                                {branch.name}
+                            </button>
+                        ))}
+                    </div>
 
-                {/* Articles Grid */}
-                {loading && (
-                    <div className="text-center text-gray-500 py-12">Loading articles...</div>
-                )}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {filteredArticles.map(article => (
-                        <BlogCard key={article.id} article={article} />
-                    ))}
+                    {/* Articles Grid */}
+                    {loading ? (
+                        <div className="text-center py-20 w-full border border-dashed border-white/5 rounded-3xl">
+                            <div className="text-[10px] font-mono-headline text-zinc-600 uppercase tracking-widest animate-pulse">Syncing Repository...</div>
+                        </div>
+                    ) : (
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full">
+                            {filteredArticles.map((article, i) => (
+                                <div key={article.id} className="animate-in fade-in slide-in-from-bottom-20" style={{ animationDelay: `${i * 100}ms` }}>
+                                    <BlogCard article={article} />
+                                </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
-            </section>
+            </div>
         </div>
     )
 }

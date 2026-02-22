@@ -13,25 +13,59 @@ interface Tool {
 const Tools = () => {
     const { data: tools, loading } = useNotionData<Tool>('/api/tools')
 
-
     return (
-        <div className="bg-black">
-            <section className="container mx-auto px-6 py-20">
-                <div className="text-center mb-12">
-                    <h1 className="text-5xl font-bold mb-4">ADHD-Friendly Tools</h1>
-                    <p className="text-gray-400 max-w-2xl mx-auto">
-                        Instant templates and resources delivered via WhatsApp. No downloads, no accounts, no friction.
-                    </p>
+        <div className="bg-[#050505] min-h-screen bg-grid relative overflow-hidden text-white font-sans">
+            {/* Full-Screen Background Video */}
+            <div className="fixed inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
+                <video autoPlay muted loop playsInline className="w-full h-full object-cover opacity-20 filter grayscale scale-105">
+                    <source src="/Intro.mp4" type="video/mp4" />
+                </video>
+                <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black" />
+            </div>
+
+            {/* Dynamic Background Glows */}
+            <div className="absolute top-0 left-0 w-full h-screen pointer-events-none z-1">
+                <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-sor7ed-yellow/5 blur-[150px] animate-stealth-glow rounded-full" />
+            </div>
+
+            <div className="relative z-10 pt-32 pb-20 px-6">
+                <div className="container mx-auto max-w-7xl">
+                    {/* Hero Banner with Inspo Image */}
+                    <div className="stealth-card overflow-hidden mb-20 animate-in fade-in duration-1000">
+                        <div className="relative h-[400px] md:h-[500px] w-full">
+                            <img
+                                src="https://cdn.midjourney.com/0a1ad541-2f23-4460-9378-501841c115f5/0_3.png"
+                                alt="SOR7ED Labs"
+                                className="absolute inset-0 w-full h-full object-cover opacity-80"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+                            <div className="absolute bottom-0 left-0 p-8 md:p-16">
+                                <span className="text-[10px] font-mono-headline text-sor7ed-yellow uppercase tracking-[0.4em] block mb-4 animate-in slide-in-from-left-20">// REGISTRY_ACTIVE</span>
+                                <h1 className="text-4xl md:text-7xl font-black uppercase tracking-tighter text-white animate-in slide-in-from-left-20 delay-300">
+                                    THE <span className="text-sor7ed-yellow">LAB.</span>
+                                </h1>
+                                <p className="text-zinc-400 max-w-xl mt-6 font-light leading-relaxed animate-in slide-in-from-left-20 delay-500">
+                                    A categorized repository of micro-tools designed to bypass executive dysfunction and high-friction tasks.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {loading ? (
+                        <div className="text-center py-20">
+                            <div className="text-xs font-mono-headline text-zinc-600 uppercase tracking-widest animate-pulse">Syncing with Registry...</div>
+                        </div>
+                    ) : (
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {tools.map((tool, i) => (
+                                <div key={tool.id} className="animate-in fade-in slide-in-from-bottom-20" style={{ animationDelay: `${i * 100}ms` }}>
+                                    <ToolCard tool={tool} />
+                                </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
-                {loading && (
-                    <div className="text-center text-gray-500 py-12">Loading tools...</div>
-                )}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {tools.map(tool => (
-                        <ToolCard key={tool.id} tool={tool} />
-                    ))}
-                </div>
-            </section>
+            </div>
         </div>
     )
 }
