@@ -54,7 +54,7 @@ export default async function handler(_req: VercelRequest, res: VercelResponse) 
                 id: props.Slug?.rich_text?.[0]?.plain_text || page.id,
                 emoji: props.Emoji?.rich_text?.[0]?.plain_text || '🔧',
                 name: props.Name?.title?.[0]?.plain_text || 'Untitled',
-                description: props.Description?.rich_text?.[0]?.plain_text || '',
+                description: props.Description?.rich_text?.[0]?.plain_text || props['Meta Description']?.rich_text?.[0]?.plain_text || '',
                 whatsappKeyword: props['WhatsApp Keyword']?.rich_text?.[0]?.plain_text || '',
                 category: branch,
                 branchColor: BRANCH_COLORS[branch.toUpperCase()] || '#F5C614',
