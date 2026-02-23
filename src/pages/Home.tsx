@@ -85,45 +85,11 @@ export default function Home() {
 
             {showContent && (
                 <main className="relative z-10 animate-in fade-in slide-in-from-bottom-20 duration-1000 fill-mode-both">
-                    {/* Intro Section */}
-                    <section id="intro" className="py-32 px-6 flex flex-col items-center min-h-[60vh] justify-center text-center">
-                        <h2 className="text-3xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter mb-10 leading-none max-w-4xl">
-                            SYSTEMS FOR AN <br /><span className="text-sor7ed-yellow">UNFILTERED BRAIN.</span>
-                        </h2>
-                        <p className="text-zinc-500 max-w-2xl font-light leading-relaxed mb-16 text-sm md:text-base tracking-wide border-l border-white/5 pl-8 text-left mx-auto">
-                            We don't do "productivity." We do neuro-architecture. Our protocols are designed to bypass executive dysfunction and turn overwhelm into operational clarity.
-                        </p>
 
-                        <div className="flex gap-4 items-center opacity-30 animate-pulse">
-                            <span className="w-12 h-[1px] bg-white"></span>
-                            <span className="text-[10px] font-mono-headline uppercase tracking-[0.5em]">Initializing Protocol Registry</span>
-                            <span className="w-12 h-[1px] bg-white"></span>
-                        </div>
-                    </section>
-
-                    {/* Stats / Status Bar */}
-                    <section className="py-12 border-y border-white/5 bg-black/20 backdrop-blur-md">
-                        <div className="container mx-auto max-w-5xl">
-                            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                                {[
-                                    { k: "Latency", v: "Zero" },
-                                    { k: "Friction", v: "None" },
-                                    { k: "Protocols", v: "Active" },
-                                    { k: "Encryption", v: "End-to-End" }
-                                ].map(s => (
-                                    <div key={s.k} className="text-center">
-                                        <div className="text-[9px] font-mono-headline text-zinc-600 uppercase tracking-widest mb-1">{s.k}</div>
-                                        <div className="text-lg font-black text-white tracking-widest uppercase">{s.v}</div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* 7 Vectors (Branches) */}
-                    <section id="vectors" className="py-40 flex flex-col items-center">
+                    {/* 7 Vectors (Branches) — first thing after hero */}
+                    <section id="vectors" className="py-24 flex flex-col items-center">
                         <div className="container mx-auto px-6 max-w-7xl">
-                            <h2 className="section-title text-center mb-24">
+                            <h2 className="section-title text-center mb-16">
                                 <span className="title-white">THE 7</span> <span className="title-yellow">VECTORS.</span>
                             </h2>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
