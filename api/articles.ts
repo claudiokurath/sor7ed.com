@@ -67,7 +67,7 @@ export default async function handler(_req: VercelRequest, res: VercelResponse) 
                 excerpt,
                 content,
                 cta,
-                coverImage: page.cover?.external?.url || page.cover?.file?.url || props['Files & media']?.files?.[0]?.file?.url || props['Files & media']?.files?.[0]?.external?.url || '',
+                coverImage: page.cover?.external?.url || page.cover?.file?.url || props['Cover Image URL']?.rich_text?.[0]?.plain_text || props['Files & media']?.files?.[0]?.file?.url || props['Files & media']?.files?.[0]?.external?.url || '',
                 branch,
                 branchColor: BRANCH_COLORS[branch.toUpperCase()] || '#F5C614',
                 readTime: props['Read Time']?.rich_text?.[0]?.plain_text || '',
