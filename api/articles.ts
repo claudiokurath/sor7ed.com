@@ -63,7 +63,7 @@ export default async function handler(_req: VercelRequest, res: VercelResponse) 
 
             return {
                 id: props.Slug?.rich_text?.[0]?.plain_text || page.id,
-                title: props.Title?.title?.[0]?.plain_text || 'Untitled',
+                title: props.Title?.title?.[0]?.plain_text || props.Name?.title?.[0]?.plain_text || 'Untitled',
                 excerpt,
                 content,
                 cta,
