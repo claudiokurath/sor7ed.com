@@ -5,8 +5,8 @@ const Header = () => {
         <header className="bg-black border-b border-gray-800 sticky top-0 z-50">
             <nav className="container mx-auto px-6 py-4">
                 <div className="flex items-center justify-between">
-                    <Link to="/" className="text-2xl font-bold text-sor7ed-yellow">
-                        SOR7ED
+                    <Link to="/">
+                        <img src="/logo.png" alt="SOR7ED" className="h-8 w-auto object-contain opacity-90" />
                     </Link>
                     <div className="hidden md:flex space-x-8">
                         <Link to="/" className="text-gray-300 hover:text-sor7ed-yellow transition-colors">

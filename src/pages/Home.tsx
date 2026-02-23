@@ -74,22 +74,16 @@ export default function Home() {
             {/* Hero Section - Gated Logo & Entry */}
             <section id="hero" className={`relative h-screen flex flex-col justify-center items-center z-20 transition-all duration-1000 ${showContent ? 'h-[40vh] opacity-30 pointer-events-none' : ''}`}>
                 <div className="animate-in fade-in zoom-in duration-1000 mb-12">
-                    <img src="/logo.png" alt="SOR7ED" className="w-64 md:w-96 h-auto object-contain drop-shadow-[0_0_50px_rgba(255,255,255,0.05)] opacity-90" />
+                    <img src="/logo.png" alt="SOR7ED" className="w-96 md:w-[700px] h-auto object-contain drop-shadow-[0_0_80px_rgba(255,255,255,0.08)] opacity-95" />
                 </div>
 
                 {!showContent && (
-                    <div className="flex flex-col sm:flex-row gap-8 mt-12 w-full max-w-lg px-6">
-                        <button
-                            onClick={enterAsMember}
-                            className="flex-1 bg-white text-black font-black uppercase tracking-[0.3em] text-[10px] py-5 px-8 rounded-full hover:bg-sor7ed-yellow transition-all duration-500 animate-in slide-in-from-left-20 duration-1000 delay-500 fill-mode-both shadow-[0_0_20px_rgba(255,255,255,0.1)]"
-                        >
-                            Member Login
-                        </button>
+                    <div className="mt-12">
                         <button
                             onClick={enterAsGuest}
-                            className="flex-1 bg-transparent border border-white/20 text-white font-black uppercase tracking-[0.3em] text-[10px] py-5 px-8 rounded-full hover:bg-white/5 transition-all duration-500 animate-in slide-in-from-right-20 duration-1000 delay-700 fill-mode-both"
+                            className="bg-sor7ed-yellow text-black font-black uppercase tracking-[0.3em] text-[11px] py-5 px-16 rounded-full hover:bg-yellow-400 hover:scale-105 transition-all duration-500 animate-in fade-in duration-1000 delay-500 fill-mode-both shadow-[0_0_40px_rgba(245,198,20,0.2)]"
                         >
-                            Browse as Guest
+                            Come In
                         </button>
                     </div>
                 )}

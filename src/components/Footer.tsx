@@ -4,7 +4,7 @@ const Footer = () => {
             <div className="container mx-auto px-6">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                     <div>
-                        <h3 className="text-sor7ed-yellow text-xl font-bold mb-4">SOR7ED</h3>
+                        <img src="/logo.png" alt="SOR7ED" className="h-8 w-auto object-contain opacity-90 mb-4" />
                         <p className="text-gray-400 text-sm">
                             ADHD-friendly tools and resources for neurodivergent adults.
                         </p>
