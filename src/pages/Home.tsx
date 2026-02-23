@@ -2,20 +2,18 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { branches } from '../data/branches'
 import { useNotionData } from '../hooks/useNotionData'
-import SignupModal from '../components/SignupModal'
+import { useVaultSession } from '../hooks/useVaultSession'
 import BranchCard from '../components/BranchCard'
 
 export default function Home() {
     const [activeFaq, setActiveFaq] = useState<number | null>(null)
-    const [isSignupOpen, setIsSignupOpen] = useState(false)
-    const [selectedTemplate, setSelectedTemplate] = useState('')
-    const [whatsappUrl, setWhatsappUrl] = useState('')
     const [showContent, setShowContent] = useState(false)
     const navigate = useNavigate()
+    const { isLoggedIn } = useVaultSession()
 
     // Fetch tools and articles from API routes
-    const { data: dynamicTools, loading: toolsLoading, error: toolsError } = useNotionData<any>('/api/tools')
-    const { data: dynamicArticles, loading: articlesLoading, error: articlesError } = useNotionData<any>('/api/articles')
+    const { data: dynamicTools, loading: toolsLoading } = useNotionData<any>('/api/tools')
+    const { data: dynamicArticles, loading: articlesLoading } = useNotionData<any>('/api/articles')
 
     // Reset guest mode on mount if needed, or keep it per session
     useEffect(() => {
@@ -24,10 +22,12 @@ export default function Home() {
     }, [])
 
     const handleToolClick = (tool: any) => {
-        setSelectedTemplate(tool.name)
-        const url = `https://wa.me/447966628285?text=${tool.whatsappKeyword || tool.name}`
-        setWhatsappUrl(url)
-        setIsSignupOpen(true)
+        if (isLoggedIn) {
+            const url = `https://wa.me/447360277713?text=${encodeURIComponent(tool.whatsappKeyword || tool.name)}`
+            window.open(url, '_blank')
+        } else {
+            navigate('/vault')
+        }
     }
 
     const handlePostClick = (post: any) => {
@@ -35,16 +35,10 @@ export default function Home() {
     }
 
     const enterAsGuest = () => {
-        localStorage.setItem('sor7ed_guest', 'true')
         setShowContent(true)
         setTimeout(() => {
             document.getElementById('intro')?.scrollIntoView({ behavior: 'smooth' })
         }, 100)
-    }
-
-    const enterAsMember = () => {
-        localStorage.removeItem('sor7ed_guest')
-        navigate('/vault')
     }
 
     const faqs = [
@@ -242,12 +236,6 @@ export default function Home() {
                 </main>
             )}
 
-            <SignupModal
-                isOpen={isSignupOpen}
-                onClose={() => setIsSignupOpen(false)}
-                template={selectedTemplate}
-                whatsappUrl={whatsappUrl}
-            />
         </div>
     )
 }
