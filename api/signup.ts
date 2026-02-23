@@ -104,9 +104,10 @@ worry less, live more.`
         )
 
         if (!twilioResponse.ok) {
-            const errorData = await twilioResponse.json()
-            console.error('Twilio error:', errorData)
-            throw new Error(`WhatsApp delivery failed: ${errorData.message || 'Unknown Twilio error'}`)
+            const errorText = await twilioResponse.text()
+            console.error('Twilio error status:', twilioResponse.status, errorText)
+            // Don't throw — lead is already saved in Notion. Just log and continue.
+            return res.status(200).json({ success: true, message: 'Signup saved. WhatsApp delivery pending.', twilioError: errorText })
         }
 
         return res.status(200).json({ success: true, message: 'Signup successful' })
