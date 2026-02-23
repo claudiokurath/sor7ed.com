@@ -53,7 +53,13 @@ export default async function handler(_req: VercelRequest, res: VercelResponse) 
             const publishDate = props['Publish Date']?.date?.start || ''
 
             const contentRichText = props['Content']?.rich_text || []
-            const content = contentRichText.map((t: any) => t.plain_text).join('')
+            const rawContent = contentRichText.map((t: any) => t.plain_text).join('')
+            // Strip boilerplate footers added during content generation
+            const content = rawContent
+                .replace(/READY TO HAND THIS OFF\?[\s\S]*?(?=\n\n|\n#|$)/gi, '')
+                .replace(/Text\s+\w+\s+to\s+\+[\d\s]+for[\s\S]*?(?=\n\n|\n#|$)/gi, '')
+                .replace(/\[End of Post\]/gi, '')
+                .trim()
 
             const excerptRichText = props['Excerpt']?.rich_text || props['Meta Description']?.rich_text || []
             const excerpt = excerptRichText.map((t: any) => t.plain_text).join('')
