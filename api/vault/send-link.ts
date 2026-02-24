@@ -52,7 +52,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         const token = Buffer.from(`${payload}:${hmac}`).toString('base64')
 
         // 3. Send Magic Link via WhatsApp
-        const magicLink = `https://sor7ed.com/vault?token=${token}`
+        const magicLink = `https://sor7ed.com/vault?token=${encodeURIComponent(token)}`
         const message = `Hey ${customerName}! 👋\n\nHere is your secure access link to The Vault:\n\n${magicLink}\n\nThis link expires in 1 hour.\n\n— SOR7ED`
 
         const authHeader = 'Basic ' + Buffer.from(`${TWILIO_ACCOUNT_SID}:${TWILIO_AUTH_TOKEN}`).toString('base64')
