@@ -38,7 +38,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         }
 
         const userPage = query.results[0] as any
-        const customerName = userPage.properties['Customer Name']?.title?.[0]?.plain_text || 'there'
+token=${encodeURIComponent(token)}
         const phoneNumber = userPage.properties['Phone Number']?.phone_number
 
         if (!phoneNumber) {
