@@ -18,17 +18,40 @@ const Vault = () => {
     const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null)
 
     useEffect(() => {
-        // Check if user already logged in
-        const savedUser = localStorage.getItem('vaultUser')
-        if (savedUser) {
-            try {
-                setUser(JSON.parse(savedUser))
-            } catch (err) {
-                localStorage.removeItem('vaultUser')
+        const urlParams = new URLSearchParams(window.location.search)
+        const urlToken = urlParams.get('token')
+
+        if (urlToken) {
+            localStorage.setItem('sor7ed_vault_token', urlToken)
+            window.history.replaceState({}, document.title, window.location.pathname)
+            fetchVaultContent(urlToken)
+        } else {
+            const token = localStorage.getItem('sor7ed_vault_token')
+            if (token) {
+                fetchVaultContent(token)
+            } else {
+                setIsLoading(false)
             }
         }
-        setIsLoading(false)
     }, [])
+
+    const fetchVaultContent = async (token: string) => {
+        setIsLoading(true)
+        try {
+            const res = await fetch(`/api/vault/content?token=${encodeURIComponent(token)}`)
+            if (res.ok) {
+                const data = await res.json()
+                setUser(data.user)
+                setProtocols(data.protocols)
+            } else {
+                localStorage.removeItem('sor7ed_vault_token')
+            }
+        } catch (err) {
+            console.error('Failed to fetch vault content')
+        } finally {
+            setIsLoading(false)
+        }
+    }
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -36,38 +59,20 @@ const Vault = () => {
         setMessage(null)
 
         try {
-            // Try signup first (creates if doesn't exist, returns if exists)
-            const signupRes = await fetch('/api/vault-signup', {
+            const res = await fetch('/api/vault/send-link', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, source: 'Vault Signup' })
+                body: JSON.stringify({ email })
             })
 
-            const signupData = await signupRes.json()
-
-            if (signupData.success) {
-                // Now login to get full user data
-                const loginRes = await fetch('/api/vault-login', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email })
-                })
-
-                const loginData = await loginRes.json()
-
-                if (loginData.success) {
-                    // Store user in localStorage
-                    localStorage.setItem('vaultUser', JSON.stringify(loginData.user))
-                    setUser(loginData.user)
-                    setMessage({ type: 'success', text: 'Access granted! Welcome to The Vault.' })
-                } else {
-                    setMessage({ type: 'error', text: loginData.error || 'Login failed' })
-                }
+            if (res.ok) {
+                setMessage({ type: 'success', text: 'Magic link sent to your WhatsApp!' })
             } else {
-                setMessage({ type: 'error', text: signupData.error || 'Signup failed' })
+                const data = await res.json()
+                setMessage({ type: 'error', text: data.error || 'Check your details and try again.' })
             }
         } catch (err) {
-            setMessage({ type: 'error', text: 'Server error. Please try again.' })
+            setMessage({ type: 'error', text: 'Something went wrong. Please try again later.' })
         } finally {
             setIsSending(false)
         }
@@ -83,7 +88,6 @@ const Vault = () => {
 
     return (
         <div className="bg-[#050505] min-h-screen bg-grid relative overflow-hidden text-white font-sans">
-            {/* Full-Screen Background Video */}
             <div className="fixed inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
                 <video autoPlay muted loop playsInline className="w-full h-full object-cover opacity-20 filter grayscale scale-105">
                     <source src="/Intro.mp4" type="video/mp4" />
@@ -100,7 +104,7 @@ const Vault = () => {
                             <p className="text-zinc-500 mt-4 font-light tracking-wide max-w-xl">Your secure repository of neural protocols and architectural frameworks.</p>
                         </div>
                         <button
-                            onClick={() => { localStorage.removeItem('vaultUser'); setUser(null); }}
+                            onClick={() => { localStorage.removeItem('sor7ed_vault_token'); window.location.reload(); }}
                             className="px-8 py-3 text-[10px] font-black text-zinc-500 hover:text-white uppercase tracking-[0.2em] border border-white/10 rounded-full transition-all"
                         >
                             De-authorize Session
