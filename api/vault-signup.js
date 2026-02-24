@@ -1,4 +1,4 @@
-const { Client } = require('@notionhq/client');
+import { Client } from '@notionhq/client';
 
 const notion = new Client({
   auth: process.env.NOTION_TOKEN
@@ -6,7 +6,7 @@ const notion = new Client({
 
 const CRM_DATABASE_ID = '2e90d6014acc80c0b603ffa9e74f7f7d';
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
@@ -68,4 +68,4 @@ module.exports = async (req, res) => {
       details: error.message
     });
   }
-};
+}
