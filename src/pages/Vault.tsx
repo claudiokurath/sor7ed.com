@@ -152,3 +152,4 @@ app.post('/api/vault/send-link-whatsapp', async (req, res) => {
   
   res.json({ success: true })
 })
+export default Vault
