@@ -19,6 +19,7 @@ export default {
             fontFamily: {
                 sans: ['Inter', 'system-ui', 'sans-serif'],
                 'mono-headline': ['Monaco', 'Menlo', 'monospace'],
+                'antarctican': ['antarctican-headline', 'sans-serif'],
             },
             animation: {
                 'stealth-glow': 'pulse 8s ease-in-out infinite',

@@ -14,6 +14,18 @@
   html {
     scroll-behavior: smooth;
   }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "antarctican-headline", sans-serif !important;
+    font-weight: 600 !important;
+    font-style: normal !important;
+    text-transform: uppercase !important;
+  }
 }
 
 @layer components {
@@ -26,7 +38,7 @@
   }
 
   .section-title {
-    @apply text-4xl md:text-5xl lg:text-6xl font-bold mb-6;
+    @apply text-4xl md:text-5xl lg:text-6xl mb-6 font-antarctican uppercase font-semibold;
   }
 
   .card-hover {
@@ -45,11 +57,11 @@
   }
 
   .title-white {
-    @apply text-white font-black uppercase tracking-tighter leading-none;
+    @apply text-white font-antarctican uppercase font-semibold tracking-tighter leading-none;
   }
 
   .title-yellow {
-    @apply text-sor7ed-yellow font-black uppercase tracking-tighter leading-none;
+    @apply text-sor7ed-yellow font-antarctican uppercase font-semibold tracking-tighter leading-none;
   }
 
   .bg-grid {
