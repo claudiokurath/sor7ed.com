@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { branches } from '../data/branches'
 import { useNotionData } from '../hooks/useNotionData'
 import BranchCard from '../components/BranchCard'
-import Testimonials from '../components/Testimonials'
 import EmailCapture from '../components/EmailCapture'
 import ToolCard from '../components/ToolCard'
 import BlogCard from '../components/BlogCard'
@@ -88,7 +87,6 @@ export default function Home() {
                         </div>
                     </section>
 
-                    <Testimonials />
 
                     {/* Labs (Tools) */}
                     <section id="lab" className="py-40 bg-white/[0.02] border-y border-white/5">
@@ -120,7 +118,7 @@ export default function Home() {
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                                 {articlesLoading ? (
                                     <p className="col-span-full text-center text-zinc-500 animate-pulse uppercase tracking-[0.5em] text-xs">Syncing Knowledge Base...</p>
-                                ) : dynamicArticles.map((post: any) => (
+                                ) : dynamicArticles.slice(0, 6).map((post: any) => (
                                     <BlogCard key={post.id} article={post} />
                                 ))}
                             </div>
@@ -161,14 +159,14 @@ export default function Home() {
                     {/* Footer CTA */}
                     <section className="py-60 border-t border-sor7ed-yellow/10 text-center">
                         <div className="container mx-auto px-6">
-                            <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-12">
+                            <h2 className="text-5xl md:text-7xl font-antarctican font-normal uppercase tracking-tighter mb-12 leading-none">
                                 STOP STRUGGLING. <br /><span className="text-sor7ed-yellow">START OPERATING.</span>
                             </h2>
                             <a
                                 href="https://wa.me/447360277713?text=Hi"
                                 target="_blank"
                                 rel="noreferrer"
-                                className="inline-block bg-sor7ed-yellow text-black font-black uppercase tracking-[0.3em] text-xs py-6 px-12 rounded-full hover:scale-110 transition-transform duration-500"
+                                className="inline-block bg-sor7ed-yellow text-black font-antarctican font-normal uppercase tracking-[0.3em] text-xs py-6 px-12 rounded-full hover:scale-110 transition-transform duration-500"
                             >
                                 Initialize Connection
                             </a>

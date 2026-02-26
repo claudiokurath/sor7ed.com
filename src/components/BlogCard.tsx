@@ -27,7 +27,7 @@ const BlogCard = ({ article }: BlogCardProps) => {
                     <img
                         src={article.coverImage}
                         alt={article.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 opacity-80"
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
                     />
                 ) : (
                     <div className="w-full h-full bg-zinc-900/50 flex items-center justify-center">

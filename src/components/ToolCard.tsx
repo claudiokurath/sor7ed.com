@@ -38,7 +38,7 @@ const ToolCard = ({ tool }: ToolCardProps) => {
                     <img
                         src={tool.coverImage}
                         alt={tool.name}
-                        className="absolute inset-0 w-full h-full object-cover opacity-60 grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000"
+                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-all duration-1000"
                     />
                 ) : (
                     <div className="text-4xl grayscale group-hover:grayscale-0 transition-all duration-500 opacity-50 group-hover:opacity-100">
