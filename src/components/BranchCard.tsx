@@ -13,12 +13,22 @@ export default function BranchCard({ branch, delay = 0, className = "" }: Branch
             className={`bg-sor7ed-yellow rounded-2xl p-10 group cursor-default transition-transform duration-500 hover:-translate-y-2 flex flex-col justify-between h-full ${className}`}
             style={{ animationDelay: `${delay}ms` }}
         >
-            <h3 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-black mb-4 leading-[0.85] break-words hyphens-auto">
-                {branch.name}
-            </h3>
-            <p className="text-black/80 font-medium text-sm leading-relaxed max-w-sm">
-                {branch.description}
-            </p>
+            <div className="flex justify-between items-start mb-12">
+                <h3 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-black leading-none break-words">
+                    {branch.name}
+                </h3>
+                <span className="text-4xl">{branch.emoji}</span>
+            </div>
+            <div>
+                <div className="mb-4">
+                    <p className="text-[10px] font-mono-headline text-black/40 uppercase tracking-widest mb-1">// THE_PROBLEM</p>
+                    <p className="text-black font-extrabold text-xl uppercase leading-none">{branch.problem}</p>
+                </div>
+                <div>
+                    <p className="text-[10px] font-mono-headline text-black/40 uppercase tracking-widest mb-1">// THE_FIX</p>
+                    <p className="text-black font-medium text-sm leading-tight opacity-80">{branch.description}</p>
+                </div>
+            </div>
         </div>
     )
 }

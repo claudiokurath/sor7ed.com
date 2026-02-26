@@ -3,56 +3,63 @@ export const branches = [
         id: 'mind',
         emoji: '🧠',
         name: 'Mind',
-        tagline: 'Mental Clarity & Emotional Regulation',
-        color: '#9B59B6',
-        description: 'Understanding ADHD, managing emotions, building self-awareness, and developing coping strategies.'
+        problem: "Can't Focus?",
+        solution: "Neuro-Architectural Guards",
+        description: 'Protocols to stabilize focus and bypass emotional dysregulation.',
+        color: '#9B59B6'
     },
     {
         id: 'wealth',
         emoji: '💰',
         name: 'Wealth',
-        tagline: 'Financial Systems & Money Management',
-        color: '#27AE60',
-        description: 'ADHD tax reduction, budgeting systems, income optimization, and building financial security.'
+        problem: "Broke from Impulse?",
+        solution: "Financial Gatekeepers",
+        description: 'Eliminate the ADHD tax with friction-based spending systems.',
+        color: '#27AE60'
     },
     {
         id: 'body',
         emoji: '💪',
         name: 'Body',
-        tagline: 'Physical Health & Sensory Needs',
-        color: '#E74C3C',
-        description: 'Movement, nutrition, sleep, sensory accommodations, and sustainable health habits.'
+        problem: "Constant Burnout?",
+        solution: "Energy Scaffolding",
+        description: 'Regulate your biology with systems that respect your sensory limits.',
+        color: '#E74C3C'
     },
     {
         id: 'tech',
         emoji: '💻',
         name: 'Tech',
-        tagline: 'Digital Tools & Productivity Systems',
-        color: '#3498DB',
-        description: 'Apps, automation, organization systems, and technology that works with your brain.'
+        problem: "Digital Chaos?",
+        solution: "Frictionless Interfaces",
+        description: 'Custom tools delivered via WhatsApp. No apps. No accounts.',
+        color: '#3498DB'
     },
     {
         id: 'connection',
         emoji: '🤝',
         name: 'Connection',
-        tagline: 'Relationships & Community',
-        color: '#E67E22',
-        description: 'Communication skills, boundary setting, finding your people, and building meaningful relationships.'
+        problem: "socially Drained?",
+        solution: "Boundary Frameworks",
+        description: 'Communication protocols that protect your social battery.',
+        color: '#E67E22'
     },
     {
         id: 'impression',
         emoji: '✨',
         name: 'Impression',
-        tagline: 'Identity & Self-Expression',
-        color: '#F39C12',
-        description: 'Personal branding, communication style, unmasking, and showing up authentically.'
+        problem: "Hiding Your Self?",
+        solution: "Strategic Unmasking",
+        description: 'Master the art of showing up without losing your identity.',
+        color: '#F39C12'
     },
     {
         id: 'growth',
         emoji: '🌱',
         name: 'Growth',
-        tagline: 'Learning & Skill Development',
-        color: '#16A085',
-        description: 'Career development, skill building, continuous learning, and expanding your capabilities.'
+        problem: "Stuck in Loops?",
+        solution: "Cyclic Momentum",
+        description: 'Leverage hyperfocus cycles to build compounding progress.',
+        color: '#16A085'
     }
 ]

@@ -3,21 +3,10 @@ import type { VercelRequest, VercelResponse } from '@vercel/node'
 const NOTION_API_KEY = (process.env.NOTION_API_KEY || '').trim()
 const TOOLS_DB_ID = (process.env.NOTION_TOOLS_DB_ID || '').trim()
 
-const BRANCH_COLORS: Record<string, string> = {
-    MIND: '#9B59B6',
-    WEALTH: '#27AE60',
-    BODY: '#E74C3C',
-    TECH: '#3498DB',
-    CONNECTION: '#E67E22',
-    IMPRESSION: '#F39C12',
-    GROWTH: '#16A085',
-}
-
 export default async function handler(_req: VercelRequest, res: VercelResponse) {
     try {
         if (!NOTION_API_KEY || !TOOLS_DB_ID) {
-            console.error('Missing Notion Configuration: NOTION_API_KEY or NOTION_TOOLS_DB_ID')
-            return res.status(500).json({ error: 'System configuration error' })
+            return res.status(500).json({ error: 'Tools configuration missing' })
         }
 
         const response = await fetch(`https://api.notion.com/v1/databases/${TOOLS_DB_ID}/query`, {
@@ -29,10 +18,12 @@ export default async function handler(_req: VercelRequest, res: VercelResponse) 
             },
             body: JSON.stringify({
                 filter: {
-                    property: 'Status',
-                    status: { equals: 'Published' }
-                },
-                sorts: [{ property: 'Name', direction: 'ascending' }]
+                    or: [
+                        { property: 'Status', status: { equals: 'Done' } },
+                        { property: 'Status', status: { equals: 'Published' } },
+                        { property: 'Status', status: { equals: 'Live' } }
+                    ]
+                }
             })
         })
 
@@ -43,29 +34,26 @@ export default async function handler(_req: VercelRequest, res: VercelResponse) 
         }
 
         const data = await response.json()
-        if (!data.results) {
-            return res.status(200).json([])
-        }
-
         const tools = data.results.map((page: any) => {
             const props = page.properties
-            const branch = props.Branch?.select?.name || ''
+
+            // Extract text from rich_text arrays
+            const getText = (prop: any) => prop?.rich_text?.[0]?.plain_text || ''
+
             return {
-                id: props.Slug?.rich_text?.[0]?.plain_text || page.id,
-                emoji: props.Emoji?.rich_text?.[0]?.plain_text || '🔧',
-                name: props.Name?.title?.[0]?.plain_text || 'Untitled',
-                description: props.Description?.rich_text?.[0]?.plain_text || props['Meta Description']?.rich_text?.[0]?.plain_text || '',
-                whatsappKeyword: props['WhatsApp Keyword']?.rich_text?.[0]?.plain_text || '',
-                category: branch,
-                branchColor: BRANCH_COLORS[branch.toUpperCase()] || '#F5C614',
+                id: page.id,
+                name: props.Name?.title?.[0]?.plain_text || 'Unnamed Tool',
+                emoji: props.Icon?.rich_text?.[0]?.plain_text || '🛠️', // Fallback if Icon exists
+                description: getText(props.Description),
+                whatsappKeyword: getText(props['WhatsApp Keyword']) || getText(props.Keyword) || '',
+                branch: props.Branch?.select?.name || ''
             }
         })
 
         res.setHeader('Cache-Control', 's-maxage=1, stale-while-revalidate=59')
         return res.status(200).json(tools)
     } catch (error: any) {
-        console.error('Failed to fetch tools:', error.message)
+        console.error('Failed to fetch tools:', error)
         return res.status(500).json({ error: 'Internal Server Error' })
     }
 }
-

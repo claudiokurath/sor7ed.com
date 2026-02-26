@@ -10,8 +10,13 @@ interface Tool {
     category: string
 }
 
+import { fallbackTools } from '../data/fallbackTools'
+
 const Tools = () => {
-    const { data: tools, loading } = useNotionData<Tool>('/api/tools')
+    const { data: apiTools, loading } = useNotionData<Tool>('/api/tools')
+
+    // Combine API tools with fallbacks, ensuring unique IDs and never empty
+    const tools = apiTools.length > 0 ? apiTools : fallbackTools
 
     return (
         <div className="bg-[#050505] min-h-screen bg-grid relative overflow-hidden text-white font-sans">
@@ -62,6 +67,18 @@ const Tools = () => {
                                     <ToolCard tool={tool} />
                                 </div>
                             ))}
+
+                            {/* Coming Soon Placeholders */}
+                            <div className="stealth-card p-10 flex flex-col items-center justify-center border-dashed opacity-50 border-white/10 h-full min-h-[300px]">
+                                <span className="text-2xl mb-4 grayscale opacity-50">🛡️</span>
+                                <h3 className="text-base font-bold uppercase tracking-widest text-zinc-600 mb-2">Vaulted Tool</h3>
+                                <p className="text-[10px] font-mono text-zinc-700 uppercase tracking-widest">// COMING_THIS_MONTH</p>
+                            </div>
+                            <div className="stealth-card p-10 flex flex-col items-center justify-center border-dashed opacity-30 border-white/10 h-full min-h-[300px]">
+                                <span className="text-2xl mb-4 grayscale opacity-50">📈</span>
+                                <h3 className="text-base font-bold uppercase tracking-widest text-zinc-600 mb-2">Market Engine</h3>
+                                <p className="text-[10px] font-mono text-zinc-700 uppercase tracking-widest">// IN_DEVELOPMENT</p>
+                            </div>
                         </div>
                     )}
                 </div>

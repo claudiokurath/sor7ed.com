@@ -53,13 +53,7 @@ export default async function handler(_req: VercelRequest, res: VercelResponse) 
             const publishDate = props['Publish Date']?.date?.start || ''
 
             const contentRichText = props['Content']?.rich_text || []
-            const rawContent = contentRichText.map((t: any) => t.plain_text).join('')
-            // Strip boilerplate footers added during content generation
-            const content = rawContent
-                .replace(/READY TO HAND THIS OFF\?[\s\S]*?(?=\n\n|\n#|$)/gi, '')
-                .replace(/Text\s+\w+\s+to\s+\+[\d\s]+for[\s\S]*?(?=\n\n|\n#|$)/gi, '')
-                .replace(/\[End of Post\]/gi, '')
-                .trim()
+            const content = contentRichText.map((t: any) => t.plain_text).join('')
 
             const excerptRichText = props['Excerpt']?.rich_text || props['Meta Description']?.rich_text || []
             const excerpt = excerptRichText.map((t: any) => t.plain_text).join('')
@@ -69,11 +63,11 @@ export default async function handler(_req: VercelRequest, res: VercelResponse) 
 
             return {
                 id: props.Slug?.rich_text?.[0]?.plain_text || page.id,
-                title: props.Title?.title?.[0]?.plain_text || props.Name?.title?.[0]?.plain_text || 'Untitled',
+                title: props.Title?.title?.[0]?.plain_text || 'Untitled',
                 excerpt,
                 content,
                 cta,
-                coverImage: page.cover?.external?.url || page.cover?.file?.url || props['Cover Image URL']?.rich_text?.[0]?.plain_text || props['Files & media']?.files?.[0]?.file?.url || props['Files & media']?.files?.[0]?.external?.url || '',
+                coverImage: page.cover?.external?.url || page.cover?.file?.url || props['Cover Image']?.files?.[0]?.file?.url || props['Cover Image']?.files?.[0]?.external?.url || '',
                 branch,
                 branchColor: BRANCH_COLORS[branch.toUpperCase()] || '#F5C614',
                 readTime: props['Read Time']?.rich_text?.[0]?.plain_text || '',
@@ -85,14 +79,3 @@ export default async function handler(_req: VercelRequest, res: VercelResponse) 
                     })
                     : '',
                 whatsappKeyword: props['WhatsApp Keyword']?.rich_text?.[0]?.plain_text || props['Trigger']?.rich_text?.[0]?.plain_text || '',
-            }
-        })
-
-        res.setHeader('Cache-Control', 's-maxage=1, stale-while-revalidate=59')
-        return res.status(200).json(articles)
-    } catch (error: any) {
-        console.error('Failed to fetch articles:', error.message)
-        return res.status(500).json({ error: 'Internal Server Error' })
-    }
-}
-

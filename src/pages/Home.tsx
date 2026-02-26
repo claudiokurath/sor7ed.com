@@ -4,6 +4,8 @@ import { branches } from '../data/branches'
 import { useNotionData } from '../hooks/useNotionData'
 import { useVaultSession } from '../hooks/useVaultSession'
 import BranchCard from '../components/BranchCard'
+import Testimonials from '../components/Testimonials'
+import EmailCapture from '../components/EmailCapture'
 
 export default function Home() {
     const [activeFaq, setActiveFaq] = useState<number | null>(null)
@@ -12,15 +14,6 @@ export default function Home() {
     const { isLoggedIn } = useVaultSession()
 
     // Fetch tools and articles from API routes
-    const { data: dynamicTools, loading: toolsLoading } = useNotionData<any>('/api/tools')
-    const { data: dynamicArticles, loading: articlesLoading } = useNotionData<any>('/api/articles')
-
-    // Reset guest mode on mount if needed, or keep it per session
-    useEffect(() => {
-        // We can decide if we want to auto-show content if they already selected guest
-        // For now, let's always show the splash for that 'wow' effect
-    }, [])
-
     const handleToolClick = (tool: any) => {
         if (isLoggedIn) {
             const url = `https://wa.me/447360277713?text=${encodeURIComponent(tool.whatsappKeyword || tool.name)}`
@@ -34,10 +27,13 @@ export default function Home() {
         navigate(`/blog/${encodeURIComponent(post.title)}`)
     }
 
+    const { data: dynamicTools, loading: toolsLoading } = useNotionData<any>('/api/tools')
+    const { data: dynamicArticles, loading: articlesLoading } = useNotionData<any>('/api/articles')
+
     const enterAsGuest = () => {
         setShowContent(true)
         setTimeout(() => {
-            document.getElementById('intro')?.scrollIntoView({ behavior: 'smooth' })
+            document.getElementById('vectors')?.scrollIntoView({ behavior: 'smooth' })
         }, 100)
     }
 
@@ -71,14 +67,18 @@ export default function Home() {
                     <img src="/logo.png" alt="SOR7ED" className="w-96 md:w-[700px] h-auto object-contain drop-shadow-[0_0_80px_rgba(255,255,255,0.08)] opacity-95" />
                 </div>
 
-                {!showContent && (
-                    <div className="mt-12">
+                {!showContent ? (
+                    <div className="mt-12 flex flex-col items-center">
                         <button
                             onClick={enterAsGuest}
                             className="bg-sor7ed-yellow text-black font-black uppercase tracking-[0.3em] text-[11px] py-5 px-16 rounded-full hover:bg-yellow-400 hover:scale-105 transition-all duration-500 animate-in fade-in duration-1000 delay-500 fill-mode-both shadow-[0_0_40px_rgba(245,198,20,0.2)]"
                         >
                             Come In
                         </button>
+                    </div>
+                ) : (
+                    <div className="absolute bottom-12 animate-bounce opacity-40">
+                        <span className="text-white text-2xl">↓</span>
                     </div>
                 )}
             </section>
@@ -89,9 +89,15 @@ export default function Home() {
                     {/* 7 Vectors (Branches) — first thing after hero */}
                     <section id="vectors" className="py-24 flex flex-col items-center">
                         <div className="container mx-auto px-6 max-w-7xl">
-                            <h2 className="section-title text-center mb-16">
-                                <span className="title-white">THE 7</span> <span className="title-yellow">VECTORS.</span>
-                            </h2>
+                            <div className="text-center mb-16 max-w-2xl mx-auto">
+                                <span className="text-[10px] font-mono-headline text-zinc-500 uppercase tracking-[0.4em] block mb-4 uppercase tracking-[0.4em] block mb-4 animate-in slide-in-from-bottom-20">// THE_ARCHITECTURE</span>
+                                <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6">
+                                    THE <span className="text-sor7ed-yellow">ARCHITECTURE.</span>
+                                </h2>
+                                <p className="text-zinc-500 font-light leading-relaxed">
+                                    We don't just "fix" ADHD. We build a scaffolding around it. Each vector addresses a core friction point in the neurodivergent experience.
+                                </p>
+                            </div>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                 {branches.map(branch => (
                                     <BranchCard key={branch.name} branch={branch} />
@@ -100,12 +106,19 @@ export default function Home() {
                         </div>
                     </section>
 
+                    <Testimonials />
+
                     {/* Labs (Tools) */}
                     <section id="lab" className="py-40 bg-white/[0.02] border-y border-white/5">
                         <div className="container mx-auto px-6 max-w-7xl">
-                            <h2 className="section-title text-center mb-24 font-black tracking-tighter">
-                                <span className="title-white">THE</span> <span className="title-yellow">LAB.</span>
-                            </h2>
+                            <div className="text-center mb-20">
+                                <h2 className="section-title justify-center gap-4 flex mb-6">
+                                    <span className="title-white">THE</span> <span className="title-yellow">LAB.</span>
+                                </h2>
+                                <p className="text-zinc-500 font-light leading-relaxed max-w-xl mx-auto">
+                                    Functional micro-tools designed for immediate relief. From dopamine regulation to impulse filtering.
+                                </p>
+                            </div>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                                 {toolsLoading ? (
                                     <p className="col-span-full text-center text-zinc-500 animate-pulse uppercase tracking-[0.5em] text-xs">Accessing Toolkits...</p>
@@ -154,6 +167,8 @@ export default function Home() {
                         </div>
                     </section>
 
+                    <EmailCapture />
+
                     {/* FAQ */}
                     <section id="faq" className="py-40 border-t border-white/5">
                         <div className="container mx-auto max-w-4xl px-6">
@@ -201,7 +216,6 @@ export default function Home() {
                     </section>
                 </main>
             )}
-
         </div>
     )
 }

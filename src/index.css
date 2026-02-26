@@ -35,27 +35,37 @@
 
   /* Stealth/Cyberpunk Design Classes */
   .stealth-card {
-    @apply bg-black/40 backdrop-blur-sm border border-white/10 rounded-2xl transition-all duration-500;
+    @apply bg-zinc-900/40 backdrop-blur-xl border border-white/5 rounded-[2rem] transition-all duration-700;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  }
+
+  .stealth-card:hover {
+    @apply border-white/20 bg-zinc-800/40;
+    box-shadow: 0 0 50px rgba(245, 198, 20, 0.05);
   }
 
   .title-white {
-    @apply text-white font-black uppercase tracking-tighter;
+    @apply text-white font-black uppercase tracking-tighter leading-none;
   }
 
   .title-yellow {
-    @apply text-sor7ed-yellow font-black uppercase tracking-tighter;
+    @apply text-sor7ed-yellow font-black uppercase tracking-tighter leading-none;
   }
 
   .bg-grid {
     background-image:
       linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
       linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-    background-size: 50px 50px;
+    background-size: 60px 60px;
+  }
+
+  .radial-gradient {
+    background: radial-gradient(circle at center, rgba(245, 198, 20, 0.03) 0%, transparent 70%);
   }
 
   /* Rendered Blog Content Styles */
   .blog-content h2 {
-    @apply text-2xl font-bold mt-12 mb-4 tracking-tight uppercase text-white;
+    @apply text-3xl md:text-5xl font-black mt-20 mb-8 tracking-tighter uppercase text-white;
   }
 
   .blog-content h3 {

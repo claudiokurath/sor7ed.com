@@ -17,7 +17,7 @@ export function useNotionData<T>(endpoint: string, fallback: T[] = []): {
                 return res.json()
             })
             .then((json) => {
-                if (!cancelled) setData(json)
+                if (!cancelled) setData(Array.isArray(json) ? json : fallback)
             })
             .catch((err) => {
                 if (!cancelled) {
