@@ -33,7 +33,7 @@ const ToolCard = ({ tool }: ToolCardProps) => {
             onClick={handleClick}
             className="stealth-card group hover:border-sor7ed-yellow/30 transition-all duration-500 cursor-pointer overflow-hidden p-0 h-full flex flex-col"
         >
-            <div className="relative h-48 w-full bg-zinc-900 flex items-center justify-center">
+            <div className="relative aspect-video w-full bg-zinc-900 flex items-center justify-center overflow-hidden">
                 {tool.coverImage ? (
                     <img
                         src={tool.coverImage}
