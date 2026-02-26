@@ -67,7 +67,12 @@ export default async function handler(_req: VercelRequest, res: VercelResponse) 
                 excerpt,
                 content,
                 cta,
-                coverImage: page.cover?.external?.url || page.cover?.file?.url || props['Cover Image']?.files?.[0]?.file?.url || props['Cover Image']?.files?.[0]?.external?.url || '',
+                coverImage: page.cover?.external?.url ||
+                    page.cover?.file?.url ||
+                    props['Cover Image']?.files?.[0]?.file?.url ||
+                    props['Cover Image']?.files?.[0]?.external?.url ||
+                    props['Image']?.files?.[0]?.file?.url ||
+                    props['Image']?.files?.[0]?.external?.url || '',
                 branch,
                 branchColor: BRANCH_COLORS[branch.toUpperCase()] || '#F5C614',
                 readTime: props['Read Time']?.rich_text?.[0]?.plain_text || '',
@@ -79,3 +84,13 @@ export default async function handler(_req: VercelRequest, res: VercelResponse) 
                     })
                     : '',
                 whatsappKeyword: props['WhatsApp Keyword']?.rich_text?.[0]?.plain_text || props['Trigger']?.rich_text?.[0]?.plain_text || '',
+            }
+        })
+
+        res.setHeader('Cache-Control', 's-maxage=1, stale-while-revalidate=59')
+        return res.status(200).json(articles)
+    } catch (error: any) {
+        console.error('Failed to fetch articles:', error)
+        return res.status(500).json({ error: 'Internal Server Error' })
+    }
+}

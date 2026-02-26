@@ -46,7 +46,13 @@ export default async function handler(_req: VercelRequest, res: VercelResponse) 
                 emoji: props.Icon?.rich_text?.[0]?.plain_text || '🛠️', // Fallback if Icon exists
                 description: getText(props.Description),
                 whatsappKeyword: getText(props['WhatsApp Keyword']) || getText(props.Keyword) || '',
-                branch: props.Branch?.select?.name || ''
+                branch: props.Branch?.select?.name || '',
+                coverImage: page.cover?.external?.url ||
+                    page.cover?.file?.url ||
+                    props['Cover Image']?.files?.[0]?.file?.url ||
+                    props['Cover Image']?.files?.[0]?.external?.url ||
+                    props['Image']?.files?.[0]?.file?.url ||
+                    props['Image']?.files?.[0]?.external?.url || '',
             }
         })
 

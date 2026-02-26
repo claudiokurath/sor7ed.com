@@ -27,12 +27,9 @@ const Blog = () => {
 
     return (
         <div className="bg-[#050505] min-h-screen bg-grid relative overflow-hidden text-white font-sans">
-            {/* Full-Screen Background Video */}
+            {/* Premium Background Overlay */}
             <div className="fixed inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
-                <video autoPlay muted loop playsInline className="w-full h-full object-cover opacity-20 filter grayscale scale-105">
-                    <source src="/Intro.mp4" type="video/mp4" />
-                </video>
-                <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black" />
+                <div className="absolute inset-0 bg-gradient-to-b from-black via-zinc-900/10 to-black" />
             </div>
 
             {/* Dynamic Background Glows */}
@@ -57,8 +54,8 @@ const Blog = () => {
                         <button
                             onClick={() => setSelectedBranch(null)}
                             className={`px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-500 border ${selectedBranch === null
-                                    ? 'bg-sor7ed-yellow border-sor7ed-yellow text-black'
-                                    : 'bg-transparent border-white/10 text-zinc-500 hover:text-white hover:border-white/30'
+                                ? 'bg-sor7ed-yellow border-sor7ed-yellow text-black'
+                                : 'bg-transparent border-white/10 text-zinc-500 hover:text-white hover:border-white/30'
                                 }`}
                         >
                             ALL
@@ -68,8 +65,8 @@ const Blog = () => {
                                 key={branch.id}
                                 onClick={() => setSelectedBranch(branch.name)}
                                 className={`px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-500 border ${selectedBranch === branch.name
-                                        ? 'bg-sor7ed-yellow border-sor7ed-yellow text-black'
-                                        : 'bg-transparent border-white/10 text-zinc-500 hover:text-white hover:border-white/30'
+                                    ? 'bg-sor7ed-yellow border-sor7ed-yellow text-black'
+                                    : 'bg-transparent border-white/10 text-zinc-500 hover:text-white hover:border-white/30'
                                     }`}
                             >
                                 {branch.name}

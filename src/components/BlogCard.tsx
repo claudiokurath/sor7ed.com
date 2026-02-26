@@ -30,15 +30,8 @@ const BlogCard = ({ article }: BlogCardProps) => {
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 opacity-80"
                     />
                 ) : (
-                    <div className="w-full h-full bg-zinc-900 overflow-hidden">
-                        <img
-                            src={`/placeholders/${['neuro-architecture', 'chaos-to-order', 'minimal-workspace'][Math.abs(article.id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0)) % 3]}.png`}
-                            alt="Placeholder"
-                            className="w-full h-full object-cover opacity-40 grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000"
-                        />
-                        <div className="absolute inset-0 flex items-center justify-center">
-                            <span className="text-zinc-500 font-mono-headline text-[8px] uppercase tracking-[0.4em] opacity-50">// ARCHIVE_INTEL</span>
-                        </div>
+                    <div className="w-full h-full bg-zinc-900/50 flex items-center justify-center">
+                        <span className="text-zinc-800 font-mono-headline text-[10px] uppercase tracking-widest">// NO_DATA_STREAM</span>
                     </div>
                 )}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-60" />
