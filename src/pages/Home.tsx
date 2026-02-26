@@ -72,7 +72,7 @@ export default function Home() {
                         <div className="container mx-auto px-6 max-w-7xl">
                             <div className="text-center mb-16 max-w-2xl mx-auto">
                                 <span className="text-[10px] font-mono-headline text-zinc-500 uppercase tracking-[0.4em] block mb-4 uppercase tracking-[0.4em] block mb-4 animate-in slide-in-from-bottom-20">// THE_ARCHITECTURE</span>
-                                <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6">
+                                <h2 className="text-6xl md:text-8xl font-antarctican font-normal uppercase tracking-tighter mb-8 leading-none">
                                     THE <span className="text-sor7ed-yellow">ARCHITECTURE.</span>
                                 </h2>
                                 <p className="text-zinc-500 font-light leading-relaxed">
@@ -159,7 +159,7 @@ export default function Home() {
                     {/* Footer CTA */}
                     <section className="py-60 border-t border-sor7ed-yellow/10 text-center">
                         <div className="container mx-auto px-6">
-                            <h2 className="text-5xl md:text-7xl font-antarctican font-normal uppercase tracking-tighter mb-12 leading-none">
+                            <h2 className="text-6xl md:text-8xl lg:text-9xl font-antarctican font-normal uppercase tracking-tighter mb-16 leading-none">
                                 STOP STRUGGLING. <br /><span className="text-sor7ed-yellow">START OPERATING.</span>
                             </h2>
                             <a

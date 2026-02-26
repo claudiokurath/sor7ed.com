@@ -100,8 +100,8 @@ export default function BlogPost() {
                         )}
 
                         {/* Article Header (Inside content area as requested) */}
-                        <div className="mb-16">
-                            <h1 className="text-4xl md:text-7xl font-black uppercase tracking-tighter text-white leading-none">
+                        <div className="mb-20">
+                            <h1 className="text-6xl md:text-8xl lg:text-9xl font-antarctican font-normal uppercase tracking-tighter text-white leading-none">
                                 {article.title}
                             </h1>
                         </div>

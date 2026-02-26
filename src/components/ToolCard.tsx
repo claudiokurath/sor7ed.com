@@ -49,7 +49,7 @@ const ToolCard = ({ tool }: ToolCardProps) => {
             </div>
 
             <div className="p-10 flex-grow flex flex-col">
-                <h3 className="text-xl font-bold mb-4 text-white uppercase tracking-widest">{tool.name}</h3>
+                <h3 className="text-3xl font-antarctican font-normal mb-4 text-white uppercase tracking-tight leading-none group-hover:text-sor7ed-yellow transition-colors">{tool.name}</h3>
                 <p className="text-zinc-400 text-sm mb-8 font-light leading-relaxed flex-grow">{tool.description}</p>
                 <div className="flex justify-end pt-6 border-t border-white/5">
                     <span className="text-[10px] font-mono-headline text-zinc-500 group-hover:text-sor7ed-yellow uppercase tracking-[0.2em] transition-colors">

@@ -46,7 +46,7 @@ const BlogCard = ({ article }: BlogCardProps) => {
                         {article.date}
                     </span>
                 </div>
-                <h3 className="text-2xl font-bold text-white group-hover:text-sor7ed-yellow transition-colors uppercase tracking-tight mb-6 leading-none">
+                <h3 className="text-4xl font-antarctican font-normal text-white group-hover:text-sor7ed-yellow transition-colors uppercase tracking-tight mb-8 leading-none">
                     <Link to={`/blog/${encodeURIComponent(article.title)}`}>
                         {article.title}
                     </Link>

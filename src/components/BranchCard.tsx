@@ -14,7 +14,7 @@ export default function BranchCard({ branch, delay = 0, className = "" }: Branch
             style={{ animationDelay: `${delay}ms` }}
         >
             <div className="flex justify-between items-start mb-12">
-                <h3 className="text-4xl md:text-5xl font-antarctican font-normal uppercase tracking-tighter text-black leading-none break-words">
+                <h3 className="text-6xl md:text-7xl font-antarctican font-normal uppercase tracking-tighter text-black leading-none break-words">
                     {branch.name}
                 </h3>
             </div>

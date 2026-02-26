@@ -12,6 +12,24 @@
     font-family: "antarctican-headline", sans-serif !important;
     font-weight: 200 !important;
     font-style: normal !important;
+    font-variant-ligatures: none;
+  }
+
+  /* Increase generic heading sizes */
+  h1 {
+    @apply text-6xl md:text-8xl lg:text-9xl tracking-tighter;
+  }
+
+  h2 {
+    @apply text-5xl md:text-7xl lg:text-8xl tracking-tighter;
+  }
+
+  h3 {
+    @apply text-4xl md:text-5xl lg:text-6xl tracking-tighter;
+  }
+
+  h4 {
+    @apply text-3xl md:text-4xl lg:text-5xl tracking-tight;
   }
 
   html {
@@ -41,7 +59,7 @@
   }
 
   .section-title {
-    @apply text-4xl md:text-5xl lg:text-6xl mb-6 font-antarctican uppercase font-normal;
+    @apply text-6xl md:text-8xl lg:text-9xl mb-12 font-antarctican uppercase font-normal tracking-tighter;
   }
 
   .card-hover {
@@ -80,11 +98,11 @@
 
   /* Rendered Blog Content Styles */
   .blog-content h2 {
-    @apply text-3xl md:text-5xl font-black mt-20 mb-8 tracking-tighter uppercase text-white;
+    @apply text-5xl md:text-7xl font-normal mt-20 mb-8 tracking-tighter uppercase text-white font-antarctican;
   }
 
   .blog-content h3 {
-    @apply text-xl font-bold mt-8 mb-3 tracking-tight uppercase text-zinc-100;
+    @apply text-2xl font-normal mt-8 mb-3 tracking-tight uppercase text-zinc-100 font-antarctican;
   }
 
   .blog-content ul {
@@ -101,7 +119,7 @@
   }
 
   .blog-content strong {
-    @apply text-white font-bold;
+    @apply text-white font-medium;
   }
 }
 
