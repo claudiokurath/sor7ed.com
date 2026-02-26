@@ -1,32 +1,17 @@
-import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 import { branches } from '../data/branches'
 import { useNotionData } from '../hooks/useNotionData'
-import { useVaultSession } from '../hooks/useVaultSession'
 import BranchCard from '../components/BranchCard'
 import Testimonials from '../components/Testimonials'
 import EmailCapture from '../components/EmailCapture'
+import ToolCard from '../components/ToolCard'
+import BlogCard from '../components/BlogCard'
 
 export default function Home() {
     const [activeFaq, setActiveFaq] = useState<number | null>(null)
     const [showContent, setShowContent] = useState(false)
-    const navigate = useNavigate()
-    const { isLoggedIn } = useVaultSession()
 
     // Fetch tools and articles from API routes
-    const handleToolClick = (tool: any) => {
-        if (isLoggedIn) {
-            const url = `https://wa.me/447360277713?text=${encodeURIComponent(tool.whatsappKeyword || tool.name)}`
-            window.open(url, '_blank')
-        } else {
-            navigate('/vault')
-        }
-    }
-
-    const handlePostClick = (post: any) => {
-        navigate(`/blog/${encodeURIComponent(post.title)}`)
-    }
-
     const { data: dynamicTools, loading: toolsLoading } = useNotionData<any>('/api/tools')
     const { data: dynamicArticles, loading: articlesLoading } = useNotionData<any>('/api/articles')
 
@@ -120,15 +105,7 @@ export default function Home() {
                                 {toolsLoading ? (
                                     <p className="col-span-full text-center text-zinc-500 animate-pulse uppercase tracking-[0.5em] text-xs">Accessing Toolkits...</p>
                                 ) : dynamicTools.map((tool: any) => (
-                                    <div
-                                        key={tool.id}
-                                        onClick={() => handleToolClick(tool)}
-                                        className="stealth-card p-10 group cursor-pointer hover:border-sor7ed-yellow/30 transition-all duration-500"
-                                    >
-                                        <div className="text-4xl mb-8 grayscale group-hover:grayscale-0 transition-all">{tool.emoji || '🛠️'}</div>
-                                        <h3 className="text-2xl font-bold uppercase tracking-tight mb-4 group-hover:text-sor7ed-yellow transition-colors">{tool.name}</h3>
-                                        <p className="text-sm text-zinc-500 leading-relaxed font-medium">{tool.description}</p>
-                                    </div>
+                                    <ToolCard key={tool.id} tool={tool} />
                                 ))}
                             </div>
                         </div>
@@ -143,22 +120,8 @@ export default function Home() {
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                                 {articlesLoading ? (
                                     <p className="col-span-full text-center text-zinc-500 animate-pulse uppercase tracking-[0.5em] text-xs">Syncing Knowledge Base...</p>
-                                ) : dynamicArticles.map((post: any, i: number) => (
-                                    <div
-                                        key={i}
-                                        onClick={() => handlePostClick(post)}
-                                        className="stealth-card group cursor-pointer hover:border-white/20 transition-all duration-700 h-[320px] flex flex-col justify-between p-10"
-                                    >
-                                        <div>
-                                            <div className="flex justify-between items-center mb-6">
-                                                <span className="text-[9px] font-mono-headline text-sor7ed-yellow uppercase tracking-widest">{post.branch}</span>
-                                                <span className="text-[9px] font-mono-headline text-zinc-600 uppercase tracking-widest">{post.date}</span>
-                                            </div>
-                                            <h3 className="text-2xl font-bold uppercase tracking-tight mb-4 group-hover:text-sor7ed-yellow transition-colors">{post.title}</h3>
-                                            <p className="text-sm text-zinc-500 leading-relaxed line-clamp-3">{post.excerpt}</p>
-                                        </div>
-                                        <div className="text-right text-zinc-800 group-hover:text-white transition-colors">→</div>
-                                    </div>
+                                ) : dynamicArticles.map((post: any) => (
+                                    <BlogCard key={post.id} article={post} />
                                 ))}
                             </div>
                         </div>
