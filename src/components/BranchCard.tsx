@@ -17,7 +17,6 @@ export default function BranchCard({ branch, delay = 0, className = "" }: Branch
                 <h3 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-black leading-none break-words">
                     {branch.name}
                 </h3>
-                <span className="text-4xl">{branch.emoji}</span>
             </div>
             <div>
                 <div className="mb-4">
