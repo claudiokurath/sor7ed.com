@@ -79,37 +79,10 @@ export default function Home({ onOpenAuth }: HomeProps) {
             </section>
 
             <main className="relative z-10">
-                {/* Why Different - Moved Up */}
-                <section id="why-different" className="h-screen min-h-screen flex flex-col justify-center border-y border-white/5 bg-sor7ed-yellow/[0.01] snap-start">
-                    <div className="container mx-auto px-4 md:px-6 max-w-7xl">
-                        <div className="text-center mb-16">
-                            <h2 className="section-title">
-                                <span className="title-white">WHY IT'S</span> <span className="title-yellow">DIFFERENT.</span>
-                            </h2>
-                        </div>
-                        <div className="max-w-4xl mx-auto space-y-6">
-                            <div className="flex items-start gap-8 p-8 stealth-card bg-white/5">
-                                <span className="text-red-500 font-anton text-3xl">🗙</span>
-                                <div>
-                                    <h4 className="text-white font-anton uppercase text-lg mb-2">Traditional Apps</h4>
-                                    <p className="text-zinc-500 font-light">Require high executive function to setup and remember. Often become another source of overwhelm.</p>
-                                </div>
-                            </div>
-                            <div className="flex items-start gap-8 p-8 stealth-card border-sor7ed-yellow/20 bg-sor7ed-yellow/5">
-                                <span className="text-sor7ed-yellow font-anton text-3xl">✔</span>
-                                <div>
-                                    <h4 className="text-sor7ed-yellow font-anton uppercase text-lg mb-2">The SOR7ED System</h4>
-                                    <p className="text-zinc-400 font-light">Zero-friction deployment. Tools find YOU. No cognitive load wasted on "using the tool" itself.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* 7 Vectors (Branches) */}
+                {/* 7 Vectors (Branches) - Combined with Why Different */}
                 <section id="vectors" className="h-screen min-h-screen flex flex-col justify-center items-center snap-start py-24">
                     <div className="container mx-auto px-4 md:px-6 max-w-7xl">
-                        <div className="text-center mb-16 max-w-2xl mx-auto">
+                        <div className="text-center mb-16 max-w-3xl mx-auto">
                             <span className="text-[10px] font-mono-headline text-zinc-500 uppercase tracking-[0.4em] block mb-4 animate-in slide-in-from-bottom-20">// THE_ARCHITECTURE</span>
                             <h2 className="text-6xl md:text-8xl font-anton font-normal uppercase tracking-tighter mb-8 leading-none">
                                 THE <span className="text-sor7ed-yellow">ARCHITECTURE.</span>
@@ -118,7 +91,8 @@ export default function Home({ onOpenAuth }: HomeProps) {
                                 We build a behavioural scaffold. Each vector addresses a core friction point in the neurodivergent experience.
                             </p>
                         </div>
-                        <div className="grid grid-cols-1 md:grid-cols-6 gap-6">
+
+                        <div className="grid grid-cols-1 md:grid-cols-6 gap-6 mb-16">
                             {[
                                 ...branches.filter(b => b.id !== 'connection' && b.id !== 'impression'),
                                 ...branches.filter(b => b.id === 'connection' || b.id === 'impression')
@@ -130,6 +104,26 @@ export default function Home({ onOpenAuth }: HomeProps) {
                                     </div>
                                 )
                             })}
+                        </div>
+
+                        {/* Integrated Integration Comparison */}
+                        <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-white/5 pt-16">
+                            <div className="space-y-4">
+                                <h4 className="text-zinc-500 font-anton uppercase text-xs tracking-widest flex items-center gap-2">
+                                    <span className="text-red-500/50">🗙</span> Traditional Apps
+                                </h4>
+                                <p className="text-zinc-600 text-[11px] font-light leading-relaxed">
+                                    Setup required. Daily manual entry. High friction. Often forgotten in 48 hours.
+                                </p>
+                            </div>
+                            <div className="space-y-4">
+                                <h4 className="text-sor7ed-yellow font-anton uppercase text-xs tracking-widest flex items-center gap-2">
+                                    <span className="text-sor7ed-yellow">✔</span> The SOR7ED System
+                                </h4>
+                                <p className="text-zinc-400 text-[11px] font-light leading-relaxed">
+                                    Zero-friction. Responds directly to you via WhatsApp. Tools find you exactly when needed.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </section>
