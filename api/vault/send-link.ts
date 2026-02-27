@@ -1,10 +1,10 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 import * as crypto from 'crypto'
 
-const NOTION_API_KEY = process.env.NOTION_API_KEY!
-const CRM_DB_ID = process.env.NOTION_CRM_DB_ID!
-const TWILIO_ACCOUNT_SID = process.env.TWILIO_ACCOUNT_SID!
-const TWILIO_AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN!
+const NOTION_API_KEY = process.env.NOTION_API_KEY
+const CRM_DB_ID = process.env.NOTION_CRM_DB_ID || process.env.CRM_DATABASE_ID
+const TWILIO_ACCOUNT_SID = process.env.TWILIO_ACCOUNT_SID
+const TWILIO_AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN
 const TWILIO_WHATSAPP_NUMBER = process.env.TWILIO_WHATSAPP_NUMBER || '+447360277713'
 const AUTH_SECRET = process.env.NOTION_API_KEY || 'sor7ed-default-secret'
 

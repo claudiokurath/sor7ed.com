@@ -1,11 +1,11 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 import { Client } from '@notionhq/client'
 
-const NOTION_API_KEY = process.env.NOTION_API_KEY!
-const CRM_DB_ID = process.env.NOTION_CRM_DB_ID!
+const NOTION_API_KEY = process.env.NOTION_API_KEY
+const CRM_DB_ID = process.env.NOTION_CRM_DB_ID || process.env.CRM_DATABASE_ID
 const notion = new Client({ auth: NOTION_API_KEY })
-const TWILIO_ACCOUNT_SID = process.env.TWILIO_ACCOUNT_SID!
-const TWILIO_AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN!
+const TWILIO_ACCOUNT_SID = process.env.TWILIO_ACCOUNT_SID
+const TWILIO_AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN
 const TWILIO_WHATSAPP_NUMBER = process.env.TWILIO_WHATSAPP_NUMBER || '+447360277713'
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {

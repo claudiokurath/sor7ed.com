@@ -1,10 +1,10 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 import * as crypto from 'crypto'
 
-const NOTION_API_KEY = process.env.NOTION_API_KEY!
-const CRM_DB_ID = process.env.NOTION_CRM_DB_ID!
-const BLOG_DB_ID = process.env.NOTION_BLOG_DB_ID!
-const TOOLS_DB_ID = process.env.NOTION_TOOLS_DB_ID!
+const NOTION_API_KEY = process.env.NOTION_API_KEY
+const CRM_DB_ID = process.env.NOTION_CRM_DB_ID || process.env.CRM_DATABASE_ID
+const BLOG_DB_ID = process.env.NOTION_BLOG_DB_ID
+const TOOLS_DB_ID = process.env.NOTION_TOOLS_DB_ID
 const AUTH_SECRET = process.env.NOTION_API_KEY || 'sor7ed-default-secret'
 
 async function notionFetch(endpoint: string, method: string, body?: any) {
