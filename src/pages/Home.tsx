@@ -34,13 +34,13 @@ export default function Home() {
             </div>
 
             {/* Hero Section */}
-            <section id="hero" className="relative h-screen flex flex-col justify-center items-center z-20 px-6 text-center">
+            <section id="hero" className="relative h-screen flex flex-col justify-center items-center z-20 px-4 md:px-6 text-center">
                 <div className="animate-in fade-in zoom-in duration-1000 mb-12">
                     <img src="/logo.png" alt="SOR7ED" className="w-64 md:w-96 h-auto object-contain drop-shadow-[0_0_40px_rgba(255,255,255,0.05)] opacity-95" />
                 </div>
 
                 <div className="max-w-4xl mx-auto space-y-8 animate-in slide-in-from-bottom-20 duration-1000 delay-300 fill-mode-both">
-                    <h1 className="text-5xl md:text-8xl font-antarctican font-normal uppercase tracking-tighter leading-none text-white">
+                    <h1 className="text-5xl md:text-8xl font-anton font-normal uppercase tracking-tighter leading-none text-white">
                         ADHD-FRIENDLY TOOLS — <br />
                         <span className="text-sor7ed-yellow">DELIVERED TO YOUR PHONE.</span>
                     </h1>
@@ -53,7 +53,7 @@ export default function Home() {
                     <div className="pt-8">
                         <button
                             onClick={() => document.getElementById('auth')?.scrollIntoView({ behavior: 'smooth' })}
-                            className="bg-sor7ed-yellow text-black font-antarctican font-normal uppercase tracking-[0.3em] text-xs py-6 px-16 rounded-full hover:bg-yellow-400 hover:scale-110 transition-all duration-500 shadow-[0_0_40px_rgba(245,198,20,0.2)]"
+                            className="bg-sor7ed-yellow text-black font-anton font-normal uppercase tracking-[0.3em] text-xs py-6 px-16 rounded-full hover:bg-yellow-400 hover:scale-110 transition-all duration-500 shadow-[0_0_40px_rgba(245,198,20,0.2)]"
                         >
                             Start Operating
                         </button>
@@ -68,26 +68,26 @@ export default function Home() {
             <main className="relative z-10">
                 {/* How It Works */}
                 <section id="how-it-works" className="py-32 border-b border-white/5">
-                    <div className="container mx-auto px-6 max-w-7xl">
+                    <div className="container mx-auto px-4 md:px-6 max-w-7xl">
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-                            <div className="stealth-card p-10 space-y-4">
-                                <div className="text-sor7ed-yellow text-xs font-mono-headline uppercase tracking-widest">// STEP_01</div>
-                                <h3 className="text-2xl font-antarctican uppercase text-white">Daily Micro-Tools</h3>
-                                <p className="text-zinc-500 font-light leading-relaxed">
+                            <div className="stealth-card p-6 md:p-10 space-y-4">
+                                <div className="text-sor7ed-yellow text-[10px] md:text-xs font-mono-headline uppercase tracking-widest">// STEP_01</div>
+                                <h3 className="text-xl md:text-2xl font-anton uppercase text-white">Daily Micro-Tools</h3>
+                                <p className="text-zinc-500 text-sm md:text-base font-light leading-relaxed">
                                     Functional support for executive function, time blindness, and emotional regulation.
                                 </p>
                             </div>
-                            <div className="stealth-card p-10 space-y-4">
-                                <div className="text-sor7ed-yellow text-xs font-mono-headline uppercase tracking-widest">// STEP_02</div>
-                                <h3 className="text-2xl font-antarctican uppercase text-white">No Apps. Just WhatsApp.</h3>
-                                <p className="text-zinc-500 font-light leading-relaxed">
+                            <div className="stealth-card p-6 md:p-10 space-y-4">
+                                <div className="text-sor7ed-yellow text-[10px] md:text-xs font-mono-headline uppercase tracking-widest">// STEP_02</div>
+                                <h3 className="text-xl md:text-2xl font-anton uppercase text-white">No Apps. Just WhatsApp.</h3>
+                                <p className="text-zinc-500 text-sm md:text-base font-light leading-relaxed">
                                     No complex dashboards or accounts to manage. Reply directly to helpful prompts.
                                 </p>
                             </div>
-                            <div className="stealth-card p-10 space-y-4">
-                                <div className="text-sor7ed-yellow text-xs font-mono-headline uppercase tracking-widest">// STEP_03</div>
-                                <h3 className="text-2xl font-antarctican uppercase text-white">Neural Scaffolding</h3>
-                                <p className="text-zinc-500 font-light leading-relaxed">
+                            <div className="stealth-card p-6 md:p-10 space-y-4">
+                                <div className="text-sor7ed-yellow text-[10px] md:text-xs font-mono-headline uppercase tracking-widest">// STEP_03</div>
+                                <h3 className="text-xl md:text-2xl font-anton uppercase text-white">Neural Scaffolding</h3>
+                                <p className="text-zinc-500 text-sm md:text-base font-light leading-relaxed">
                                     3 fresh updates weekly designed to bypass friction and keep you operating at peak capacity.
                                 </p>
                             </div>
@@ -95,14 +95,17 @@ export default function Home() {
                     </div>
                 </section>
 
-                <AuthSection />
+                {/* AuthSection */}
+                <div className="px-4 md:px-0">
+                    <AuthSection />
+                </div>
 
                 {/* 7 Vectors (Branches) */}
                 <section id="vectors" className="py-24 flex flex-col items-center">
-                    <div className="container mx-auto px-6 max-w-7xl">
+                    <div className="container mx-auto px-4 md:px-6 max-w-7xl">
                         <div className="text-center mb-16 max-w-2xl mx-auto">
                             <span className="text-[10px] font-mono-headline text-zinc-500 uppercase tracking-[0.4em] block mb-4 uppercase tracking-[0.4em] block mb-4 animate-in slide-in-from-bottom-20">// THE_ARCHITECTURE</span>
-                            <h2 className="text-6xl md:text-8xl font-antarctican font-normal uppercase tracking-tighter mb-8 leading-none">
+                            <h2 className="text-6xl md:text-8xl font-anton font-normal uppercase tracking-tighter mb-8 leading-none">
                                 THE <span className="text-sor7ed-yellow">ARCHITECTURE.</span>
                             </h2>
                             <p className="text-zinc-500 font-light leading-relaxed">
@@ -133,7 +136,7 @@ export default function Home() {
 
                 {/* Labs (Tools) */}
                 <section id="lab" className="py-40 bg-white/[0.02] border-y border-white/5">
-                    <div className="container mx-auto px-6 max-w-7xl">
+                    <div className="container mx-auto px-4 md:px-6 max-w-7xl">
                         <div className="text-center mb-20">
                             <h2 className="section-title justify-center gap-4 flex mb-6">
                                 <span className="title-white">THE</span> <span className="title-yellow">LAB.</span>
@@ -162,16 +165,16 @@ export default function Home() {
                         </div>
                         <div className="space-y-6">
                             <div className="flex items-start gap-8 p-8 stealth-card">
-                                <span className="text-sor7ed-yellow font-antarctican text-3xl">🗙</span>
+                                <span className="text-sor7ed-yellow font-anton text-3xl">🗙</span>
                                 <div>
-                                    <h4 className="text-white font-antarctican uppercase text-lg mb-2">Traditional Apps</h4>
+                                    <h4 className="text-white font-anton uppercase text-lg mb-2">Traditional Apps</h4>
                                     <p className="text-zinc-500 font-light">Require high executive function to setup, remember, and navigate. Often become another source of overwhelm.</p>
                                 </div>
                             </div>
                             <div className="flex items-start gap-8 p-8 stealth-card border-sor7ed-yellow/20">
-                                <span className="text-sor7ed-yellow font-antarctican text-3xl">✔</span>
+                                <span className="text-sor7ed-yellow font-anton text-3xl">✔</span>
                                 <div>
-                                    <h4 className="text-sor7ed-yellow font-antarctican uppercase text-lg mb-2">The SOR7ED System</h4>
+                                    <h4 className="text-sor7ed-yellow font-anton uppercase text-lg mb-2">The SOR7ED System</h4>
                                     <p className="text-zinc-400 font-light">Zero-friction deployment. Tools find YOU. No cognitive load wasted on "using the tool" itself.</p>
                                 </div>
                             </div>
@@ -181,7 +184,7 @@ export default function Home() {
 
                 {/* Insights (Articles) */}
                 <section id="blog" className="py-40">
-                    <div className="container mx-auto px-6 max-w-7xl">
+                    <div className="container mx-auto px-4 md:px-6 max-w-7xl">
                         <h2 className="section-title text-center mb-24">
                             <span className="title-white">THE</span> <span className="title-yellow">INSIGHTS.</span>
                         </h2>
@@ -228,14 +231,14 @@ export default function Home() {
                 {/* Footer CTA */}
                 <section className="py-60 border-t border-sor7ed-yellow/10 text-center">
                     <div className="container mx-auto px-6">
-                        <h2 className="text-6xl md:text-8xl lg:text-9xl font-antarctican font-normal uppercase tracking-tighter mb-16 leading-none">
+                        <h2 className="text-6xl md:text-8xl lg:text-9xl font-anton font-normal uppercase tracking-tighter mb-16 leading-none">
                             STOP STRUGGLING. <br /><span className="text-sor7ed-yellow">START OPERATING.</span>
                         </h2>
                         <a
                             href="https://wa.me/447360277713?text=Hi"
                             target="_blank"
                             rel="noreferrer"
-                            className="inline-block bg-sor7ed-yellow text-black font-antarctican font-normal uppercase tracking-[0.3em] text-xs py-6 px-12 rounded-full hover:scale-110 transition-transform duration-500 shadow-[0_0_40px_rgba(245,198,20,0.1)]"
+                            className="inline-block bg-sor7ed-yellow text-black font-anton font-normal uppercase tracking-[0.3em] text-xs py-6 px-12 rounded-full hover:scale-110 transition-transform duration-500 shadow-[0_0_40px_rgba(245,198,20,0.1)]"
                         >
                             Initialize Connection
                         </a>

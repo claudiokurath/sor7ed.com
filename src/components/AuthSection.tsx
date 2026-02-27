@@ -68,36 +68,36 @@ const AuthSection = () => {
     if (isLoggedIn) return null
 
     return (
-        <section id="auth" className="py-40 bg-white/[0.01] border-y border-white/5 relative overflow-hidden">
-            <div className="container mx-auto px-6 max-w-4xl relative z-10">
-                <div className="flex flex-col items-center mb-16">
-                    <div className="flex bg-zinc-900/50 p-1 rounded-full border border-white/10 mb-12">
+        <section id="auth" className="py-24 md:py-40 bg-white/[0.01] border-y border-white/5 relative overflow-hidden">
+            <div className="container mx-auto px-4 md:px-6 max-w-4xl relative z-10">
+                <div className="flex flex-col items-center mb-10 md:mb-16">
+                    <div className="flex bg-zinc-900/50 p-1 rounded-full border border-white/10 mb-8 md:mb-12">
                         <button
                             onClick={() => { setMode('signup'); setMessage(null); }}
-                            className={`px-8 py-3 rounded-full text-[10px] font-mono-headline uppercase tracking-widest transition-all ${mode === 'signup' ? 'bg-sor7ed-yellow text-black' : 'text-zinc-500 hover:text-white'}`}
+                            className={`px-6 md:px-8 py-2 md:py-3 rounded-full text-[9px] md:text-[10px] font-mono-headline uppercase tracking-widest transition-all ${mode === 'signup' ? 'bg-sor7ed-yellow text-black' : 'text-zinc-500 hover:text-white'}`}
                         >
                             Join Registry
                         </button>
                         <button
                             onClick={() => { setMode('signin'); setMessage(null); }}
-                            className={`px-8 py-3 rounded-full text-[10px] font-mono-headline uppercase tracking-widest transition-all ${mode === 'signin' ? 'bg-sor7ed-yellow text-black' : 'text-zinc-500 hover:text-white'}`}
+                            className={`px-6 md:px-8 py-2 md:py-3 rounded-full text-[9px] md:text-[10px] font-mono-headline uppercase tracking-widest transition-all ${mode === 'signin' ? 'bg-sor7ed-yellow text-black' : 'text-zinc-500 hover:text-white'}`}
                         >
                             Access Vault
                         </button>
                     </div>
 
-                    <h2 className="text-4xl md:text-6xl font-antarctican text-white uppercase text-center tracking-tighter mb-4 leading-none">
+                    <h2 className="text-3xl md:text-6xl font-anton text-white uppercase text-center tracking-tighter mb-4 leading-none">
                         {mode === 'signup' ? 'ESTABLISH YOUR' : 'RETRIEVE YOUR'} <br />
                         <span className="text-sor7ed-yellow">{mode === 'signup' ? 'CONNECTION.' : 'PROTOCOL.'}</span>
                     </h2>
-                    <p className="text-zinc-500 font-light text-center max-w-md mx-auto">
+                    <p className="text-zinc-500 font-light text-center text-sm md:text-base max-w-md mx-auto px-4">
                         {mode === 'signup'
                             ? "Start your free trial today. Get 2 interactive tool requests delivered to your phone immediately."
                             : "Already in the system? Enter your registered email to receive a secure login link via WhatsApp."}
                     </p>
                 </div>
 
-                <div className="stealth-card p-10 md:p-16 max-w-lg mx-auto border-sor7ed-yellow/10">
+                <div className="stealth-card p-8 md:p-16 max-w-lg mx-auto border-sor7ed-yellow/10">
                     <form onSubmit={mode === 'signup' ? handleSignup : handleSignin} className="space-y-8">
                         {mode === 'signup' && (
                             <>

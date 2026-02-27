@@ -46,7 +46,7 @@ const ToolDetail = () => {
     if (!tool) {
         return (
             <div className="bg-[#050505] min-h-screen flex flex-col items-center justify-center px-6">
-                <h1 className="text-4xl font-antarctican text-white uppercase mb-4">Tool Not Found</h1>
+                <h1 className="text-4xl font-anton text-white uppercase mb-4">Tool Not Found</h1>
                 <button onClick={() => navigate('/tools')} className="text-sor7ed-yellow uppercase tracking-widest text-xs">Return to Lab</button>
             </div>
         )
@@ -83,7 +83,7 @@ const ToolDetail = () => {
                 return (
                     <div className="stealth-card p-12 text-center max-w-2xl mx-auto border-dashed border-white/10 opacity-80">
                         <div className="text-5xl mb-8 grayscale opacity-50">{tool.emoji || '⚙️'}</div>
-                        <h2 className="text-4xl font-antarctican text-white uppercase mb-4">{tool.name}</h2>
+                        <h2 className="text-4xl font-anton text-white uppercase mb-4">{tool.name}</h2>
                         <p className="text-zinc-500 font-light leading-relaxed mb-12">{tool.description}</p>
                         <button onClick={handleDeploy} className="btn-primary">
                             Deploy to WhatsApp

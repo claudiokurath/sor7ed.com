@@ -31,9 +31,10 @@ const ToolCard = ({ tool }: ToolCardProps) => {
     return (
         <div
             onClick={handleClick}
-            className="stealth-card group hover:border-sor7ed-yellow/30 transition-all duration-500 cursor-pointer overflow-hidden p-0 h-full flex flex-col"
+            className="stealth-card group hover:border-sor7ed-yellow/40 transition-all duration-700 cursor-pointer overflow-hidden p-0 aspect-[4/5] relative"
         >
-            <div className="relative aspect-video w-full bg-zinc-900 flex items-center justify-center overflow-hidden">
+            {/* Background Image / Emoji */}
+            <div className="absolute inset-0 w-full h-full bg-zinc-900 flex items-center justify-center overflow-hidden">
                 {tool.coverImage ? (
                     <img
                         src={tool.coverImage}
@@ -41,19 +42,26 @@ const ToolCard = ({ tool }: ToolCardProps) => {
                         className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-all duration-1000"
                     />
                 ) : (
-                    <div className="text-4xl grayscale group-hover:grayscale-0 transition-all duration-500 opacity-50 group-hover:opacity-100">
+                    <div className="text-6xl grayscale group-hover:grayscale-0 transition-all duration-500 opacity-20 group-hover:opacity-40">
                         {tool.emoji || '🛠️'}
                     </div>
                 )}
-                <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent opacity-80" />
             </div>
 
-            <div className="p-10 flex-grow flex flex-col">
-                <h3 className="text-3xl font-antarctican font-normal mb-4 text-white uppercase tracking-tight leading-none group-hover:text-sor7ed-yellow transition-colors">{tool.name}</h3>
-                <p className="text-zinc-400 text-sm mb-8 font-light leading-relaxed flex-grow">{tool.description}</p>
-                <div className="flex justify-end pt-6 border-t border-white/5">
-                    <span className="text-[10px] font-mono-headline text-zinc-500 group-hover:text-sor7ed-yellow uppercase tracking-[0.2em] transition-colors">
-                        {isLoggedIn ? 'Initialize Protocol →' : 'Members Only →'}
+            {/* Dark Overlay for Text Visibility */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
+
+            {/* Title Overlay */}
+            <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end">
+                <span className="text-[9px] font-mono-headline text-sor7ed-yellow uppercase tracking-[0.3em] mb-2 opacity-60 group-hover:opacity-100 transition-opacity">
+                    // {tool.category || 'LAB_PROTOCOL'}
+                </span>
+                <h3 className="text-3xl md:text-4xl font-anton font-normal text-white uppercase tracking-tighter leading-[0.9] group-hover:text-sor7ed-yellow transition-colors break-words">
+                    {tool.name}
+                </h3>
+                <div className="h-0 group-hover:h-8 overflow-hidden transition-all duration-500 opacity-0 group-hover:opacity-100 mt-2">
+                    <span className="text-[10px] font-mono-headline text-zinc-400 uppercase tracking-widest">
+                        Initialize Connection →
                     </span>
                 </div>
             </div>

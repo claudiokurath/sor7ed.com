@@ -100,7 +100,7 @@ const Vault = () => {
           <header className="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-8 animate-in fade-in">
             <div>
               <span className="text-[10px] font-mono-headline text-sor7ed-yellow uppercase tracking-[0.4em] block mb-4">// VAULT_ACCESS_GRANTED</span>
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-antarctican font-normal text-white uppercase tracking-tighter">Welcome, <span className="text-sor7ed-yellow">{user.name}</span></h1>
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-anton font-normal text-white uppercase tracking-tighter">Welcome, <span className="text-sor7ed-yellow">{user.name}</span></h1>
               <p className="text-zinc-500 mt-4 font-light tracking-wide max-w-xl">Your secure repository of neural protocols and architectural frameworks.</p>
             </div>
             <button
@@ -125,7 +125,7 @@ const Vault = () => {
                     <span className="text-[9px] font-mono-headline text-zinc-600 uppercase tracking-[0.3em]">// {protocol.branch}</span>
                     <div className="w-10 h-1 bg-sor7ed-yellow/20 rounded-full group-hover:bg-sor7ed-yellow/40 transition-colors"></div>
                   </div>
-                  <h3 className="text-4xl font-antarctican font-normal text-white mb-8 group-hover:text-sor7ed-yellow transition-colors uppercase tracking-tight leading-none">
+                  <h3 className="text-4xl font-anton font-normal text-white mb-8 group-hover:text-sor7ed-yellow transition-colors uppercase tracking-tight leading-none">
                     {protocol.title}
                   </h3>
                   <div className="space-y-4">
