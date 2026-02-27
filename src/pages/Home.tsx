@@ -8,18 +8,9 @@ import BlogCard from '../components/BlogCard'
 
 export default function Home() {
     const [activeFaq, setActiveFaq] = useState<number | null>(null)
-    const [showContent, setShowContent] = useState(false)
-
     // Fetch tools and articles from API routes
     const { data: dynamicTools, loading: toolsLoading } = useNotionData<any>('/api/tools')
     const { data: dynamicArticles, loading: articlesLoading } = useNotionData<any>('/api/articles')
-
-    const enterAsGuest = () => {
-        setShowContent(true)
-        setTimeout(() => {
-            document.getElementById('vectors')?.scrollIntoView({ behavior: 'smooth' })
-        }, 100)
-    }
 
     const faqs = [
         { q: "Is this an app?", a: "No. SOR7ED is a web-based system that connects directly to WhatsApp. No downloads, no updates, no friction." },
@@ -42,138 +33,212 @@ export default function Home() {
                 <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-white/5 blur-[120px] rounded-full" />
             </div>
 
-            {/* Hero Section - Gated Logo & Entry */}
-            <section id="hero" className={`relative h-screen flex flex-col justify-center items-center z-20 transition-all duration-1000 ${showContent ? 'h-[40vh] opacity-30 pointer-events-none' : ''}`}>
+            {/* Hero Section */}
+            <section id="hero" className="relative h-screen flex flex-col justify-center items-center z-20 px-6 text-center">
                 <div className="animate-in fade-in zoom-in duration-1000 mb-12">
-                    <img src="/logo.png" alt="SOR7ED" className="w-96 md:w-[700px] h-auto object-contain drop-shadow-[0_0_80px_rgba(255,255,255,0.08)] opacity-95" />
+                    <img src="/logo.png" alt="SOR7ED" className="w-64 md:w-96 h-auto object-contain drop-shadow-[0_0_40px_rgba(255,255,255,0.05)] opacity-95" />
                 </div>
 
-                {!showContent ? (
-                    <div className="mt-12 flex flex-col items-center">
+                <div className="max-w-4xl mx-auto space-y-8 animate-in slide-in-from-bottom-20 duration-1000 delay-300 fill-mode-both">
+                    <h1 className="text-5xl md:text-8xl font-antarctican font-normal uppercase tracking-tighter leading-none text-white">
+                        ADHD-FRIENDLY TOOLS — <br />
+                        <span className="text-sor7ed-yellow">DELIVERED TO YOUR PHONE.</span>
+                    </h1>
+
+                    <p className="text-zinc-400 text-lg md:text-2xl font-light leading-relaxed max-w-2xl mx-auto">
+                        Quick interactive tools for executive function, time blindness, and sensory overwhelm.
+                        No complex apps to open. Just the support you need, exactly when you need it.
+                    </p>
+
+                    <div className="pt-8">
                         <button
-                            onClick={enterAsGuest}
-                            className="bg-sor7ed-yellow text-black font-black uppercase tracking-[0.3em] text-[11px] py-5 px-16 rounded-full hover:bg-yellow-400 hover:scale-105 transition-all duration-500 animate-in fade-in duration-1000 delay-500 fill-mode-both shadow-[0_0_40px_rgba(245,198,20,0.2)]"
+                            onClick={() => document.getElementById('vectors')?.scrollIntoView({ behavior: 'smooth' })}
+                            className="bg-sor7ed-yellow text-black font-antarctican font-normal uppercase tracking-[0.3em] text-xs py-6 px-16 rounded-full hover:bg-yellow-400 hover:scale-110 transition-all duration-500 shadow-[0_0_40px_rgba(245,198,20,0.2)]"
                         >
-                            Come In
+                            Start Operating
                         </button>
                     </div>
-                ) : (
-                    <div className="absolute bottom-12 animate-bounce opacity-40">
-                        <span className="text-white text-2xl">↓</span>
-                    </div>
-                )}
+                </div>
+
+                <div className="absolute bottom-12 animate-bounce opacity-40">
+                    <span className="text-white text-2xl">↓</span>
+                </div>
             </section>
 
-            {showContent && (
-                <main className="relative z-10 animate-in fade-in slide-in-from-bottom-20 duration-1000 fill-mode-both">
-
-                    {/* 7 Vectors (Branches) — first thing after hero */}
-                    <section id="vectors" className="py-24 flex flex-col items-center">
-                        <div className="container mx-auto px-6 max-w-7xl">
-                            <div className="text-center mb-16 max-w-2xl mx-auto">
-                                <span className="text-[10px] font-mono-headline text-zinc-500 uppercase tracking-[0.4em] block mb-4 uppercase tracking-[0.4em] block mb-4 animate-in slide-in-from-bottom-20">// THE_ARCHITECTURE</span>
-                                <h2 className="text-6xl md:text-8xl font-antarctican font-normal uppercase tracking-tighter mb-8 leading-none">
-                                    THE <span className="text-sor7ed-yellow">ARCHITECTURE.</span>
-                                </h2>
+            <main className="relative z-10">
+                {/* How It Works */}
+                <section id="how-it-works" className="py-32 border-b border-white/5">
+                    <div className="container mx-auto px-6 max-w-7xl">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+                            <div className="stealth-card p-10 space-y-4">
+                                <div className="text-sor7ed-yellow text-xs font-mono-headline uppercase tracking-widest">// STEP_01</div>
+                                <h3 className="text-2xl font-antarctican uppercase text-white">Daily Micro-Tools</h3>
                                 <p className="text-zinc-500 font-light leading-relaxed">
-                                    We don't just "fix" ADHD. We build a scaffolding around it. Each vector addresses a core friction point in the neurodivergent experience.
+                                    Functional support for executive function, time blindness, and emotional regulation.
                                 </p>
                             </div>
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                {branches.map(branch => (
-                                    <BranchCard key={branch.name} branch={branch} />
-                                ))}
-                            </div>
-                        </div>
-                    </section>
-
-
-                    {/* Labs (Tools) */}
-                    <section id="lab" className="py-40 bg-white/[0.02] border-y border-white/5">
-                        <div className="container mx-auto px-6 max-w-7xl">
-                            <div className="text-center mb-20">
-                                <h2 className="section-title justify-center gap-4 flex mb-6">
-                                    <span className="title-white">THE</span> <span className="title-yellow">LAB.</span>
-                                </h2>
-                                <p className="text-zinc-500 font-light leading-relaxed max-w-xl mx-auto">
-                                    Functional micro-tools designed for immediate relief. From dopamine regulation to impulse filtering.
+                            <div className="stealth-card p-10 space-y-4">
+                                <div className="text-sor7ed-yellow text-xs font-mono-headline uppercase tracking-widest">// STEP_02</div>
+                                <h3 className="text-2xl font-antarctican uppercase text-white">No Apps. Just WhatsApp.</h3>
+                                <p className="text-zinc-500 font-light leading-relaxed">
+                                    No complex dashboards or accounts to manage. Reply directly to helpful prompts.
                                 </p>
                             </div>
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                                {toolsLoading ? (
-                                    <p className="col-span-full text-center text-zinc-500 animate-pulse uppercase tracking-[0.5em] text-xs">Accessing Toolkits...</p>
-                                ) : dynamicTools.map((tool: any) => (
-                                    <ToolCard key={tool.id} tool={tool} />
-                                ))}
+                            <div className="stealth-card p-10 space-y-4">
+                                <div className="text-sor7ed-yellow text-xs font-mono-headline uppercase tracking-widest">// STEP_03</div>
+                                <h3 className="text-2xl font-antarctican uppercase text-white">Neural Scaffolding</h3>
+                                <p className="text-zinc-500 font-light leading-relaxed">
+                                    3 fresh updates weekly designed to bypass friction and keep you operating at peak capacity.
+                                </p>
                             </div>
                         </div>
-                    </section>
+                    </div>
+                </section>
 
-                    {/* Insights (Articles) */}
-                    <section id="blog" className="py-40">
-                        <div className="container mx-auto px-6 max-w-7xl">
-                            <h2 className="section-title text-center mb-24">
-                                <span className="title-white">THE</span> <span className="title-yellow">INSIGHTS.</span>
+                {/* 7 Vectors (Branches) */}
+                <section id="vectors" className="py-24 flex flex-col items-center">
+                    <div className="container mx-auto px-6 max-w-7xl">
+                        <div className="text-center mb-16 max-w-2xl mx-auto">
+                            <span className="text-[10px] font-mono-headline text-zinc-500 uppercase tracking-[0.4em] block mb-4 uppercase tracking-[0.4em] block mb-4 animate-in slide-in-from-bottom-20">// THE_ARCHITECTURE</span>
+                            <h2 className="text-6xl md:text-8xl font-antarctican font-normal uppercase tracking-tighter mb-8 leading-none">
+                                THE <span className="text-sor7ed-yellow">ARCHITECTURE.</span>
                             </h2>
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                                {articlesLoading ? (
-                                    <p className="col-span-full text-center text-zinc-500 animate-pulse uppercase tracking-[0.5em] text-xs">Syncing Knowledge Base...</p>
-                                ) : dynamicArticles.slice(0, 6).map((post: any) => (
-                                    <BlogCard key={post.id} article={post} />
-                                ))}
+                            <p className="text-zinc-500 font-light leading-relaxed">
+                                We don't just "fix" ADHD. We build a scaffolding around it. Each vector addresses a core friction point in the neurodivergent experience.
+                            </p>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {branches.map(branch => (
+                                <BranchCard key={branch.name} branch={branch} />
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+
+                {/* Labs (Tools) */}
+                <section id="lab" className="py-40 bg-white/[0.02] border-y border-white/5">
+                    <div className="container mx-auto px-6 max-w-7xl">
+                        <div className="text-center mb-20">
+                            <h2 className="section-title justify-center gap-4 flex mb-6">
+                                <span className="title-white">THE</span> <span className="title-yellow">LAB.</span>
+                            </h2>
+                            <p className="text-zinc-500 font-light leading-relaxed max-w-xl mx-auto">
+                                Functional micro-tools designed for immediate relief. From dopamine regulation to impulse filtering.
+                            </p>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {toolsLoading ? (
+                                <p className="col-span-full text-center text-zinc-500 animate-pulse uppercase tracking-[0.5em] text-xs">Accessing Toolkits...</p>
+                            ) : dynamicTools.map((tool: any) => (
+                                <ToolCard key={tool.id} tool={tool} />
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                {/* Why Different */}
+                <section id="why-different" className="py-40 border-y border-white/5 bg-sor7ed-yellow/[0.01]">
+                    <div className="container mx-auto px-6 max-w-5xl">
+                        <div className="text-center mb-16">
+                            <h2 className="section-title">
+                                <span className="title-white">WHY IT'S</span> <span className="title-yellow">DIFFERENT.</span>
+                            </h2>
+                        </div>
+                        <div className="space-y-6">
+                            <div className="flex items-start gap-8 p-8 stealth-card">
+                                <span className="text-sor7ed-yellow font-antarctican text-3xl">🗙</span>
+                                <div>
+                                    <h4 className="text-white font-antarctican uppercase text-lg mb-2">Traditional Apps</h4>
+                                    <p className="text-zinc-500 font-light">Require high executive function to setup, remember, and navigate. Often become another source of overwhelm.</p>
+                                </div>
+                            </div>
+                            <div className="flex items-start gap-8 p-8 stealth-card border-sor7ed-yellow/20">
+                                <span className="text-sor7ed-yellow font-antarctican text-3xl">✔</span>
+                                <div>
+                                    <h4 className="text-sor7ed-yellow font-antarctican uppercase text-lg mb-2">The SOR7ED System</h4>
+                                    <p className="text-zinc-400 font-light">Zero-friction deployment. Tools find YOU. No cognitive load wasted on "using the tool" itself.</p>
+                                </div>
                             </div>
                         </div>
-                    </section>
+                    </div>
+                </section>
 
-                    <EmailCapture />
+                {/* Insights (Articles) */}
+                <section id="blog" className="py-40">
+                    <div className="container mx-auto px-6 max-w-7xl">
+                        <h2 className="section-title text-center mb-24">
+                            <span className="title-white">THE</span> <span className="title-yellow">INSIGHTS.</span>
+                        </h2>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {articlesLoading ? (
+                                <p className="col-span-full text-center text-zinc-500 animate-pulse uppercase tracking-[0.5em] text-xs">Syncing Knowledge Base...</p>
+                            ) : dynamicArticles.slice(0, 6).map((post: any) => (
+                                <BlogCard key={post.id} article={post} />
+                            ))}
+                        </div>
+                    </div>
+                </section>
 
-                    {/* FAQ */}
-                    <section id="faq" className="py-40 border-t border-white/5">
-                        <div className="container mx-auto max-w-4xl px-6">
-                            <h2 className="section-title text-center mb-24">
-                                <span className="title-white">SYSTEM</span> <span className="title-yellow">FAQ.</span>
-                            </h2>
+                <EmailCapture />
+
+                {/* FAQ */}
+                <section id="faq" className="py-40 border-t border-white/5">
+                    <div className="container mx-auto max-w-4xl px-6">
+                        <h2 className="section-title text-center mb-24">
+                            <span className="title-white">SYSTEM</span> <span className="title-yellow">FAQ.</span>
+                        </h2>
+                        <div className="space-y-4">
+                            {faqs.map((faq, i) => (
+                                <div key={i} className="stealth-card overflow-hidden">
+                                    <button
+                                        onClick={() => setActiveFaq(activeFaq === i ? null : i)}
+                                        className="w-full text-left p-8 flex justify-between items-center group"
+                                    >
+                                        <span className={`text-[12px] font-black uppercase tracking-[0.2em] transition-colors ${activeFaq === i ? 'text-sor7ed-yellow' : 'text-zinc-500 group-hover:text-white'}`}>
+                                            {faq.q}
+                                        </span>
+                                        <span className="text-xl">{activeFaq === i ? '−' : '+'}</span>
+                                    </button>
+                                    {activeFaq === i && (
+                                        <div className="px-8 pb-8 text-zinc-400 text-sm leading-relaxed font-light border-t border-white/5 pt-6 animate-in fade-in duration-500">
+                                            {faq.a}
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                {/* Footer CTA */}
+                <section className="py-60 border-t border-sor7ed-yellow/10 text-center">
+                    <div className="container mx-auto px-6">
+                        <h2 className="text-6xl md:text-8xl lg:text-9xl font-antarctican font-normal uppercase tracking-tighter mb-16 leading-none">
+                            STOP STRUGGLING. <br /><span className="text-sor7ed-yellow">START OPERATING.</span>
+                        </h2>
+                        <a
+                            href="https://wa.me/447360277713?text=Hi"
+                            target="_blank"
+                            rel="noreferrer"
+                            className="inline-block bg-sor7ed-yellow text-black font-antarctican font-normal uppercase tracking-[0.3em] text-xs py-6 px-12 rounded-full hover:scale-110 transition-transform duration-500 shadow-[0_0_40px_rgba(245,198,20,0.1)]"
+                        >
+                            Initialize Connection
+                        </a>
+
+                        <div className="mt-20 pt-20 border-t border-white/5 grid grid-cols-1 md:grid-cols-2 gap-12 text-zinc-600 font-mono-headline text-[10px] uppercase tracking-[0.4em]">
                             <div className="space-y-4">
-                                {faqs.map((faq, i) => (
-                                    <div key={i} className="stealth-card overflow-hidden">
-                                        <button
-                                            onClick={() => setActiveFaq(activeFaq === i ? null : i)}
-                                            className="w-full text-left p-8 flex justify-between items-center group"
-                                        >
-                                            <span className={`text-[12px] font-black uppercase tracking-[0.2em] transition-colors ${activeFaq === i ? 'text-sor7ed-yellow' : 'text-zinc-500 group-hover:text-white'}`}>
-                                                {faq.q}
-                                            </span>
-                                            <span className="text-xl">{activeFaq === i ? '−' : '+'}</span>
-                                        </button>
-                                        {activeFaq === i && (
-                                            <div className="px-8 pb-8 text-zinc-400 text-sm leading-relaxed font-light border-t border-white/5 pt-6 animate-in fade-in duration-500">
-                                                {faq.a}
-                                            </div>
-                                        )}
-                                    </div>
-                                ))}
+                                <p>// DIRECT_LINE</p>
+                                <a href="tel:+447360277713" className="text-zinc-400 hover:text-sor7ed-yellow transition-colors">+44 7360 277713</a>
+                            </div>
+                            <div className="space-y-4">
+                                <p>// SECURE_CHANNEL</p>
+                                <a href="mailto:hello@sor7ed.com" className="text-zinc-400 hover:text-sor7ed-yellow transition-colors">HELLO@SOR7ED.COM</a>
                             </div>
                         </div>
-                    </section>
-
-                    {/* Footer CTA */}
-                    <section className="py-60 border-t border-sor7ed-yellow/10 text-center">
-                        <div className="container mx-auto px-6">
-                            <h2 className="text-6xl md:text-8xl lg:text-9xl font-antarctican font-normal uppercase tracking-tighter mb-16 leading-none">
-                                STOP STRUGGLING. <br /><span className="text-sor7ed-yellow">START OPERATING.</span>
-                            </h2>
-                            <a
-                                href="https://wa.me/447360277713?text=Hi"
-                                target="_blank"
-                                rel="noreferrer"
-                                className="inline-block bg-sor7ed-yellow text-black font-antarctican font-normal uppercase tracking-[0.3em] text-xs py-6 px-12 rounded-full hover:scale-110 transition-transform duration-500"
-                            >
-                                Initialize Connection
-                            </a>
-                        </div>
-                    </section>
-                </main>
-            )}
+                    </div>
+                </section>
+            </main>
         </div>
     )
 }

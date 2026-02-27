@@ -9,8 +9,8 @@
 
   body {
     @apply bg-black text-white antialiased;
-    font-family: "antarctican-headline", sans-serif !important;
-    font-weight: 200 !important;
+    font-family: 'Inter', system-ui, sans-serif !important;
+    font-weight: 300 !important;
     font-style: normal !important;
     font-variant-ligatures: none;
   }
