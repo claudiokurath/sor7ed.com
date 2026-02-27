@@ -2,13 +2,15 @@ import { useState } from 'react'
 import { branches } from '../data/branches'
 import { useNotionData } from '../hooks/useNotionData'
 import BranchCard from '../components/BranchCard'
-import AuthModal from '../components/AuthModal'
 import ToolCard from '../components/ToolCard'
 import BlogCard from '../components/BlogCard'
 
-export default function Home() {
+interface HomeProps {
+    onOpenAuth: () => void
+}
+
+export default function Home({ onOpenAuth }: HomeProps) {
     const [activeFaq, setActiveFaq] = useState<number | null>(null)
-    const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
 
     // Fetch tools and articles from API routes
     const { data: dynamicTools, loading: toolsLoading } = useNotionData<any>('/api/tools')
@@ -24,8 +26,6 @@ export default function Home() {
 
     return (
         <div className="bg-black text-white font-roboto h-screen overflow-y-auto snap-y snap-mandatory scroll-smooth relative">
-            <AuthModal isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)} />
-
             {/* Background elements (Fixed) */}
             <div className="fixed inset-0 w-full h-full z-0 pointer-events-none">
                 <div className="absolute inset-0 bg-grid opacity-20" />
@@ -50,15 +50,6 @@ export default function Home() {
                         Quick interactive tools for executive function, time blindness, and sensory overwhelm.
                         No complex apps. Just the support you need, exactly when you need it.
                     </p>
-
-                    <div className="pt-4 md:pt-8">
-                        <button
-                            onClick={() => setIsAuthModalOpen(true)}
-                            className="bg-sor7ed-yellow text-black font-anton font-normal uppercase tracking-[0.3em] text-[10px] md:text-xs py-5 md:py-6 px-12 md:px-16 rounded-full hover:bg-yellow-400 hover:scale-110 transition-all duration-500 shadow-[0_0_40px_rgba(245,198,20,0.2)]"
-                        >
-                            Start Operating
-                        </button>
-                    </div>
 
                     {/* Integrated 3 Steps */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 pt-12 md:pt-20 w-full">
@@ -157,7 +148,7 @@ export default function Home() {
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             {toolsLoading ? (
                                 <p className="col-span-full text-center text-zinc-500 animate-pulse uppercase tracking-[0.5em] text-xs">Accessing Toolkits...</p>
-                            ) : dynamicTools.slice(0, 3).map((tool: any) => (
+                            ) : dynamicTools.slice(0, 6).map((tool: any) => (
                                 <ToolCard key={tool.id} tool={tool} />
                             ))}
                         </div>
@@ -173,7 +164,7 @@ export default function Home() {
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             {articlesLoading ? (
                                 <p className="col-span-full text-center text-zinc-500 animate-pulse uppercase tracking-[0.5em] text-xs">Syncing Knowledge Base...</p>
-                            ) : dynamicArticles.slice(0, 3).map((post: any) => (
+                            ) : dynamicArticles.slice(0, 6).map((post: any) => (
                                 <BlogCard key={post.id} article={post} />
                             ))}
                         </div>
@@ -216,7 +207,7 @@ export default function Home() {
                             STOP STRUGGLING. <br /><span className="text-sor7ed-yellow">START OPERATING.</span>
                         </h2>
                         <button
-                            onClick={() => setIsAuthModalOpen(true)}
+                            onClick={onOpenAuth}
                             className="inline-block bg-sor7ed-yellow text-black font-anton font-normal uppercase tracking-[0.3em] text-[10px] md:text-xs py-5 md:py-6 px-12 md:px-16 rounded-full hover:bg-yellow-400 hover:scale-110 transition-all duration-500 shadow-[0_0_40px_rgba(245,198,20,0.2)]"
                         >
                             Initialize Connection

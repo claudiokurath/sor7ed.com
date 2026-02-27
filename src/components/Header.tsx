@@ -1,17 +1,15 @@
 import { Link } from 'react-router-dom'
 
-const Header = () => {
+interface HeaderProps {
+    onOpenAuth: () => void
+}
+
+const Header = ({ onOpenAuth }: HeaderProps) => {
     return (
-        <header className="bg-black border-b border-gray-800 sticky top-0 z-50">
+        <header className="bg-black border-b border-white/5 sticky top-0 z-50">
             <nav className="container mx-auto px-6 py-4">
                 <div className="flex items-center justify-between">
-                    <Link to="/">
-                        <img src="/logo.png" alt="SOR7ED" className="h-8 w-auto object-contain opacity-90" />
-                    </Link>
-                    <div className="hidden md:flex items-center space-x-8">
-                        <Link to="/" className="text-[10px] font-anton uppercase tracking-[0.2em] text-zinc-500 hover:text-white transition-colors">
-                            Home
-                        </Link>
+                    <div className="flex items-center space-x-8">
                         <Link to="/tools" className="text-[10px] font-anton uppercase tracking-[0.2em] text-zinc-500 hover:text-white transition-colors">
                             Tools
                         </Link>
@@ -25,12 +23,13 @@ const Header = () => {
                             Vault
                         </Link>
                     </div>
-                    <Link
-                        to="/tools"
-                        className="bg-sor7ed-yellow text-black px-6 py-2 rounded-full font-anton uppercase text-[10px] tracking-widest hover:bg-yellow-400 hover:scale-105 transition-all shadow-[0_0_20px_rgba(245,198,20,0.2)]"
+
+                    <button
+                        onClick={onOpenAuth}
+                        className="bg-sor7ed-yellow text-black px-8 py-3 rounded-full font-anton uppercase text-[11px] tracking-widest hover:bg-yellow-400 hover:scale-105 transition-all shadow-[0_0_20px_rgba(245,198,20,0.1)]"
                     >
-                        Try Free Tools
-                    </Link>
+                        Start Operating
+                    </button>
                 </div>
             </nav>
         </header>

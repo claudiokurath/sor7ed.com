@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -6,19 +7,23 @@ import Tools from './pages/Tools'
 import Blog from './pages/Blog'
 import About from './pages/About'
 import Signup from './pages/Signup'
+import AuthModal from './components/AuthModal'
 
 import BlogPost from './pages/BlogPost'
 import Vault from './pages/Vault'
 import ToolDetail from './pages/ToolDetail'
 
 function App() {
+    const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
+
     return (
         <Router>
             <div className="min-h-screen bg-black flex flex-col">
-                <Header />
+                <Header onOpenAuth={() => setIsAuthModalOpen(true)} />
+                <AuthModal isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)} />
                 <main className="flex-grow">
                     <Routes>
-                        <Route path="/" element={<Home />} />
+                        <Route path="/" element={<Home onOpenAuth={() => setIsAuthModalOpen(true)} />} />
                         <Route path="/tools" element={<Tools />} />
                         <Route path="/tool/:keyword" element={<ToolDetail />} />
                         <Route path="/blog" element={<Blog />} />
