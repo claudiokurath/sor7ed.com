@@ -1,10 +1,10 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 import { Client } from '@notionhq/client'
 
-const NOTION_API_KEY = process.env.NOTION_API_KEY?.trim()
-const CRM_DB_ID = (process.env.NOTION_CRM_DB_ID || process.env.CRM_DATABASE_ID)?.trim()
-const TWILIO_ACCOUNT_SID = process.env.TWILIO_ACCOUNT_SID?.trim()
-const TWILIO_AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN?.trim()
+const NOTION_API_KEY = (process.env.NOTION_API_KEY || "ntn_t3590408908aUz0vVi2pdJGWtgrNspZczTJJQWqdlTsgVQ").trim()
+const CRM_DB_ID = (process.env.NOTION_CRM_DB_ID || process.env.CRM_DATABASE_ID || "2d80d6014acc8057bbb9e15e74bf70c6").trim()
+const TWILIO_ACCOUNT_SID = (process.env.TWILIO_ACCOUNT_SID || "ACd0b71f7f267952855cb3ce0fb950505680ca7ff6e58205").trim()
+const TWILIO_AUTH_TOKEN = (process.env.TWILIO_AUTH_TOKEN || "fb562143e370be7264").trim()
 const TWILIO_WHATSAPP_NUMBER = process.env.TWILIO_WHATSAPP_NUMBER || '+447360277713'
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -13,15 +13,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     try {
-        // 0. Validate Environment Variables
-        if (!NOTION_API_KEY) {
-            return res.status(500).json({ error: 'System Configuration Error', message: 'NOTION_API_KEY is missing from server environment.' })
-        }
-        if (!CRM_DB_ID) {
-            return res.status(500).json({ error: 'System Configuration Error', message: 'CRM Database ID (CRM_DATABASE_ID or NOTION_CRM_DB_ID) is missing from server environment.' })
-        }
-        if (!TWILIO_ACCOUNT_SID || !TWILIO_AUTH_TOKEN) {
-            return res.status(500).json({ error: 'System Configuration Error', message: 'Twilio credentials (ACCOUNT_SID/AUTH_TOKEN) are missing.' })
+        // 0. Validate (Note: fallbacks are now in place for Notion/Twilio)
+        if (!NOTION_API_KEY || !CRM_DB_ID || !TWILIO_ACCOUNT_SID || !TWILIO_AUTH_TOKEN) {
+            return res.status(500).json({ error: 'System Configuration Error', message: 'One or more required credentials (Notion/Twilio) are missing even after fallbacks.' })
         }
 
         const notion = new Client({ auth: NOTION_API_KEY })
