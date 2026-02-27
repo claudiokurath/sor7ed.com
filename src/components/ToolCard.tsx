@@ -18,11 +18,11 @@ interface ToolCardProps {
 const ToolCard = ({ tool }: ToolCardProps) => {
     const navigate = useNavigate()
     const { isLoggedIn } = useVaultSession()
-    const whatsappUrl = `https://wa.me/447360277713?text=${encodeURIComponent(tool.whatsappKeyword || tool.name)}`
 
     const handleClick = () => {
         if (isLoggedIn) {
-            window.open(whatsappUrl, '_blank')
+            const slug = (tool.whatsappKeyword || tool.name).toLowerCase().replace(/\s+/g, '-')
+            navigate(`/tool/${slug}`)
         } else {
             navigate('/vault')
         }
@@ -53,7 +53,7 @@ const ToolCard = ({ tool }: ToolCardProps) => {
                 <p className="text-zinc-400 text-sm mb-8 font-light leading-relaxed flex-grow">{tool.description}</p>
                 <div className="flex justify-end pt-6 border-t border-white/5">
                     <span className="text-[10px] font-mono-headline text-zinc-500 group-hover:text-sor7ed-yellow uppercase tracking-[0.2em] transition-colors">
-                        {isLoggedIn ? 'Deploy to Phone →' : 'Members Only →'}
+                        {isLoggedIn ? 'Initialize Protocol →' : 'Members Only →'}
                     </span>
                 </div>
             </div>

@@ -130,10 +130,10 @@ const Vault = () => {
                   </h3>
                   <div className="space-y-4">
                     <Link
-                      to={protocol.type === 'blog' ? `/blog/${encodeURIComponent(protocol.title)}` : `/tools`}
+                      to={protocol.type === 'blog' ? `/blog/${encodeURIComponent(protocol.title)}` : `/tool/${protocol.trigger.toLowerCase().replace(/\s+/g, '-')}`}
                       className="block w-full text-center border border-white/10 bg-white/5 text-white py-4 rounded-xl hover:bg-white/10 transition-all text-xs font-bold uppercase tracking-widest"
                     >
-                      View {protocol.type === 'blog' ? 'Analysis' : 'Tool'}
+                      View {protocol.type === 'blog' ? 'Analysis' : 'Interactive Tool'}
                     </Link>
                     <button
                       onClick={() => window.open(`https://wa.me/447360277713?text=${encodeURIComponent(protocol.trigger)}`, '_blank')}

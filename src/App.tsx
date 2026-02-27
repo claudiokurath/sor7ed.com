@@ -9,6 +9,7 @@ import Signup from './pages/Signup'
 
 import BlogPost from './pages/BlogPost'
 import Vault from './pages/Vault'
+import ToolDetail from './pages/ToolDetail'
 
 function App() {
     return (
@@ -19,6 +20,7 @@ function App() {
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/tools" element={<Tools />} />
+                        <Route path="/tool/:keyword" element={<ToolDetail />} />
                         <Route path="/blog" element={<Blog />} />
                         <Route path="/blog/:title" element={<BlogPost />} />
                         <Route path="/about" element={<About />} />
