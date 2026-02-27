@@ -35,13 +35,13 @@ export default function Home({ onOpenAuth }: HomeProps) {
             </div>
 
             {/* Hero Section */}
-            <section id="hero" className="relative h-screen min-h-screen flex flex-col justify-center items-center z-20 px-4 md:px-6 text-center snap-start py-20">
-                <div className="animate-in fade-in zoom-in duration-1000 mb-8 md:mb-16">
-                    <img src="/logo.png" alt="SOR7ED" className="w-64 md:w-[500px] h-auto object-contain drop-shadow-[0_0_50px_rgba(255,255,255,0.08)] opacity-95" />
+            <section id="hero" className="relative min-h-screen flex flex-col justify-center items-center z-20 px-4 md:px-6 text-center snap-start py-20">
+                <div className="animate-in fade-in zoom-in duration-1000 mb-8 md:mb-12">
+                    <img src="/logo.png" alt="SOR7ED" className="w-40 md:w-[320px] h-auto object-contain drop-shadow-[0_0_50px_rgba(255,255,255,0.08)] opacity-95" />
                 </div>
 
-                <div className="max-w-6xl mx-auto space-y-8 animate-in slide-in-from-bottom-20 duration-1000 delay-300 fill-mode-both">
-                    <h1 className="text-4xl md:text-8xl font-anton font-normal uppercase tracking-tighter leading-none text-white">
+                <div className="max-w-6xl mx-auto space-y-10 animate-in slide-in-from-bottom-20 duration-1000 delay-300 fill-mode-both">
+                    <h1 className="text-4xl md:text-8xl font-anton font-normal uppercase tracking-tighter leading-tight text-white">
                         ADHD-FRIENDLY TOOLS — <br />
                         <span className="text-sor7ed-yellow">DELIVERED TO YOUR PHONE.</span>
                     </h1>
@@ -52,25 +52,25 @@ export default function Home({ onOpenAuth }: HomeProps) {
                     </p>
 
                     {/* Integrated 3 Steps */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 pt-12 md:pt-20 w-full">
-                        <div className="stealth-card p-6 md:p-8 space-y-4 bg-white/5 border-white/5 backdrop-blur-md">
-                            <div className="text-sor7ed-yellow text-[9px] font-mono-headline uppercase tracking-widest">// STEP_01</div>
-                            <h3 className="text-base md:text-lg font-anton uppercase text-white leading-none">Daily Micro-Tools</h3>
-                            <p className="text-zinc-500 text-[11px] md:text-sm font-light leading-relaxed">
-                                Functional support for executive function and neural regulation.
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 pt-16 md:pt-24 w-full">
+                        <div className="stealth-card p-6 md:p-10 space-y-5 bg-white/[0.03] border-white/5 backdrop-blur-md">
+                            <div className="text-sor7ed-yellow text-[10px] font-mono-headline uppercase tracking-widest">// STEP_01</div>
+                            <h3 className="text-lg md:text-xl font-anton uppercase text-white leading-none">Daily Micro-Tools</h3>
+                            <p className="text-zinc-500 text-xs md:text-sm font-light leading-relaxed">
+                                functional support for executive function and neural regulation.
                             </p>
                         </div>
-                        <div className="stealth-card p-6 md:p-8 space-y-4 bg-white/5 border-white/5 backdrop-blur-md">
-                            <div className="text-sor7ed-yellow text-[9px] font-mono-headline uppercase tracking-widest">// STEP_02</div>
-                            <h3 className="text-base md:text-lg font-anton uppercase text-white leading-none">No Apps. Just WhatsApp.</h3>
-                            <p className="text-zinc-500 text-[11px] md:text-sm font-light leading-relaxed">
+                        <div className="stealth-card p-6 md:p-10 space-y-5 bg-white/[0.03] border-white/5 backdrop-blur-md">
+                            <div className="text-sor7ed-yellow text-[10px] font-mono-headline uppercase tracking-widest">// STEP_02</div>
+                            <h3 className="text-lg md:text-xl font-anton uppercase text-white leading-none">No Apps. Just WhatsApp.</h3>
+                            <p className="text-zinc-500 text-xs md:text-sm font-light leading-relaxed">
                                 Respond directly to helpful prompts. No complex dashboards to manage.
                             </p>
                         </div>
-                        <div className="stealth-card p-6 md:p-8 space-y-4 bg-white/5 border-white/5 backdrop-blur-md">
-                            <div className="text-sor7ed-yellow text-[9px] font-mono-headline uppercase tracking-widest">// STEP_03</div>
-                            <h3 className="text-base md:text-lg font-anton uppercase text-white leading-none">Neural Scaffolding</h3>
-                            <p className="text-zinc-500 text-[11px] md:text-sm font-light leading-relaxed">
+                        <div className="stealth-card p-6 md:p-10 space-y-5 bg-white/[0.03] border-white/5 backdrop-blur-md">
+                            <div className="text-sor7ed-yellow text-[10px] font-mono-headline uppercase tracking-widest">// STEP_03</div>
+                            <h3 className="text-lg md:text-xl font-anton uppercase text-white leading-none">Neural Scaffolding</h3>
+                            <p className="text-zinc-500 text-xs md:text-sm font-light leading-relaxed">
                                 Designed to bypass friction and keep you operating at peak capacity.
                             </p>
                         </div>
@@ -80,19 +80,19 @@ export default function Home({ onOpenAuth }: HomeProps) {
 
             <main className="relative z-10">
                 {/* 7 Vectors (Branches) - Combined with Why Different */}
-                <section id="vectors" className="h-screen min-h-screen flex flex-col justify-center items-center snap-start py-24">
-                    <div className="container mx-auto px-4 md:px-6 max-w-7xl">
-                        <div className="text-center mb-16 max-w-3xl mx-auto">
-                            <span className="text-[10px] font-mono-headline text-zinc-500 uppercase tracking-[0.4em] block mb-4 animate-in slide-in-from-bottom-20">// THE_ARCHITECTURE</span>
-                            <h2 className="text-6xl md:text-8xl font-anton font-normal uppercase tracking-tighter mb-8 leading-none">
+                <section id="vectors" className="relative min-h-screen flex flex-col z-20 px-4 md:px-6 text-center snap-start py-24 md:py-32 border-t border-white/5">
+                    <div className="container mx-auto max-w-7xl">
+                        <div className="text-center mb-20 md:mb-24 max-w-3xl mx-auto">
+                            <span className="text-[10px] font-mono-headline text-zinc-500 uppercase tracking-[0.4em] block mb-5 animate-in slide-in-from-bottom-20">// THE_ARCHITECTURE</span>
+                            <h2 className="text-6xl md:text-8xl font-anton font-normal uppercase tracking-tighter mb-10 leading-none">
                                 THE <span className="text-sor7ed-yellow">ARCHITECTURE.</span>
                             </h2>
-                            <p className="text-zinc-500 font-light leading-relaxed">
+                            <p className="text-zinc-500 font-light leading-relaxed text-base md:text-lg">
                                 We build a behavioural scaffold. Each vector addresses a core friction point in the neurodivergent experience.
                             </p>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-6 gap-6 mb-16">
+                        <div className="grid grid-cols-1 md:grid-cols-6 gap-6 md:gap-8 mb-24 md:mb-32">
                             {[
                                 ...branches.filter(b => b.id !== 'connection' && b.id !== 'impression'),
                                 ...branches.filter(b => b.id === 'connection' || b.id === 'impression')
@@ -107,20 +107,20 @@ export default function Home({ onOpenAuth }: HomeProps) {
                         </div>
 
                         {/* Integrated Integration Comparison */}
-                        <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-white/5 pt-16">
-                            <div className="space-y-4">
-                                <h4 className="text-zinc-500 font-anton uppercase text-xs tracking-widest flex items-center gap-2">
-                                    <span className="text-red-500/50">🗙</span> Traditional Apps
+                        <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 border-t border-white/5 pt-20">
+                            <div className="space-y-6">
+                                <h4 className="text-zinc-600 font-anton uppercase text-xs md:text-sm tracking-widest flex items-center gap-3">
+                                    <span className="text-red-500/30">🗙</span> Traditional Apps
                                 </h4>
-                                <p className="text-zinc-600 text-[11px] font-light leading-relaxed">
+                                <p className="text-zinc-600 text-[12px] md:text-sm font-light leading-relaxed">
                                     Setup required. Daily manual entry. High friction. Often forgotten in 48 hours.
                                 </p>
                             </div>
-                            <div className="space-y-4">
-                                <h4 className="text-sor7ed-yellow font-anton uppercase text-xs tracking-widest flex items-center gap-2">
+                            <div className="space-y-6">
+                                <h4 className="text-sor7ed-yellow font-anton uppercase text-xs md:text-sm tracking-widest flex items-center gap-3">
                                     <span className="text-sor7ed-yellow">✔</span> The SOR7ED System
                                 </h4>
-                                <p className="text-zinc-400 text-[11px] font-light leading-relaxed">
+                                <p className="text-zinc-400 text-[12px] md:text-sm font-light leading-relaxed">
                                     Zero-friction. Responds directly to you via WhatsApp. Tools find you exactly when needed.
                                 </p>
                             </div>
@@ -129,19 +129,19 @@ export default function Home({ onOpenAuth }: HomeProps) {
                 </section>
 
                 {/* Labs (Tools) */}
-                <section id="lab" className="h-screen min-h-screen flex flex-col justify-center py-40 bg-white/[0.02] border-y border-white/5 snap-start">
-                    <div className="container mx-auto px-4 md:px-6 max-w-7xl">
-                        <div className="text-center mb-20">
-                            <h2 className="section-title justify-center gap-4 flex mb-6">
+                <section id="lab" className="relative min-h-screen flex flex-col z-20 px-4 md:px-6 py-24 md:py-32 bg-white/[0.01] border-y border-white/5 snap-start">
+                    <div className="container mx-auto max-w-7xl">
+                        <div className="text-center mb-20 md:mb-24">
+                            <h2 className="section-title justify-center gap-4 flex mb-8">
                                 <span className="title-white">THE</span> <span className="title-yellow">LAB.</span>
                             </h2>
-                            <p className="text-zinc-500 font-light leading-relaxed max-w-xl mx-auto">
+                            <p className="text-zinc-500 font-light leading-relaxed max-w-xl mx-auto text-base">
                                 Functional micro-tools designed for immediate relief. From dopamine regulation to impulse filtering.
                             </p>
                         </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
                             {toolsLoading ? (
-                                <p className="col-span-full text-center text-zinc-500 animate-pulse uppercase tracking-[0.5em] text-xs">Accessing Toolkits...</p>
+                                <p className="col-span-full text-center text-zinc-500 animate-pulse uppercase tracking-[0.5em] text-xs py-20">Accessing Toolkits...</p>
                             ) : dynamicTools.slice(0, 6).map((tool: any) => (
                                 <ToolCard key={tool.id} tool={tool} />
                             ))}
@@ -150,14 +150,14 @@ export default function Home({ onOpenAuth }: HomeProps) {
                 </section>
 
                 {/* Insights (Articles) */}
-                <section id="blog" className="h-screen min-h-screen flex flex-col justify-center py-40 snap-start">
-                    <div className="container mx-auto px-4 md:px-6 max-w-7xl">
-                        <h2 className="section-title text-center mb-24">
+                <section id="blog" className="relative min-h-screen flex flex-col z-20 px-4 md:px-6 py-24 md:py-32 snap-start">
+                    <div className="container mx-auto max-w-7xl">
+                        <h2 className="section-title text-center mb-24 md:mb-32">
                             <span className="title-white">THE</span> <span className="title-yellow">INSIGHTS.</span>
                         </h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
                             {articlesLoading ? (
-                                <p className="col-span-full text-center text-zinc-500 animate-pulse uppercase tracking-[0.5em] text-xs">Syncing Knowledge Base...</p>
+                                <p className="col-span-full text-center text-zinc-500 animate-pulse uppercase tracking-[0.5em] text-xs py-20">Syncing Knowledge Base...</p>
                             ) : dynamicArticles.slice(0, 6).map((post: any) => (
                                 <BlogCard key={post.id} article={post} />
                             ))}
@@ -166,25 +166,25 @@ export default function Home({ onOpenAuth }: HomeProps) {
                 </section>
 
                 {/* FAQ */}
-                <section id="faq" className="h-screen min-h-screen flex flex-col justify-center py-40 border-t border-white/5 snap-start">
-                    <div className="container mx-auto px-4 md:px-6 max-w-4xl">
-                        <h2 className="section-title text-center mb-16">
+                <section id="faq" className="relative min-h-screen flex flex-col z-20 px-4 md:px-6 py-24 md:py-32 border-t border-white/5 snap-start items-center">
+                    <div className="container mx-auto max-w-4xl">
+                        <h2 className="section-title text-center mb-20 md:mb-24">
                             <span className="title-white">SYSTEM</span> <span className="title-yellow">FAQ.</span>
                         </h2>
-                        <div className="space-y-4">
+                        <div className="space-y-6">
                             {faqs.map((faq, i) => (
                                 <div key={i} className={`stealth-card overflow-hidden transition-all duration-300 ${activeFaq === i ? 'border-sor7ed-yellow shadow-[0_0_30px_rgba(245,198,20,0.1)]' : 'border-white/5'}`}>
                                     <button
                                         onClick={() => setActiveFaq(activeFaq === i ? null : i)}
-                                        className="w-full text-left p-6 md:p-8 flex justify-between items-center group"
+                                        className="w-full text-left p-6 md:p-10 flex justify-between items-center group"
                                     >
-                                        <span className={`text-xs md:text-sm font-anton uppercase tracking-widest transition-colors ${activeFaq === i ? 'text-sor7ed-yellow' : 'text-zinc-400 group-hover:text-white'}`}>
+                                        <span className={`text-sm md:text-base font-anton uppercase tracking-widest transition-colors ${activeFaq === i ? 'text-sor7ed-yellow' : 'text-zinc-400 group-hover:text-white'}`}>
                                             {faq.q}
                                         </span>
                                         <span className={`text-xl transition-transform ${activeFaq === i ? 'rotate-45 text-sor7ed-yellow' : 'text-zinc-500'}`}>+</span>
                                     </button>
                                     {activeFaq === i && (
-                                        <div className="px-6 md:px-8 pb-8 text-zinc-400 text-sm leading-relaxed font-light border-t border-white/5 pt-6 animate-in fade-in duration-500">
+                                        <div className="px-6 md:px-10 pb-10 text-zinc-400 text-sm md:text-base leading-relaxed font-light border-t border-white/5 pt-8 animate-in fade-in duration-500">
                                             {faq.a}
                                         </div>
                                     )}
@@ -195,26 +195,26 @@ export default function Home({ onOpenAuth }: HomeProps) {
                 </section>
 
                 {/* Footer CTA */}
-                <section className="h-screen min-h-screen flex flex-col justify-center py-60 border-t border-sor7ed-yellow/10 text-center snap-start">
-                    <div className="container mx-auto px-4 md:px-6 max-w-7xl">
-                        <h2 className="text-6xl md:text-8xl lg:text-9xl font-anton font-normal uppercase tracking-tighter mb-16 leading-none">
+                <section className="relative min-h-screen flex flex-col justify-center items-center z-20 px-4 md:px-6 py-32 md:py-60 border-t border-sor7ed-yellow/10 text-center snap-start">
+                    <div className="container mx-auto max-w-7xl">
+                        <h2 className="text-6xl md:text-8xl lg:text-9xl font-anton font-normal uppercase tracking-tighter mb-20 md:mb-24 leading-none">
                             STOP STRUGGLING. <br /><span className="text-sor7ed-yellow">START OPERATING.</span>
                         </h2>
                         <button
                             onClick={onOpenAuth}
-                            className="inline-block bg-sor7ed-yellow text-black font-anton font-normal uppercase tracking-[0.3em] text-[10px] md:text-xs py-5 md:py-6 px-12 md:px-16 rounded-full hover:bg-yellow-400 hover:scale-110 transition-all duration-500 shadow-[0_0_40px_rgba(245,198,20,0.2)]"
+                            className="inline-block bg-sor7ed-yellow text-black font-anton font-normal uppercase tracking-[0.3em] text-[10px] md:text-xs py-6 md:py-8 px-16 md:px-24 rounded-full hover:bg-yellow-400 hover:scale-110 transition-all duration-500 shadow-[0_0_50px_rgba(245,198,20,0.3)]"
                         >
                             Initialize Connection
                         </button>
 
-                        <div className="mt-20 pt-20 border-t border-white/5 grid grid-cols-1 md:grid-cols-2 gap-12 text-zinc-600 font-mono-headline text-[10px] uppercase tracking-[0.4em]">
-                            <div className="space-y-4">
+                        <div className="mt-32 pt-24 border-t border-white/5 grid grid-cols-1 md:grid-cols-2 gap-16 text-zinc-600 font-mono-headline text-[10px] uppercase tracking-[0.4em]">
+                            <div className="space-y-6">
                                 <p>// DIRECT_LINE</p>
-                                <a href="tel:+447360277713" className="text-zinc-400 hover:text-sor7ed-yellow transition-colors">+44 7360 277713</a>
+                                <a href="tel:+447360277713" className="text-zinc-400 hover:text-sor7ed-yellow transition-colors text-xs">+44 7360 277713</a>
                             </div>
-                            <div className="space-y-4">
+                            <div className="space-y-6">
                                 <p>// SECURE_CHANNEL</p>
-                                <a href="mailto:hello@sor7ed.com" className="text-zinc-400 hover:text-sor7ed-yellow transition-colors">HELLO@SOR7ED.COM</a>
+                                <a href="mailto:hello@sor7ed.com" className="text-zinc-400 hover:text-sor7ed-yellow transition-colors text-xs">HELLO@SOR7ED.COM</a>
                             </div>
                         </div>
                     </div>
