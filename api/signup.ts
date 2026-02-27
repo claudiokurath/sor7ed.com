@@ -1,11 +1,10 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 import { Client } from '@notionhq/client'
 
-const NOTION_API_KEY = process.env.NOTION_API_KEY
-const CRM_DB_ID = process.env.NOTION_CRM_DB_ID || process.env.CRM_DATABASE_ID
-const notion = new Client({ auth: NOTION_API_KEY })
-const TWILIO_ACCOUNT_SID = process.env.TWILIO_ACCOUNT_SID
-const TWILIO_AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN
+const NOTION_API_KEY = process.env.NOTION_API_KEY?.trim()
+const CRM_DB_ID = (process.env.NOTION_CRM_DB_ID || process.env.CRM_DATABASE_ID)?.trim()
+const TWILIO_ACCOUNT_SID = process.env.TWILIO_ACCOUNT_SID?.trim()
+const TWILIO_AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN?.trim()
 const TWILIO_WHATSAPP_NUMBER = process.env.TWILIO_WHATSAPP_NUMBER || '+447360277713'
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -15,12 +14,17 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     try {
         // 0. Validate Environment Variables
-        if (!NOTION_API_KEY || !CRM_DB_ID) {
-            return res.status(500).json({ error: 'System Configuration Error', message: 'Notion integration keys are missing.' })
+        if (!NOTION_API_KEY) {
+            return res.status(500).json({ error: 'System Configuration Error', message: 'NOTION_API_KEY is missing from server environment.' })
+        }
+        if (!CRM_DB_ID) {
+            return res.status(500).json({ error: 'System Configuration Error', message: 'CRM Database ID (CRM_DATABASE_ID or NOTION_CRM_DB_ID) is missing from server environment.' })
         }
         if (!TWILIO_ACCOUNT_SID || !TWILIO_AUTH_TOKEN) {
-            return res.status(500).json({ error: 'System Configuration Error', message: 'Twilio integration keys are missing.' })
+            return res.status(500).json({ error: 'System Configuration Error', message: 'Twilio credentials (ACCOUNT_SID/AUTH_TOKEN) are missing.' })
         }
+
+        const notion = new Client({ auth: NOTION_API_KEY })
 
         const { customerName, email, phoneNumber, leadSource, signupDate, status, freeToolsUsed, creditsBalance } = req.body
 

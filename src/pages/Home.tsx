@@ -2,12 +2,14 @@ import { useState } from 'react'
 import { branches } from '../data/branches'
 import { useNotionData } from '../hooks/useNotionData'
 import BranchCard from '../components/BranchCard'
-import AuthSection from '../components/AuthSection'
+import AuthModal from '../components/AuthModal'
 import ToolCard from '../components/ToolCard'
 import BlogCard from '../components/BlogCard'
 
 export default function Home() {
     const [activeFaq, setActiveFaq] = useState<number | null>(null)
+    const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
+
     // Fetch tools and articles from API routes
     const { data: dynamicTools, loading: toolsLoading } = useNotionData<any>('/api/tools')
     const { data: dynamicArticles, loading: articlesLoading } = useNotionData<any>('/api/articles')
@@ -22,6 +24,8 @@ export default function Home() {
 
     return (
         <div className="bg-black min-h-screen bg-grid relative overflow-hidden text-white font-roboto">
+            <AuthModal isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)} />
+
             {/* Premium Background Overlay */}
             <div className="fixed inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
                 <div className="absolute inset-0 bg-gradient-to-b from-black via-zinc-900/10 to-black" />
@@ -34,72 +38,63 @@ export default function Home() {
             </div>
 
             {/* Hero Section */}
-            <section id="hero" className="relative h-screen flex flex-col justify-center items-center z-20 px-4 md:px-6 text-center">
-                <div className="animate-in fade-in zoom-in duration-1000 mb-12">
-                    <img src="/logo.png" alt="SOR7ED" className="w-64 md:w-96 h-auto object-contain drop-shadow-[0_0_40px_rgba(255,255,255,0.05)] opacity-95" />
+            <section id="hero" className="relative h-screen flex flex-col justify-center items-center z-20 px-4 md:px-6 text-center pt-20">
+                <div className="animate-in fade-in zoom-in duration-1000 mb-8 md:mb-12">
+                    <img src="/logo.png" alt="SOR7ED" className="w-48 md:w-80 h-auto object-contain drop-shadow-[0_0_40px_rgba(255,255,255,0.05)] opacity-95" />
                 </div>
 
-                <div className="max-w-4xl mx-auto space-y-8 animate-in slide-in-from-bottom-20 duration-1000 delay-300 fill-mode-both">
-                    <h1 className="text-5xl md:text-8xl font-anton font-normal uppercase tracking-tighter leading-none text-white">
+                <div className="max-w-6xl mx-auto space-y-8 animate-in slide-in-from-bottom-20 duration-1000 delay-300 fill-mode-both">
+                    <h1 className="text-4xl md:text-8xl font-anton font-normal uppercase tracking-tighter leading-none text-white">
                         ADHD-FRIENDLY TOOLS — <br />
                         <span className="text-sor7ed-yellow">DELIVERED TO YOUR PHONE.</span>
                     </h1>
 
-                    <p className="text-zinc-400 text-lg md:text-2xl font-light leading-relaxed max-w-2xl mx-auto">
+                    <p className="text-zinc-500 text-base md:text-xl font-light leading-relaxed max-w-2xl mx-auto">
                         Quick interactive tools for executive function, time blindness, and sensory overwhelm.
-                        No complex apps to open. Just the support you need, exactly when you need it.
+                        No complex apps. Just the support you need, exactly when you need it.
                     </p>
 
-                    <div className="pt-8">
+                    <div className="pt-4 md:pt-8">
                         <button
-                            onClick={() => document.getElementById('auth')?.scrollIntoView({ behavior: 'smooth' })}
-                            className="bg-sor7ed-yellow text-black font-anton font-normal uppercase tracking-[0.3em] text-xs py-6 px-16 rounded-full hover:bg-yellow-400 hover:scale-110 transition-all duration-500 shadow-[0_0_40px_rgba(245,198,20,0.2)]"
+                            onClick={() => setIsAuthModalOpen(true)}
+                            className="bg-sor7ed-yellow text-black font-anton font-normal uppercase tracking-[0.3em] text-[10px] md:text-xs py-5 md:py-6 px-12 md:px-16 rounded-full hover:bg-yellow-400 hover:scale-110 transition-all duration-500 shadow-[0_0_40px_rgba(245,198,20,0.2)]"
                         >
                             Start Operating
                         </button>
                     </div>
+
+                    {/* Integrated 3 Steps */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 pt-12 md:pt-20 w-full">
+                        <div className="stealth-card p-6 md:p-8 space-y-4 bg-white/5 border-white/5 backdrop-blur-md">
+                            <div className="text-sor7ed-yellow text-[9px] font-mono-headline uppercase tracking-widest">// STEP_01</div>
+                            <h3 className="text-base md:text-lg font-anton uppercase text-white leading-none">Daily Micro-Tools</h3>
+                            <p className="text-zinc-500 text-[11px] md:text-sm font-light leading-relaxed">
+                                Functional support for executive function and neural regulation.
+                            </p>
+                        </div>
+                        <div className="stealth-card p-6 md:p-8 space-y-4 bg-white/5 border-white/5 backdrop-blur-md">
+                            <div className="text-sor7ed-yellow text-[9px] font-mono-headline uppercase tracking-widest">// STEP_02</div>
+                            <h3 className="text-base md:text-lg font-anton uppercase text-white leading-none">No Apps. Just WhatsApp.</h3>
+                            <p className="text-zinc-500 text-[11px] md:text-sm font-light leading-relaxed">
+                                Respond directly to helpful prompts. No complex dashboards to manage.
+                            </p>
+                        </div>
+                        <div className="stealth-card p-6 md:p-8 space-y-4 bg-white/5 border-white/5 backdrop-blur-md">
+                            <div className="text-sor7ed-yellow text-[9px] font-mono-headline uppercase tracking-widest">// STEP_03</div>
+                            <h3 className="text-base md:text-lg font-anton uppercase text-white leading-none">Neural Scaffolding</h3>
+                            <p className="text-zinc-500 text-[11px] md:text-sm font-light leading-relaxed">
+                                Designed to bypass friction and keep you operating at peak capacity.
+                            </p>
+                        </div>
+                    </div>
                 </div>
 
-                <div className="absolute bottom-12 animate-bounce opacity-40">
-                    <span className="text-white text-2xl">↓</span>
+                <div className="absolute bottom-8 opacity-20 hidden md:block animate-bounce">
+                    <span className="text-white text-xl">↓</span>
                 </div>
             </section>
 
             <main className="relative z-10">
-                {/* How It Works */}
-                <section id="how-it-works" className="py-32 border-b border-white/5">
-                    <div className="container mx-auto px-4 md:px-6 max-w-7xl">
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-                            <div className="stealth-card p-6 md:p-10 space-y-4">
-                                <div className="text-sor7ed-yellow text-[10px] md:text-xs font-mono-headline uppercase tracking-widest">// STEP_01</div>
-                                <h3 className="text-xl md:text-2xl font-anton uppercase text-white">Daily Micro-Tools</h3>
-                                <p className="text-zinc-500 text-sm md:text-base font-light leading-relaxed">
-                                    Functional support for executive function, time blindness, and emotional regulation.
-                                </p>
-                            </div>
-                            <div className="stealth-card p-6 md:p-10 space-y-4">
-                                <div className="text-sor7ed-yellow text-[10px] md:text-xs font-mono-headline uppercase tracking-widest">// STEP_02</div>
-                                <h3 className="text-xl md:text-2xl font-anton uppercase text-white">No Apps. Just WhatsApp.</h3>
-                                <p className="text-zinc-500 text-sm md:text-base font-light leading-relaxed">
-                                    No complex dashboards or accounts to manage. Reply directly to helpful prompts.
-                                </p>
-                            </div>
-                            <div className="stealth-card p-6 md:p-10 space-y-4">
-                                <div className="text-sor7ed-yellow text-[10px] md:text-xs font-mono-headline uppercase tracking-widest">// STEP_03</div>
-                                <h3 className="text-xl md:text-2xl font-anton uppercase text-white">Neural Scaffolding</h3>
-                                <p className="text-zinc-500 text-sm md:text-base font-light leading-relaxed">
-                                    3 fresh updates weekly designed to bypass friction and keep you operating at peak capacity.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* AuthSection */}
-                <div className="px-4 md:px-0">
-                    <AuthSection />
-                </div>
-
                 {/* 7 Vectors (Branches) */}
                 <section id="vectors" className="py-24 flex flex-col items-center">
                     <div className="container mx-auto px-4 md:px-6 max-w-7xl">
@@ -234,14 +229,12 @@ export default function Home() {
                         <h2 className="text-6xl md:text-8xl lg:text-9xl font-anton font-normal uppercase tracking-tighter mb-16 leading-none">
                             STOP STRUGGLING. <br /><span className="text-sor7ed-yellow">START OPERATING.</span>
                         </h2>
-                        <a
-                            href="https://wa.me/447360277713?text=Hi"
-                            target="_blank"
-                            rel="noreferrer"
-                            className="inline-block bg-sor7ed-yellow text-black font-anton font-normal uppercase tracking-[0.3em] text-xs py-6 px-12 rounded-full hover:scale-110 transition-transform duration-500 shadow-[0_0_40px_rgba(245,198,20,0.1)]"
+                        <button
+                            onClick={() => setIsAuthModalOpen(true)}
+                            className="inline-block bg-sor7ed-yellow text-black font-anton font-normal uppercase tracking-[0.3em] text-[10px] md:text-xs py-5 md:py-6 px-12 md:px-16 rounded-full hover:bg-yellow-400 hover:scale-110 transition-all duration-500 shadow-[0_0_40px_rgba(245,198,20,0.2)]"
                         >
                             Initialize Connection
-                        </a>
+                        </button>
 
                         <div className="mt-20 pt-20 border-t border-white/5 grid grid-cols-1 md:grid-cols-2 gap-12 text-zinc-600 font-mono-headline text-[10px] uppercase tracking-[0.4em]">
                             <div className="space-y-4">

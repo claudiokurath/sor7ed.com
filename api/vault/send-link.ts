@@ -1,10 +1,12 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 import * as crypto from 'crypto'
 
-const NOTION_API_KEY = process.env.NOTION_API_KEY
-const CRM_DB_ID = process.env.NOTION_CRM_DB_ID || process.env.CRM_DATABASE_ID
-const TWILIO_ACCOUNT_SID = process.env.TWILIO_ACCOUNT_SID
-const TWILIO_AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN
+const NOTION_API_KEY = process.env.NOTION_API_KEY?.trim()
+const CRM_DB_ID = (process.env.NOTION_CRM_DB_ID || process.env.CRM_DATABASE_ID)?.trim()
+const BLOG_DB_ID = process.env.NOTION_BLOG_DB_ID?.trim()
+const TOOLS_DB_ID = process.env.NOTION_TOOLS_DB_ID?.trim()
+const TWILIO_ACCOUNT_SID = process.env.TWILIO_ACCOUNT_SID?.trim()
+const TWILIO_AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN?.trim()
 const TWILIO_WHATSAPP_NUMBER = process.env.TWILIO_WHATSAPP_NUMBER || '+447360277713'
 const AUTH_SECRET = process.env.NOTION_API_KEY || 'sor7ed-default-secret'
 
@@ -56,7 +58,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         const token = Buffer.from(`${payload}:${hmac}`).toString('base64')
 
         // IMPORTANT: Ensure this matches your production domain
-        const magicLink = `https://next-level-livid.vercel.app/vault?token=${encodeURIComponent(token)}`
+        const magicLink = `https://sor7ed.com/vault?token=${encodeURIComponent(token)}`
         const message = `Hey ${customerName}! 👋\n\nHere is your secure access link to The Vault:\n\n${magicLink}\n\nThis link expires in 1 hour.\n\n— SOR7ED`
 
         const authHeader = 'Basic ' + Buffer.from(`${TWILIO_ACCOUNT_SID}:${TWILIO_AUTH_TOKEN}`).toString('base64')
