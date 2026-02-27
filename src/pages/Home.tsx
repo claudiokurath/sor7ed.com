@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { branches } from '../data/branches'
 import { useNotionData } from '../hooks/useNotionData'
 import BranchCard from '../components/BranchCard'
-import EmailCapture from '../components/EmailCapture'
+import AuthSection from '../components/AuthSection'
 import ToolCard from '../components/ToolCard'
 import BlogCard from '../components/BlogCard'
 
@@ -52,7 +52,7 @@ export default function Home() {
 
                     <div className="pt-8">
                         <button
-                            onClick={() => document.getElementById('vectors')?.scrollIntoView({ behavior: 'smooth' })}
+                            onClick={() => document.getElementById('auth')?.scrollIntoView({ behavior: 'smooth' })}
                             className="bg-sor7ed-yellow text-black font-antarctican font-normal uppercase tracking-[0.3em] text-xs py-6 px-16 rounded-full hover:bg-yellow-400 hover:scale-110 transition-all duration-500 shadow-[0_0_40px_rgba(245,198,20,0.2)]"
                         >
                             Start Operating
@@ -94,6 +94,8 @@ export default function Home() {
                         </div>
                     </div>
                 </section>
+
+                <AuthSection />
 
                 {/* 7 Vectors (Branches) */}
                 <section id="vectors" className="py-24 flex flex-col items-center">
@@ -180,7 +182,6 @@ export default function Home() {
                     </div>
                 </section>
 
-                <EmailCapture />
 
                 {/* FAQ */}
                 <section id="faq" className="py-40 border-t border-white/5">
