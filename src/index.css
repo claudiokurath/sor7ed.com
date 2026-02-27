@@ -8,10 +8,11 @@
   }
 
   body {
-    @apply bg-black text-white antialiased;
-    font-family: 'Inter', system-ui, sans-serif !important;
-    font-weight: 300 !important;
+    @apply bg-black text-white antialiased text-base md:text-lg;
+    font-family: 'Roboto', sans-serif !important;
+    font-weight: 100 !important;
     font-style: normal !important;
+    letter-spacing: 0.02em;
     font-variant-ligatures: none;
   }
 
@@ -42,7 +43,7 @@
   h4,
   h5,
   h6 {
-    font-family: "antarctican-headline", sans-serif !important;
+    font-family: 'Anton', sans-serif !important;
     font-weight: 400 !important;
     font-style: normal !important;
     text-transform: uppercase !important;
@@ -59,7 +60,8 @@
   }
 
   .section-title {
-    @apply text-6xl md:text-8xl lg:text-9xl mb-12 font-antarctican uppercase font-normal tracking-tighter;
+    @apply text-6xl md:text-8xl lg:text-9xl mb-12 uppercase font-normal tracking-tighter;
+    font-family: 'Anton', sans-serif !important;
   }
 
   .card-hover {
@@ -78,11 +80,13 @@
   }
 
   .title-white {
-    @apply text-white font-antarctican uppercase font-normal tracking-tighter leading-none;
+    @apply text-white uppercase font-normal tracking-tighter leading-none;
+    font-family: 'Anton', sans-serif !important;
   }
 
   .title-yellow {
-    @apply text-sor7ed-yellow font-antarctican uppercase font-normal tracking-tighter leading-none;
+    @apply text-sor7ed-yellow uppercase font-normal tracking-tighter leading-none;
+    font-family: 'Anton', sans-serif !important;
   }
 
   .bg-grid {

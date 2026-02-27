@@ -17,7 +17,9 @@ export default {
                 'border': '#1a1a1a', // Fix for missing border-border utility
             },
             fontFamily: {
-                sans: ['antarctican-headline', 'Inter', 'system-ui', 'sans-serif'],
+                sans: ['Roboto', 'Inter', 'system-ui', 'sans-serif'],
+                'anton': ['Anton', 'sans-serif'],
+                'roboto': ['Roboto', 'sans-serif'],
                 'mono-headline': ['Monaco', 'Menlo', 'monospace'],
                 'antarctican': ['antarctican-headline', 'sans-serif'],
             },

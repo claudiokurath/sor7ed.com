@@ -109,10 +109,23 @@ export default function Home() {
                                 We don't just "fix" ADHD. We build a scaffolding around it. Each vector addresses a core friction point in the neurodivergent experience.
                             </p>
                         </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {branches.map(branch => (
-                                <BranchCard key={branch.name} branch={branch} />
-                            ))}
+                        <div className="grid grid-cols-1 md:grid-cols-6 gap-6">
+                            {/* Reordered branches for 2-3-2 layout: Connection and Impression last */}
+                            {[
+                                ...branches.filter(b => b.id !== 'connection' && b.id !== 'impression'),
+                                ...branches.filter(b => b.id === 'connection' || b.id === 'impression')
+                            ].map((branch, i) => {
+                                // Determine grid span for 2-3-2 layout in a 6-column grid
+                                // Row 1: items 0,1 -> span 3
+                                // Row 2: items 2,3,4 -> span 2
+                                // Row 3: items 5,6 -> span 3
+                                const span = (i < 2 || i >= 5) ? 'md:col-span-3' : 'md:col-span-2'
+                                return (
+                                    <div key={branch.name} className={span}>
+                                        <BranchCard branch={branch} />
+                                    </div>
+                                )
+                            })}
                         </div>
                     </div>
                 </section>

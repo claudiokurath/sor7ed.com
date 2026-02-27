@@ -14,18 +14,18 @@ export default function BranchCard({ branch, delay = 0, className = "" }: Branch
             style={{ animationDelay: `${delay}ms` }}
         >
             <div className="flex justify-between items-start mb-12">
-                <h3 className="text-6xl md:text-7xl font-antarctican font-normal uppercase tracking-tighter text-black leading-none break-words">
+                <h3 className="text-6xl md:text-7xl font-anton font-normal uppercase tracking-tighter text-black leading-none break-words">
                     {branch.name}
                 </h3>
             </div>
             <div>
                 <div className="mb-4">
                     <p className="text-[10px] font-mono-headline text-black/40 uppercase tracking-widest mb-1">// THE_PROBLEM</p>
-                    <p className="text-black font-antarctican font-normal text-xl uppercase leading-none">{branch.problem}</p>
+                    <p className="text-black font-anton font-normal text-xl uppercase leading-none">{branch.problem}</p>
                 </div>
                 <div>
                     <p className="text-[10px] font-mono-headline text-black/40 uppercase tracking-widest mb-1">// THE_FIX</p>
-                    <p className="text-black font-antarctican font-light text-sm leading-tight opacity-80">{branch.description}</p>
+                    <p className="text-black font-roboto font-normal text-sm leading-tight opacity-80">{branch.description}</p>
                 </div>
             </div>
         </div>
