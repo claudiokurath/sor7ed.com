@@ -37,7 +37,7 @@ export default function Home({ onOpenAuth }: HomeProps) {
             {/* Hero Section */}
             <section id="hero" className="relative min-h-screen flex flex-col justify-center items-center z-20 px-4 md:px-6 text-center snap-start py-20">
                 <div className="animate-in fade-in zoom-in duration-1000 mb-8 md:mb-12">
-                    <img src="/logo.png" alt="SOR7ED" className="w-40 md:w-[320px] h-auto object-contain drop-shadow-[0_0_50px_rgba(255,255,255,0.08)] opacity-95" />
+                    <img src="/logo.png" alt="SOR7ED" className="w-80 md:w-[640px] h-auto object-contain drop-shadow-[0_0_50px_rgba(255,255,255,0.08)] opacity-95" />
                 </div>
 
                 <div className="max-w-6xl mx-auto space-y-10 animate-in slide-in-from-bottom-20 duration-1000 delay-300 fill-mode-both">
@@ -51,28 +51,30 @@ export default function Home({ onOpenAuth }: HomeProps) {
                         No complex apps. Just the support you need, exactly when you need it.
                     </p>
 
-                    {/* Integrated 3 Steps */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 pt-16 md:pt-24 w-full">
-                        <div className="stealth-card p-6 md:p-10 space-y-5 bg-white/[0.03] border-white/5 backdrop-blur-md">
-                            <div className="text-sor7ed-yellow text-[10px] font-mono-headline uppercase tracking-widest">// STEP_01</div>
-                            <h3 className="text-lg md:text-xl font-anton uppercase text-white leading-none">Daily Micro-Tools</h3>
-                            <p className="text-zinc-500 text-xs md:text-sm font-light leading-relaxed">
-                                functional support for executive function and neural regulation.
-                            </p>
-                        </div>
-                        <div className="stealth-card p-6 md:p-10 space-y-5 bg-white/[0.03] border-white/5 backdrop-blur-md">
-                            <div className="text-sor7ed-yellow text-[10px] font-mono-headline uppercase tracking-widest">// STEP_02</div>
-                            <h3 className="text-lg md:text-xl font-anton uppercase text-white leading-none">No Apps. Just WhatsApp.</h3>
-                            <p className="text-zinc-500 text-xs md:text-sm font-light leading-relaxed">
-                                Respond directly to helpful prompts. No complex dashboards to manage.
-                            </p>
-                        </div>
-                        <div className="stealth-card p-6 md:p-10 space-y-5 bg-white/[0.03] border-white/5 backdrop-blur-md">
-                            <div className="text-sor7ed-yellow text-[10px] font-mono-headline uppercase tracking-widest">// STEP_03</div>
-                            <h3 className="text-lg md:text-xl font-anton uppercase text-white leading-none">Neural Scaffolding</h3>
-                            <p className="text-zinc-500 text-xs md:text-sm font-light leading-relaxed">
-                                Designed to bypass friction and keep you operating at peak capacity.
-                            </p>
+                    {/* Integrated 3 Steps - Compact */}
+                    <div className="max-w-4xl mx-auto w-full pt-12 md:pt-16">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
+                            <div className="stealth-card p-5 md:p-6 space-y-3 bg-white/[0.03] border-white/5 backdrop-blur-md">
+                                <div className="text-sor7ed-yellow text-[8px] font-mono-headline uppercase tracking-widest">// STEP_01</div>
+                                <h3 className="text-base md:text-lg font-anton uppercase text-white leading-none">Daily Micro-Tools</h3>
+                                <p className="text-zinc-500 text-[10px] md:text-xs font-light leading-relaxed">
+                                    Functional support for executive function and neural regulation.
+                                </p>
+                            </div>
+                            <div className="stealth-card p-5 md:p-6 space-y-3 bg-white/[0.03] border-white/5 backdrop-blur-md">
+                                <div className="text-sor7ed-yellow text-[8px] font-mono-headline uppercase tracking-widest">// STEP_02</div>
+                                <h3 className="text-base md:text-lg font-anton uppercase text-white leading-none">No Apps. Just WhatsApp.</h3>
+                                <p className="text-zinc-500 text-[10px] md:text-xs font-light leading-relaxed">
+                                    Respond directly to helpful prompts. No complex dashboards.
+                                </p>
+                            </div>
+                            <div className="stealth-card p-5 md:p-6 space-y-3 bg-white/[0.03] border-white/5 backdrop-blur-md">
+                                <div className="text-sor7ed-yellow text-[8px] font-mono-headline uppercase tracking-widest">// STEP_03</div>
+                                <h3 className="text-base md:text-lg font-anton uppercase text-white leading-none">Neural Scaffolding</h3>
+                                <p className="text-zinc-500 text-[10px] md:text-xs font-light leading-relaxed">
+                                    Designed to bypass friction and keep you operating at peak capacity.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
