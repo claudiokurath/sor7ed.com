@@ -15,15 +15,25 @@ import ToolDetail from './pages/ToolDetail'
 
 function App() {
     const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
+    const [authMode, setAuthMode] = useState<'signup' | 'signin'>('signup')
+
+    const openAuth = (mode: 'signup' | 'signin' = 'signup') => {
+        setAuthMode(mode)
+        setIsAuthModalOpen(true)
+    }
 
     return (
         <Router>
             <div className="min-h-screen bg-black flex flex-col">
-                <Header onOpenAuth={() => setIsAuthModalOpen(true)} />
-                <AuthModal isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)} />
+                <Header onOpenAuth={openAuth} />
+                <AuthModal
+                    isOpen={isAuthModalOpen}
+                    onClose={() => setIsAuthModalOpen(false)}
+                    initialMode={authMode}
+                />
                 <main className="flex-grow">
                     <Routes>
-                        <Route path="/" element={<Home onOpenAuth={() => setIsAuthModalOpen(true)} />} />
+                        <Route path="/" element={<Home onOpenAuth={openAuth} />} />
                         <Route path="/tools" element={<Tools />} />
                         <Route path="/tool/:keyword" element={<ToolDetail />} />
                         <Route path="/blog" element={<Blog />} />

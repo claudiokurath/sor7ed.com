@@ -6,7 +6,7 @@ import ToolCard from '../components/ToolCard'
 import BlogCard from '../components/BlogCard'
 
 interface HomeProps {
-    onOpenAuth: () => void
+    onOpenAuth: (mode?: 'signup' | 'signin') => void
 }
 
 export default function Home({ onOpenAuth }: HomeProps) {
@@ -35,7 +35,7 @@ export default function Home({ onOpenAuth }: HomeProps) {
             </div>
 
             {/* Hero Section */}
-            <section id="hero" className="relative min-h-screen flex flex-col justify-center items-center z-20 px-4 md:px-6 text-center snap-start py-20">
+            <section id="hero" className="relative h-screen flex flex-col justify-center items-center z-20 px-4 md:px-6 text-center snap-start">
                 <div className="animate-in fade-in zoom-in duration-1000 mb-8 md:mb-12">
                     <img src="/logo.png" alt="SOR7ED" className="w-80 md:w-[640px] h-auto object-contain drop-shadow-[0_0_50px_rgba(255,255,255,0.08)] opacity-95" />
                 </div>
@@ -82,21 +82,21 @@ export default function Home({ onOpenAuth }: HomeProps) {
 
             <main className="relative z-10">
                 {/* 7 Vectors (Branches) - Combined with Why Different */}
-                <section id="vectors" className="relative min-h-screen flex flex-col z-20 px-4 md:px-6 text-center snap-start py-24 md:py-32 border-t border-white/5">
+                <section id="vectors" className="relative h-screen flex flex-col justify-center z-20 px-4 md:px-6 text-center snap-start border-t border-white/5">
                     <div className="container mx-auto max-w-7xl">
-                        <div className="text-center mb-20 md:mb-24 max-w-3xl mx-auto">
-                            <span className="text-[10px] font-mono-headline text-zinc-500 uppercase tracking-[0.4em] block mb-5 animate-in slide-in-from-bottom-20">// THE_ARCHITECTURE</span>
-                            <h2 className="text-6xl md:text-8xl font-anton font-normal uppercase tracking-tighter mb-10 leading-none">
+                        <div className="text-center mb-10 md:mb-12 max-w-3xl mx-auto">
+                            <span className="text-[10px] font-mono-headline text-zinc-500 uppercase tracking-[0.4em] block mb-3 animate-in slide-in-from-bottom-20">// THE_ARCHITECTURE</span>
+                            <h2 className="text-4xl md:text-6xl font-anton font-normal uppercase tracking-tighter mb-4 leading-none">
                                 THE <span className="text-sor7ed-yellow">ARCHITECTURE.</span>
                             </h2>
-                            <p className="text-zinc-500 font-light leading-relaxed text-base md:text-lg">
+                            <p className="text-zinc-500 font-light leading-relaxed text-[11px] md:text-sm">
                                 We build a behavioural scaffold. Each vector addresses a core friction point in the neurodivergent experience.
                             </p>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-6 gap-6 md:gap-8 mb-24 md:mb-32">
+                        <div className="grid grid-cols-2 md:grid-cols-6 gap-4 md:gap-6 mb-12 md:mb-16">
                             {[
-                                ...branches.filter(b => b.id !== 'connection' && b.id !== 'impression'),
+                                ...branches.filter(b => b.id !== 'connection' && b.id !== 'impression').slice(0, 4),
                                 ...branches.filter(b => b.id === 'connection' || b.id === 'impression')
                             ].map((branch, i) => {
                                 const span = (i < 2 || i >= 5) ? 'md:col-span-3' : 'md:col-span-2'
@@ -109,7 +109,7 @@ export default function Home({ onOpenAuth }: HomeProps) {
                         </div>
 
                         {/* Integrated Integration Comparison */}
-                        <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 border-t border-white/5 pt-20">
+                        <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 border-t border-white/5 pt-12">
                             <div className="space-y-6">
                                 <h4 className="text-zinc-600 font-anton uppercase text-xs md:text-sm tracking-widest flex items-center gap-3">
                                     <span className="text-red-500/30">🗙</span> Traditional Apps
@@ -131,10 +131,10 @@ export default function Home({ onOpenAuth }: HomeProps) {
                 </section>
 
                 {/* Labs (Tools) */}
-                <section id="lab" className="relative min-h-screen flex flex-col z-20 px-4 md:px-6 py-24 md:py-32 bg-white/[0.01] border-y border-white/5 snap-start">
+                <section id="lab" className="relative h-screen flex flex-col justify-center z-20 px-4 md:px-6 bg-white/[0.01] border-y border-white/5 snap-start">
                     <div className="container mx-auto max-w-7xl">
-                        <div className="text-center mb-20 md:mb-24">
-                            <h2 className="section-title justify-center gap-4 flex mb-8">
+                        <div className="text-center mb-12 md:mb-16">
+                            <h2 className="section-title justify-center gap-4 flex mb-6">
                                 <span className="title-white">THE</span> <span className="title-yellow">LAB.</span>
                             </h2>
                             <p className="text-zinc-500 font-light leading-relaxed max-w-xl mx-auto text-base">
@@ -152,9 +152,9 @@ export default function Home({ onOpenAuth }: HomeProps) {
                 </section>
 
                 {/* Insights (Articles) */}
-                <section id="blog" className="relative min-h-screen flex flex-col z-20 px-4 md:px-6 py-24 md:py-32 snap-start">
+                <section id="blog" className="relative h-screen flex flex-col justify-center z-20 px-4 md:px-6 snap-start">
                     <div className="container mx-auto max-w-7xl">
-                        <h2 className="section-title text-center mb-24 md:mb-32">
+                        <h2 className="section-title text-center mb-16 md:mb-24">
                             <span className="title-white">THE</span> <span className="title-yellow">INSIGHTS.</span>
                         </h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
@@ -168,9 +168,9 @@ export default function Home({ onOpenAuth }: HomeProps) {
                 </section>
 
                 {/* FAQ */}
-                <section id="faq" className="relative min-h-screen flex flex-col z-20 px-4 md:px-6 py-24 md:py-32 border-t border-white/5 snap-start items-center">
+                <section id="faq" className="relative h-screen flex flex-col justify-center z-20 px-4 md:px-6 border-t border-white/5 snap-start items-center">
                     <div className="container mx-auto max-w-4xl">
-                        <h2 className="section-title text-center mb-20 md:mb-24">
+                        <h2 className="section-title text-center mb-12 md:mb-16">
                             <span className="title-white">SYSTEM</span> <span className="title-yellow">FAQ.</span>
                         </h2>
                         <div className="space-y-6">
@@ -186,7 +186,7 @@ export default function Home({ onOpenAuth }: HomeProps) {
                                         <span className={`text-xl transition-transform ${activeFaq === i ? 'rotate-45 text-sor7ed-yellow' : 'text-zinc-500'}`}>+</span>
                                     </button>
                                     {activeFaq === i && (
-                                        <div className="px-6 md:px-10 pb-10 text-zinc-400 text-sm md:text-base leading-relaxed font-light border-t border-white/5 pt-8 animate-in fade-in duration-500">
+                                        <div className="px-6 md:px-10 pb-6 md:pb-8 text-zinc-400 text-xs md:text-sm leading-relaxed font-light border-t border-white/5 pt-6 animate-in fade-in duration-500">
                                             {faq.a}
                                         </div>
                                     )}
@@ -197,17 +197,25 @@ export default function Home({ onOpenAuth }: HomeProps) {
                 </section>
 
                 {/* Footer CTA */}
-                <section className="relative min-h-screen flex flex-col justify-center items-center z-20 px-4 md:px-6 py-32 md:py-60 border-t border-sor7ed-yellow/10 text-center snap-start">
+                <section className="relative h-screen flex flex-col justify-center items-center z-20 px-4 md:px-6 border-t border-sor7ed-yellow/10 text-center snap-start">
                     <div className="container mx-auto max-w-7xl">
-                        <h2 className="text-6xl md:text-8xl lg:text-9xl font-anton font-normal uppercase tracking-tighter mb-20 md:mb-24 leading-none">
+                        <h2 className="text-5xl md:text-7xl lg:text-8xl font-anton font-normal uppercase tracking-tighter mb-12 md:mb-16 leading-none">
                             STOP STRUGGLING. <br /><span className="text-sor7ed-yellow">START OPERATING.</span>
                         </h2>
-                        <button
-                            onClick={onOpenAuth}
-                            className="inline-block bg-sor7ed-yellow text-black font-anton font-normal uppercase tracking-[0.3em] text-[10px] md:text-xs py-6 md:py-8 px-16 md:px-24 rounded-full hover:bg-yellow-400 hover:scale-110 transition-all duration-500 shadow-[0_0_50px_rgba(245,198,20,0.3)]"
-                        >
-                            Initialize Connection
-                        </button>
+                        <div className="flex flex-col items-center space-y-8">
+                            <button
+                                onClick={() => onOpenAuth('signup')}
+                                className="inline-block bg-sor7ed-yellow text-black font-anton font-normal uppercase tracking-[0.3em] text-[10px] md:text-xs py-6 md:py-8 px-16 md:px-24 rounded-full hover:bg-yellow-400 hover:scale-110 transition-all duration-500 shadow-[0_0_50px_rgba(245,198,20,0.3)]"
+                            >
+                                Initialize Connection
+                            </button>
+                            <button
+                                onClick={() => onOpenAuth('signin')}
+                                className="text-[10px] font-anton uppercase tracking-[0.2em] text-zinc-500 hover:text-white transition-colors"
+                            >
+                                Already a member? Sign in
+                            </button>
+                        </div>
 
                         <div className="mt-32 pt-24 border-t border-white/5 grid grid-cols-1 md:grid-cols-2 gap-16 text-zinc-600 font-mono-headline text-[10px] uppercase tracking-[0.4em]">
                             <div className="space-y-6">

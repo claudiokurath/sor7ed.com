@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 
 interface HeaderProps {
-    onOpenAuth: () => void
+    onOpenAuth: (mode?: 'signup' | 'signin') => void
 }
 
 const Header = ({ onOpenAuth }: HeaderProps) => {
@@ -24,12 +24,20 @@ const Header = ({ onOpenAuth }: HeaderProps) => {
                         </Link>
                     </div>
 
-                    <button
-                        onClick={onOpenAuth}
-                        className="bg-sor7ed-yellow text-black px-8 py-3 rounded-full font-anton uppercase text-[11px] tracking-widest hover:bg-yellow-400 hover:scale-105 transition-all shadow-[0_0_20px_rgba(245,198,20,0.1)]"
-                    >
-                        Start Operating
-                    </button>
+                    <div className="flex items-center space-x-6">
+                        <button
+                            onClick={() => onOpenAuth('signin')}
+                            className="text-[10px] font-anton uppercase tracking-[0.2em] text-zinc-500 hover:text-white transition-colors"
+                        >
+                            Sign In
+                        </button>
+                        <button
+                            onClick={() => onOpenAuth('signup')}
+                            className="bg-sor7ed-yellow text-black px-8 py-3 rounded-full font-anton uppercase text-[11px] tracking-widest hover:bg-yellow-400 hover:scale-105 transition-all shadow-[0_0_20px_rgba(245,198,20,0.1)]"
+                        >
+                            Start Operating
+                        </button>
+                    </div>
                 </div>
             </nav>
         </header>
