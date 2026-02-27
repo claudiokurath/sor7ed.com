@@ -27,14 +27,17 @@ const AuthSection = () => {
                     phoneNumber: signupData.phone,
                     leadSource: 'Landing Page',
                     signupDate: new Date().toISOString().split('T')[0],
-                    status: 'Trial'
+                    status: 'Trial',
+                    freeToolsUsed: 0,
+                    creditsBalance: 0
                 })
             })
+            const data = await res.json()
             if (res.ok) {
                 setMessage({ type: 'success', text: 'Welcome to the Registry. Check your WhatsApp for initialization.' })
                 setSignupData({ name: '', email: '', phone: '' })
             } else {
-                setMessage({ type: 'error', text: 'Registration failed. Please try again.' })
+                setMessage({ type: 'error', text: data.message || data.error || 'Registration failed. Please try again.' })
             }
         } catch (err) {
             setMessage({ type: 'error', text: 'Connection error. Trace signal lost.' })
@@ -53,10 +56,11 @@ const AuthSection = () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email: signinEmail })
             })
+            const data = await res.json()
             if (res.ok) {
                 setMessage({ type: 'success', text: 'Check your WhatsApp for your secure access link.' })
             } else {
-                setMessage({ type: 'error', text: 'Authentication failed. Email not found in registry.' })
+                setMessage({ type: 'error', text: data.message || data.error || 'Authentication failed.' })
             }
         } catch (err) {
             setMessage({ type: 'error', text: 'Server error. Authentication protocol offline.' })
@@ -143,15 +147,15 @@ const AuthSection = () => {
                         <button
                             type="submit"
                             disabled={isLoading}
-                            className="w-full bg-white text-black font-antarctican uppercase py-6 rounded-xl hover:bg-sor7ed-yellow transition-all disabled:opacity-50 tracking-[0.2em] text-xs shadow-[0_0_30px_rgba(255,255,255,0.05)]"
+                            className="w-full bg-white text-zinc-950 font-anton uppercase py-6 rounded-xl hover:bg-sor7ed-yellow hover:text-black transition-all disabled:opacity-50 tracking-[0.2em] text-[14px] shadow-[0_0_30px_rgba(255,255,255,0.1)]"
                         >
                             {isLoading ? 'TRANSMITTING...' : (mode === 'signup' ? 'INITIALIZE CONNECTION' : 'REQUEST ACCESS')}
                         </button>
 
                         {message && (
-                            <div className={`p-4 rounded-xl text-[10px] font-mono-headline uppercase tracking-widest text-center ${message.type === 'success'
+                            <div className={`p-6 rounded-xl text-[12px] font-anton uppercase tracking-widest text-center animate-in fade-in slide-in-from-bottom-2 ${message.type === 'success'
                                 ? 'bg-green-500/10 border border-green-500/20 text-green-400'
-                                : 'bg-red-500/10 border border-red-500/20 text-red-400'
+                                : 'bg-red-500/10 border border-red-500/20 text-red-500'
                                 }`}>
                                 {message.text}
                             </div>

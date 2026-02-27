@@ -97,7 +97,7 @@ const ToolDetail = () => {
     }
 
     return (
-        <div className="bg-[#050505] min-h-screen bg-grid relative overflow-hidden text-white font-sans">
+        <div className="bg-black min-h-screen bg-grid relative overflow-hidden text-white font-roboto">
             <div className="fixed inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
                 <div className="absolute inset-0 bg-gradient-to-b from-black via-zinc-900/10 to-black" />
             </div>

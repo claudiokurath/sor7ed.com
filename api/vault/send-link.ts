@@ -25,15 +25,21 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' })
 
     const { email } = req.body
-    if (!email) return res.status(400).json({ error: 'Email is required' })
+    if (!email) return res.status(400).json({ error: 'Invalid Data', message: 'Email is required for authentication.' })
+
+    // 0. System Check
+    if (!NOTION_API_KEY || !CRM_DB_ID) {
+        return res.status(500).json({ error: 'System Error', message: 'Registry integration keys are missing.' })
+    }
 
     try {
+        console.log(`Searching registry for: ${email}`)
         const query = await notionFetch(`databases/${CRM_DB_ID}/query`, 'POST', {
             filter: { property: 'Email', email: { equals: email } }
         })
 
         if (!query.results || query.results.length === 0) {
-            return res.status(404).json({ error: 'No account found with this email. Try signing up for a tool first.' })
+            return res.status(404).json({ error: 'Registry Entry Not Found', message: 'This email is not registered in our system. Please join the registry first.' })
         }
 
         const userPage = query.results[0] as any
@@ -41,7 +47,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         const phoneNumber = userPage.properties['Phone Number']?.phone_number
 
         if (!phoneNumber) {
-            return res.status(400).json({ error: 'Account found but no phone number is linked.' })
+            return res.status(400).json({ error: 'Profile Incomplete', message: 'Account found, but no phone number is linked for WhatsApp delivery.' })
         }
 
         const expiresAt = Date.now() + 3600000
@@ -49,10 +55,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         const hmac = crypto.createHmac('sha256', AUTH_SECRET).update(payload).digest('hex')
         const token = Buffer.from(`${payload}:${hmac}`).toString('base64')
 
-        const magicLink = `https://sor7ed.com/vault?token=${encodeURIComponent(token)}`
+        // IMPORTANT: Ensure this matches your production domain
+        const magicLink = `https://next-level-livid.vercel.app/vault?token=${encodeURIComponent(token)}`
         const message = `Hey ${customerName}! 👋\n\nHere is your secure access link to The Vault:\n\n${magicLink}\n\nThis link expires in 1 hour.\n\n— SOR7ED`
 
         const authHeader = 'Basic ' + Buffer.from(`${TWILIO_ACCOUNT_SID}:${TWILIO_AUTH_TOKEN}`).toString('base64')
+
+        console.log(`Transmitting magic link to ${phoneNumber}...`)
 
         const twilioRes = await fetch(
             `https://api.twilio.com/2010-04-01/Accounts/${TWILIO_ACCOUNT_SID}/Messages.json`,
@@ -72,14 +81,17 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
         if (!twilioRes.ok) {
             const errorData = await twilioRes.json()
-            console.error('Twilio error:', errorData)
-            throw new Error('Failed to send WhatsApp message')
+            console.error('Twilio transmission error:', errorData)
+            return res.status(502).json({
+                error: 'WhatsApp Delivery Failed',
+                message: `Twilio reported an error: ${errorData.message || 'Unknown issue'}`
+            })
         }
 
-        return res.status(200).json({ success: true, message: 'Magic link sent' })
+        return res.status(200).json({ success: true, message: 'Registry authenticated. Magic link transmitted via WhatsApp.' })
 
     } catch (error: any) {
-        console.error('Magic link error:', error)
-        return res.status(500).json({ error: 'Server error', message: error.message })
+        console.error('Vault access error:', error)
+        return res.status(500).json({ error: 'Authentication Protocol Failure', message: error.message })
     }
 }
