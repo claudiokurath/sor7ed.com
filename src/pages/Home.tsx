@@ -34,7 +34,7 @@ export default function Home({ onOpenAuth }: HomeProps) {
                 <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-white/5 blur-[120px] rounded-full" />
             </div>
 
-            {/* Hero Section */}
+            {/* Hero Section - Redepoly for Env Keys */}
             <section id="hero" className="relative min-h-screen flex flex-col justify-center items-center z-20 px-4 md:px-6 text-center snap-start py-20">
                 <div className="animate-in fade-in zoom-in duration-1000 mb-8 md:mb-12">
                     <img src="/logo.png" alt="SOR7ED" className="w-80 md:w-[640px] h-auto object-contain drop-shadow-[0_0_50px_rgba(255,255,255,0.08)] opacity-95" />
