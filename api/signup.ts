@@ -53,13 +53,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
                     'Status': {
                         select: { name: status || 'Trial' }
                     },
-                    'Free Tools Used': {
+                    '# Free Tools Used': {
                         number: freeToolsUsed ?? 0
                     },
                     'Credits Balance': {
                         number: creditsBalance ?? 0
                     },
-                    'Tools Delivered': {
+                    '# Tools Delivered': {
                         number: 1
                     },
                     'Template Requested': {
