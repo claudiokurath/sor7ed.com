@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useVaultSession } from '../hooks/useVaultSession'
 
 interface AuthModalProps {
@@ -12,6 +12,12 @@ const AuthModal = ({ isOpen, onClose, initialMode = 'signup' }: AuthModalProps) 
     const [mode, setMode] = useState<'signup' | 'signin'>(initialMode)
     const [isLoading, setIsLoading] = useState(false)
     const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null)
+
+    // Sync mode when initialMode changes or modal opens
+    useEffect(() => {
+        setMode(initialMode)
+        setMessage(null)
+    }, [initialMode, isOpen])
 
     // Signup State
     const [signupData, setSignupData] = useState({ name: '', email: '', phone: '' })
