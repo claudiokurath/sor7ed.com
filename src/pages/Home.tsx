@@ -84,9 +84,9 @@ export default function Home({ onOpenAuth }: HomeProps) {
                 {/* 7 Vectors (Branches) - Combined with Why Different */}
                 <section id="vectors" className="relative h-screen flex flex-col justify-center z-20 px-4 md:px-6 text-center snap-start border-t border-white/5">
                     <div className="container mx-auto max-w-7xl">
-                        <div className="text-center mb-10 md:mb-12 max-w-3xl mx-auto">
-                            <span className="text-[10px] font-mono-headline text-zinc-500 uppercase tracking-[0.4em] block mb-3 animate-in slide-in-from-bottom-20">// THE_ARCHITECTURE</span>
-                            <h2 className="text-4xl md:text-6xl font-anton font-normal uppercase tracking-tighter mb-4 leading-none">
+                        <div className="text-center mb-6 md:mb-10 max-w-3xl mx-auto">
+                            <span className="text-[10px] font-mono-headline text-zinc-500 uppercase tracking-[0.4em] block mb-2 animate-in slide-in-from-bottom-20">// THE_ARCHITECTURE</span>
+                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-anton font-normal uppercase tracking-tighter mb-4 leading-none">
                                 THE <span className="text-sor7ed-yellow">ARCHITECTURE.</span>
                             </h2>
                             <p className="text-zinc-500 font-light leading-relaxed text-[11px] md:text-sm">
@@ -94,14 +94,14 @@ export default function Home({ onOpenAuth }: HomeProps) {
                             </p>
                         </div>
 
-                        <div className="grid grid-cols-2 md:grid-cols-6 gap-4 md:gap-6 mb-12 md:mb-16">
-                            {[
-                                ...branches.filter(b => b.id !== 'connection' && b.id !== 'impression').slice(0, 4),
-                                ...branches.filter(b => b.id === 'connection' || b.id === 'impression')
-                            ].map((branch, i) => {
-                                const span = (i < 2 || i >= 5) ? 'md:col-span-3' : 'md:col-span-2'
+                        <div className="grid grid-cols-2 md:grid-cols-12 gap-3 md:gap-4 mb-8 md:mb-12">
+                            {branches.map((branch, i) => {
+                                // Better distribution for 7 items
+                                let span = 'md:col-span-3' // Default for 4-in-a-row (Mind, Wealth, Body, Tech)
+                                if (i >= 4) span = 'md:col-span-4' // Last row of 3 (Connection, Impression, Growth)
+
                                 return (
-                                    <div key={branch.name} className={span}>
+                                    <div key={branch.name} className={`${span} col-span-1`}>
                                         <BranchCard branch={branch} />
                                     </div>
                                 )
@@ -109,7 +109,7 @@ export default function Home({ onOpenAuth }: HomeProps) {
                         </div>
 
                         {/* Integrated Integration Comparison */}
-                        <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 border-t border-white/5 pt-12">
+                        <div className="max-w-4xl mx-auto grid grid-cols-2 gap-6 md:gap-10 border-t border-white/5 pt-8">
                             <div className="space-y-6">
                                 <h4 className="text-zinc-600 font-anton uppercase text-xs md:text-sm tracking-widest flex items-center gap-3">
                                     <span className="text-red-500/30">🗙</span> Traditional Apps
