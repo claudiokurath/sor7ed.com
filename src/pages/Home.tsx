@@ -35,18 +35,18 @@ export default function Home({ onOpenAuth }: HomeProps) {
             </div>
 
             {/* Hero Section */}
-            <section id="hero" className="relative min-h-[100dvh] md:h-screen flex flex-col justify-center items-center z-20 px-4 md:px-6 text-center snap-start py-20 md:py-0">
-                <div className="animate-in fade-in zoom-in duration-1000 mb-8 md:mb-12">
-                    <img src="/logo.png" alt="SOR7ED" className="w-80 md:w-[640px] h-auto object-contain drop-shadow-[0_0_50px_rgba(255,255,255,0.08)] opacity-95" />
+            <section id="hero" className="relative min-h-[100dvh] md:h-screen flex flex-col justify-center items-center z-20 px-4 md:px-6 text-center snap-start py-10 md:py-0">
+                <div className="animate-in fade-in zoom-in duration-1000 mb-6 md:mb-12">
+                    <img src="/logo.png" alt="SOR7ED" className="w-64 md:w-[640px] h-auto object-contain drop-shadow-[0_0_50px_rgba(255,255,255,0.08)] opacity-95" />
                 </div>
 
-                <div className="max-w-6xl mx-auto space-y-10 animate-in slide-in-from-bottom-20 duration-1000 delay-300 fill-mode-both">
-                    <h1 className="text-4xl md:text-8xl font-anton font-normal uppercase tracking-tighter leading-tight text-white">
+                <div className="max-w-6xl mx-auto space-y-6 md:space-y-10 animate-in slide-in-from-bottom-20 duration-1000 delay-300 fill-mode-both">
+                    <h1 className="text-3xl md:text-8xl font-anton font-normal uppercase tracking-tighter leading-tight text-white">
                         ADHD-FRIENDLY TOOLS — <br />
                         <span className="text-sor7ed-yellow">DELIVERED TO YOUR PHONE.</span>
                     </h1>
 
-                    <p className="text-zinc-500 text-base md:text-xl font-light leading-relaxed max-w-2xl mx-auto">
+                    <p className="text-zinc-500 text-sm md:text-xl font-light leading-relaxed max-w-2xl mx-auto">
                         Quick interactive tools for executive function, time blindness, and sensory overwhelm.
                         No complex apps. Just the support you need, exactly when you need it.
                     </p>
@@ -84,12 +84,12 @@ export default function Home({ onOpenAuth }: HomeProps) {
                 {/* 7 Vectors (Branches) - Combined with Why Different */}
                 <section id="vectors" className="relative min-h-screen md:h-screen flex flex-col justify-center z-20 px-4 md:px-6 text-center snap-start border-t border-white/5 py-24 md:py-0">
                     <div className="container mx-auto max-w-7xl">
-                        <div className="text-center mb-12 md:mb-10 max-w-3xl mx-auto">
-                            <span className="text-[10px] font-mono-headline text-zinc-500 uppercase tracking-[0.4em] block mb-5 animate-in slide-in-from-bottom-20">// THE_ARCHITECTURE</span>
-                            <h2 className="text-6xl md:text-5xl lg:text-6xl font-anton font-normal uppercase tracking-tighter mb-8 md:mb-4 leading-none text-white">
+                        <div className="text-center mb-10 md:mb-10 max-w-3xl mx-auto">
+                            <span className="text-[10px] font-mono-headline text-zinc-500 uppercase tracking-[0.4em] block mb-4 md:mb-5 animate-in slide-in-from-bottom-20">// THE_ARCHITECTURE</span>
+                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-anton font-normal uppercase tracking-tighter mb-6 md:mb-4 leading-none text-white">
                                 THE <span className="text-sor7ed-yellow">ARCHITECTURE.</span>
                             </h2>
-                            <p className="text-zinc-500 font-light leading-relaxed text-base md:text-sm">
+                            <p className="text-zinc-500 font-light leading-relaxed text-sm md:text-sm">
                                 We build a behavioural scaffold. Each vector addresses a core friction point in the neurodivergent experience.
                             </p>
                         </div>
