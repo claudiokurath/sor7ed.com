@@ -25,7 +25,7 @@ export default function Home({ onOpenAuth }: HomeProps) {
     ]
 
     return (
-        <div className="bg-black text-white font-roboto h-screen overflow-y-auto snap-y snap-mandatory scroll-smooth relative">
+        <div className="bg-black text-white font-roboto min-h-screen md:h-screen overflow-y-auto snap-y snap-mandatory scroll-smooth relative">
             {/* Background elements (Fixed) */}
             <div className="fixed inset-0 w-full h-full z-0 pointer-events-none">
                 <div className="absolute inset-0 bg-grid opacity-20" />
@@ -35,7 +35,7 @@ export default function Home({ onOpenAuth }: HomeProps) {
             </div>
 
             {/* Hero Section */}
-            <section id="hero" className="relative h-screen flex flex-col justify-center items-center z-20 px-4 md:px-6 text-center snap-start">
+            <section id="hero" className="relative min-h-[100dvh] md:h-screen flex flex-col justify-center items-center z-20 px-4 md:px-6 text-center snap-start py-20 md:py-0">
                 <div className="animate-in fade-in zoom-in duration-1000 mb-8 md:mb-12">
                     <img src="/logo.png" alt="SOR7ED" className="w-80 md:w-[640px] h-auto object-contain drop-shadow-[0_0_50px_rgba(255,255,255,0.08)] opacity-95" />
                 </div>
@@ -82,26 +82,26 @@ export default function Home({ onOpenAuth }: HomeProps) {
 
             <main className="relative z-10">
                 {/* 7 Vectors (Branches) - Combined with Why Different */}
-                <section id="vectors" className="relative h-screen flex flex-col justify-center z-20 px-4 md:px-6 text-center snap-start border-t border-white/5">
+                <section id="vectors" className="relative min-h-screen md:h-screen flex flex-col justify-center z-20 px-4 md:px-6 text-center snap-start border-t border-white/5 py-24 md:py-0">
                     <div className="container mx-auto max-w-7xl">
-                        <div className="text-center mb-6 md:mb-10 max-w-3xl mx-auto">
-                            <span className="text-[10px] font-mono-headline text-zinc-500 uppercase tracking-[0.4em] block mb-2 animate-in slide-in-from-bottom-20">// THE_ARCHITECTURE</span>
-                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-anton font-normal uppercase tracking-tighter mb-4 leading-none">
+                        <div className="text-center mb-12 md:mb-10 max-w-3xl mx-auto">
+                            <span className="text-[10px] font-mono-headline text-zinc-500 uppercase tracking-[0.4em] block mb-5 animate-in slide-in-from-bottom-20">// THE_ARCHITECTURE</span>
+                            <h2 className="text-6xl md:text-5xl lg:text-6xl font-anton font-normal uppercase tracking-tighter mb-8 md:mb-4 leading-none text-white">
                                 THE <span className="text-sor7ed-yellow">ARCHITECTURE.</span>
                             </h2>
-                            <p className="text-zinc-500 font-light leading-relaxed text-[11px] md:text-sm">
+                            <p className="text-zinc-500 font-light leading-relaxed text-base md:text-sm">
                                 We build a behavioural scaffold. Each vector addresses a core friction point in the neurodivergent experience.
                             </p>
                         </div>
 
-                        <div className="grid grid-cols-2 md:grid-cols-12 gap-3 md:gap-4 mb-8 md:mb-12">
+                        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-4 mb-16 md:mb-12 text-left">
                             {branches.map((branch, i) => {
                                 // Better distribution for 7 items
                                 let span = 'md:col-span-3' // Default for 4-in-a-row (Mind, Wealth, Body, Tech)
                                 if (i >= 4) span = 'md:col-span-4' // Last row of 3 (Connection, Impression, Growth)
 
                                 return (
-                                    <div key={branch.name} className={`${span} col-span-1`}>
+                                    <div key={branch.name} className={`${span}`}>
                                         <BranchCard branch={branch} />
                                     </div>
                                 )
@@ -109,7 +109,7 @@ export default function Home({ onOpenAuth }: HomeProps) {
                         </div>
 
                         {/* Integrated Integration Comparison */}
-                        <div className="max-w-4xl mx-auto grid grid-cols-2 gap-6 md:gap-10 border-t border-white/5 pt-8">
+                        <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-10 border-t border-white/5 pt-16 md:pt-8">
                             <div className="space-y-6">
                                 <h4 className="text-zinc-600 font-anton uppercase text-xs md:text-sm tracking-widest flex items-center gap-3">
                                     <span className="text-red-500/30">🗙</span> Traditional Apps
@@ -131,7 +131,7 @@ export default function Home({ onOpenAuth }: HomeProps) {
                 </section>
 
                 {/* Labs (Tools) */}
-                <section id="lab" className="relative h-screen flex flex-col justify-center z-20 px-4 md:px-6 bg-white/[0.01] border-y border-white/5 snap-start">
+                <section id="lab" className="relative min-h-screen md:h-screen flex flex-col justify-center z-20 px-4 md:px-6 py-24 md:py-0 bg-white/[0.01] border-y border-white/5 snap-start">
                     <div className="container mx-auto max-w-7xl">
                         <div className="text-center mb-12 md:mb-16">
                             <h2 className="section-title justify-center gap-4 flex mb-6">
@@ -152,7 +152,7 @@ export default function Home({ onOpenAuth }: HomeProps) {
                 </section>
 
                 {/* Insights (Articles) */}
-                <section id="blog" className="relative h-screen flex flex-col justify-center z-20 px-4 md:px-6 snap-start">
+                <section id="blog" className="relative min-h-screen md:h-screen flex flex-col justify-center z-20 px-4 md:px-6 py-24 md:py-0 snap-start">
                     <div className="container mx-auto max-w-7xl">
                         <h2 className="section-title text-center mb-16 md:mb-24">
                             <span className="title-white">THE</span> <span className="title-yellow">INSIGHTS.</span>
@@ -168,7 +168,7 @@ export default function Home({ onOpenAuth }: HomeProps) {
                 </section>
 
                 {/* FAQ */}
-                <section id="faq" className="relative h-screen flex flex-col justify-center z-20 px-4 md:px-6 border-t border-white/5 snap-start items-center">
+                <section id="faq" className="relative min-h-screen md:h-screen flex flex-col justify-center z-20 px-4 md:px-6 border-t border-white/5 snap-start items-center py-24 md:py-0">
                     <div className="container mx-auto max-w-4xl">
                         <h2 className="section-title text-center mb-12 md:mb-16">
                             <span className="title-white">SYSTEM</span> <span className="title-yellow">FAQ.</span>
@@ -197,7 +197,7 @@ export default function Home({ onOpenAuth }: HomeProps) {
                 </section>
 
                 {/* Footer CTA */}
-                <section className="relative h-screen flex flex-col justify-center items-center z-20 px-4 md:px-6 border-t border-sor7ed-yellow/10 text-center snap-start">
+                <section className="relative min-h-screen md:h-screen flex flex-col justify-center items-center z-20 px-4 md:px-6 border-t border-sor7ed-yellow/10 text-center snap-start py-32 md:py-0">
                     <div className="container mx-auto max-w-7xl">
                         <h2 className="text-5xl md:text-7xl lg:text-8xl font-anton font-normal uppercase tracking-tighter mb-12 md:mb-16 leading-none">
                             STOP STRUGGLING. <br /><span className="text-sor7ed-yellow">START OPERATING.</span>
