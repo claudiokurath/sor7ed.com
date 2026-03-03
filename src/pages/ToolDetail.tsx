@@ -4,6 +4,7 @@ import { useNotionData } from '../hooks/useNotionData'
 import { useEffect, useState } from 'react'
 import FavoriteButton from '../components/FavoriteButton'
 import DeployModal from '../components/DeployModal'
+import AuthModal from '../components/AuthModal'
 import { formatContent } from '../utils/formatContent'
 
 // Import all interactive tools
@@ -29,11 +30,15 @@ const ToolDetail = () => {
     const [tool, setTool] = useState<any>(null)
     const [isDeployModalOpen, setIsDeployModalOpen] = useState(false)
 
+    const [showAuthModal, setShowAuthModal] = useState(false)
+
     useEffect(() => {
         if (!sessionLoading && !isLoggedIn) {
-            navigate('/vault')
+            setShowAuthModal(true)
+        } else if (isLoggedIn) {
+            setShowAuthModal(false)
         }
-    }, [isLoggedIn, sessionLoading, navigate])
+    }, [isLoggedIn, sessionLoading])
 
     useEffect(() => {
         const allTools = apiTools
@@ -186,6 +191,14 @@ const ToolDetail = () => {
                 keyword={tool.whatsappKeyword || tool.name}
                 title={tool.name}
             />
+
+            {showAuthModal && (
+                <AuthModal
+                    isOpen={showAuthModal}
+                    onClose={() => navigate(-1)}
+                    initialMode="signup"
+                />
+            )}
         </div>
     )
 }
