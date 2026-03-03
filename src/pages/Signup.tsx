@@ -56,7 +56,7 @@ const Signup = () => {
                         <div className="grid md:grid-cols-2 gap-8">
                             {[
                                 { q: "What happens next?", a: "You'll receive a WhatsApp message immediately with instructions to request your first protocol." },
-                                { q: "Is there a catch?", a: "No. Your first 2 tools are free. After that, buy credits only if you find value." },
+                                { q: "Is there a catch?", a: "No. All tools and protocols are completely free to use without any credit limits right now." },
                                 { q: "Can I cancel?", a: "There's nothing to cancel. No subscriptions. No spam. Just stop texting whenever." },
                                 { q: "Is it secure?", a: "We use enterprise-grade encryption for all data and never sell your information." }
                             ].map((faq, i) => (
