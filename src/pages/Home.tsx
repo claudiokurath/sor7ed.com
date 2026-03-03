@@ -42,15 +42,27 @@ export default function Home({ onOpenAuth }: HomeProps) {
                 </div>
 
                 <div className="max-w-6xl mx-auto space-y-6 md:space-y-10 animate-in slide-in-from-bottom-20 duration-1000 delay-300 fill-mode-both">
-                    <h1 className="text-[clamp(2.5rem,10vw,8rem)] font-normal tracking-[0.16em] leading-[0.85] text-white mb-6">
-                        ADHD-FRIENDLY TOOLS — <br />
-                        <span className="text-sor7ed-yellow">DELIVERED TO YOUR PHONE.</span>
+                    <h1 className="text-[clamp(2.5rem,6vw,5.5rem)] font-normal tracking-[0.16em] leading-[0.85] text-white mb-6 uppercase">
+                        <span className="text-sor7ed-yellow">SOR7ED</span> IS A SHAME-FREE PLATFORM BUILT FOR NEURODIVERGENT AND BUSY MINDS
                     </h1>
 
-                    <p className="text-zinc-500 text-sm md:text-xl font-light leading-relaxed max-w-2xl mx-auto">
-                        Quick interactive tools for executive function, time blindness, and sensory overwhelm.
-                        No complex apps. Just the support you need, exactly when you need it.
-                    </p>
+                    <div className="text-zinc-400 text-sm md:text-lg font-light leading-relaxed max-w-3xl mx-auto space-y-4 md:space-y-6 text-left md:text-center">
+                        <p>
+                            — people with ADHD, autism, dyslexia, RSD, and related experiences who are tired of productivity advice that doesn't work for them.
+                        </p>
+                        <p>
+                            We publish practical articles three times a week and deliver <strong className="text-white font-medium">free templates via WhatsApp</strong> — no new apps, no downloads, just the app you already use.
+                        </p>
+                        <p>
+                            <strong className="text-white font-medium">We're not therapy, medicine, or a crisis service.</strong> We're a content platform that gives you templates, scripts, and tools to handle the life admin that feels impossible.
+                        </p>
+                        <p>
+                            SOR7ED was built by neurodivergent people who got tired of advice that never worked for their brains — so built something that does.
+                        </p>
+                        <p className="text-sor7ed-yellow font-fuel-decay uppercase tracking-[0.1em] text-xl md:text-3xl pt-2 text-center text-shadow-glow">
+                            TEMPLATES ARE FREE. FOREVER.
+                        </p>
+                    </div>
 
                     {/* Integrated 3 Steps - Compact */}
                     <div className="max-w-4xl mx-auto w-full pt-12 md:pt-16">
@@ -82,31 +94,7 @@ export default function Home({ onOpenAuth }: HomeProps) {
             </section>
 
             <div className="relative z-10">
-                {/* About Section */}
-                <section id="about" className="relative w-full z-[21] px-4 md:px-6 py-32 bg-black snap-start border-t border-white/5">
-                    <div className="container mx-auto max-w-4xl">
-                        <div className="stealth-card p-8 md:p-12 space-y-6">
-                            <h2 className="text-3xl md:text-5xl font-fuel-decay text-white tracking-[0.1em] mb-6">
-                                <span className="text-sor7ed-yellow">SOR7ED</span> IS A SHAME-FREE PLATFORM BUILT FOR NEURODIVERGENT AND BUSY MINDS
-                            </h2>
-                            <p className="text-zinc-400 text-sm md:text-base leading-relaxed">
-                                — people with ADHD, autism, dyslexia, RSD, and related experiences who are tired of productivity advice that doesn't work for them.
-                            </p>
-                            <p className="text-zinc-400 text-sm md:text-base leading-relaxed">
-                                We publish practical articles three times a week and deliver <strong className="text-white font-medium">free templates via WhatsApp</strong> — no new apps, no downloads, just the app you already use.
-                            </p>
-                            <p className="text-zinc-400 text-sm md:text-base leading-relaxed">
-                                <strong className="text-white font-medium">We're not therapy, medicine, or a crisis service.</strong> We're a content platform that gives you templates, scripts, and tools to handle the life admin that feels impossible.
-                            </p>
-                            <p className="text-zinc-400 text-sm md:text-base leading-relaxed">
-                                SOR7ED was built by neurodivergent people who got tired of advice that never worked for their brains — so built something that does.
-                            </p>
-                            <p className="text-sor7ed-yellow font-fuel-decay uppercase tracking-[0.1em] text-lg md:text-xl pt-4">
-                                Templates are free. Forever.
-                            </p>
-                        </div>
-                    </div>
-                </section>
+                {/* About Section Removed (Moved to Hero) */}
 
                 {/* 7 Vectors (Branches) - Combined with Why Different */}
                 <section id="vectors" className="relative min-h-screen w-full z-[21] px-4 md:px-6 border-t border-white/5 py-48 bg-black snap-start scroll-mt-24">
