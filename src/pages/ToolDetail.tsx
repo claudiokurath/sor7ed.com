@@ -71,7 +71,7 @@ const ToolDetail = () => {
     }
 
     // Mapping keyword to specialized interactive components
-    const renderInteractiveTool = () => {
+    const getInteractiveComponent = () => {
         const k = (tool.whatsappKeyword || '').toUpperCase()
         const n = (tool.name || '').toLowerCase()
 
@@ -93,13 +93,18 @@ const ToolDetail = () => {
             return <DynamicTool tool={tool} onDeploy={handleDeploy} />
         }
 
-        // Compose a blog-like content from the tool's properties
-        let combinedContent = tool.description ? `\n\n${tool.description}\n\n` : ''
-        if (tool.problemStatement) combinedContent += `## The Problem\n${tool.problemStatement}\n\n`
-        if (tool.whatYouGet) combinedContent += `## What You Get\n${tool.whatYouGet}\n\n`
-        if (tool.whoItsFor) combinedContent += `## Who It's For\n${tool.whoItsFor}\n\n`
+        return null
+    }
 
-        // Fallback for tools without an interactive version yet, styled like a blog post
+    const InteractiveComp = getInteractiveComponent()
+
+    // Compose a blog-like content from the tool's properties
+    let combinedContent = tool.description ? `\n\n${tool.description}\n\n` : ''
+    if (tool.problemStatement) combinedContent += `## The Problem\n${tool.problemStatement}\n\n`
+    if (tool.whatYouGet) combinedContent += `## What You Get\n${tool.whatYouGet}\n\n`
+    if (tool.whoItsFor) combinedContent += `## Who It's For\n${tool.whoItsFor}\n\n`
+
+    const renderToolPage = () => {
         return (
             <article className="animate-in fade-in duration-1000 max-w-4xl mx-auto">
                 {/* Cover Image */}
@@ -119,26 +124,35 @@ const ToolDetail = () => {
                 )}
 
                 {/* Article Header */}
-                <div className="mb-20">
-                    <h1 className="text-6xl md:text-8xl font-fuel-decay text-white uppercase">
+                <div className="mb-20 text-center">
+                    <h1 className="text-6xl md:text-8xl font-fuel-decay text-white uppercase break-words">
                         {tool.name}
                     </h1>
                 </div>
 
-                {/* Content Area */}
-                <div className="stealth-card p-10 md:p-20 mb-20">
-                    <div
-                        className="blog-content text-zinc-400 font-light leading-relaxed text-lg space-y-8"
-                        dangerouslySetInnerHTML={{ __html: formatContent(combinedContent) }}
-                    />
-
-                    {/* Ending logic */}
-                    <div className="mt-24 pt-12 border-t border-white/5 text-center">
-                        <span className="text-[10px] font-mono-headline text-zinc-700 uppercase tracking-[0.5em] italic">
-                            [End of System Protocol]
-                        </span>
+                {/* Optional Interactive Component Injection right at the top of the body */}
+                {InteractiveComp && (
+                    <div className="mb-20">
+                        {InteractiveComp}
                     </div>
-                </div>
+                )}
+
+                {/* Content Area */}
+                {(combinedContent.trim().length > 0) && (
+                    <div className="stealth-card p-10 md:p-20 mb-20">
+                        <div
+                            className="blog-content text-zinc-400 font-light leading-relaxed text-lg space-y-8"
+                            dangerouslySetInnerHTML={{ __html: formatContent(combinedContent) }}
+                        />
+
+                        {/* Ending logic */}
+                        <div className="mt-24 pt-12 border-t border-white/5 text-center">
+                            <span className="text-[10px] font-mono-headline text-zinc-700 uppercase tracking-[0.5em] italic">
+                                [End of System Protocol]
+                            </span>
+                        </div>
+                    </div>
+                )}
 
                 {/* CTA Section */}
                 <div className="stealth-card p-12 md:p-16 text-center relative border-sor7ed-yellow/20 bg-gradient-to-br from-sor7ed-yellow/5 to-transparent mb-20">
@@ -181,7 +195,7 @@ const ToolDetail = () => {
                 </div>
 
                 <div className="animate-in fade-in slide-in-from-bottom-20 duration-1000">
-                    {renderInteractiveTool()}
+                    {renderToolPage()}
                 </div>
             </div>
 
