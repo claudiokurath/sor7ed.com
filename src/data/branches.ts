@@ -39,7 +39,7 @@ export const branches = [
         id: 'connection',
         emoji: '🤝',
         name: 'Connection',
-        problem: "socially Drained?",
+        problem: "Socially Drained?",
         solution: "Boundary Frameworks",
         description: 'Communication protocols that protect your social battery.',
         color: '#E67E22'
