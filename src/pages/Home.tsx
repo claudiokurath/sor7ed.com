@@ -64,32 +64,7 @@ export default function Home({ onOpenAuth }: HomeProps) {
                         </p>
                     </div>
 
-                    {/* Integrated 3 Steps - Compact */}
-                    <div className="max-w-4xl mx-auto w-full pt-12 md:pt-16">
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
-                            <div className="stealth-card p-5 md:p-6 space-y-3 bg-white/[0.03] border-white/5 backdrop-blur-md">
-                                <div className="text-sor7ed-yellow text-[8px] font-mono-headline uppercase tracking-[0.15em]">// STEP_01</div>
-                                <h3 className="text-base md:text-lg font-fuel-decay uppercase text-white ">Daily Micro-Tools</h3>
-                                <p className="text-zinc-500 text-[10px] md:text-xs font-light leading-relaxed">
-                                    Functional support for executive function and neural regulation.
-                                </p>
-                            </div>
-                            <div className="stealth-card p-5 md:p-6 space-y-3 bg-white/[0.03] border-white/5 backdrop-blur-md">
-                                <div className="text-sor7ed-yellow text-[8px] font-mono-headline uppercase tracking-[0.15em]">// STEP_02</div>
-                                <h3 className="text-base md:text-lg font-fuel-decay uppercase text-white ">No Apps. Just WhatsApp.</h3>
-                                <p className="text-zinc-500 text-[10px] md:text-xs font-light leading-relaxed">
-                                    Respond directly to helpful prompts. No complex dashboards.
-                                </p>
-                            </div>
-                            <div className="stealth-card p-5 md:p-6 space-y-3 bg-white/[0.03] border-white/5 backdrop-blur-md">
-                                <div className="text-sor7ed-yellow text-[8px] font-mono-headline uppercase tracking-[0.15em]">// STEP_03</div>
-                                <h3 className="text-base md:text-lg font-fuel-decay uppercase text-white ">Neural Scaffolding</h3>
-                                <p className="text-zinc-500 text-[10px] md:text-xs font-light leading-relaxed">
-                                    Designed to bypass friction and keep you operating at peak capacity.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </section>
 
