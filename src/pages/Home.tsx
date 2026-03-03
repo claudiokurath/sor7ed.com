@@ -171,7 +171,7 @@ export default function Home({ onOpenAuth }: HomeProps) {
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
                             {toolsLoading ? (
                                 <p className="col-span-full text-center text-zinc-500 animate-pulse uppercase tracking-[0.5em] text-xs py-20">Accessing Toolkits...</p>
-                            ) : dynamicTools.slice(0, 10).map((tool: any) => (
+                            ) : dynamicTools.slice(0, 6).map((tool: any) => (
                                 <ToolCard key={tool.id} tool={tool} />
                             ))}
                         </div>
@@ -190,7 +190,7 @@ export default function Home({ onOpenAuth }: HomeProps) {
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
                             {articlesLoading ? (
                                 <p className="col-span-full text-center text-zinc-500 animate-pulse uppercase tracking-[0.5em] text-xs py-20">Syncing Knowledge Base...</p>
-                            ) : dynamicArticles.slice(0, 10).map((post: any) => (
+                            ) : dynamicArticles.slice(0, 6).map((post: any) => (
                                 <BlogCard key={post.id} article={post} />
                             ))}
                         </div>

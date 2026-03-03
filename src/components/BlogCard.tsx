@@ -21,7 +21,7 @@ interface BlogCardProps {
 
 const BlogCard = ({ article }: BlogCardProps) => {
     return (
-        <div className="stealth-card group hover:border-white/20 transition-all duration-700 flex flex-col aspect-[4/5] overflow-hidden relative">
+        <div className="stealth-card group hover:border-white/20 transition-all duration-700 flex flex-col aspect-[4/3] overflow-hidden relative">
             <Link to={`/blog/${encodeURIComponent(article.title)}`} className="absolute inset-0 z-10" />
 
             {/* Background Image */}

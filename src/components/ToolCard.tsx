@@ -31,7 +31,7 @@ const ToolCard = ({ tool }: ToolCardProps) => {
     return (
         <div
             onClick={handleClick}
-            className="stealth-card group hover:border-sor7ed-yellow/40 transition-all duration-700 cursor-pointer overflow-hidden p-0 aspect-[4/5] relative"
+            className="stealth-card group hover:border-sor7ed-yellow/40 transition-all duration-700 cursor-pointer overflow-hidden p-0 aspect-[4/3] relative"
         >
             {/* Background Image / Emoji */}
             <div className="absolute inset-0 w-full h-full bg-zinc-900 flex items-center justify-center overflow-hidden">
