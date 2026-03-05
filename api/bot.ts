@@ -56,7 +56,8 @@ export default async function handler(req: any, res: any) {
         if (!CRM_DB_ID) throw new Error("Vercel Config Error: Missing CRM Database ID.")
 
         const { From } = bodyData || {}
-        const userPhone = From || ''
+        // Twilio sends 'whatsapp:+447...' - we need to strip 'whatsapp:' to match the CRM format
+        const userPhone = From ? From.replace('whatsapp:', '').replace(/[^\d+]/g, '') : ''
 
         let userPage: any = null
         if (userPhone) {
