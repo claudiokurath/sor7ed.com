@@ -19,27 +19,19 @@ const Header = ({ onOpenAuth }: HeaderProps) => {
         <header className="bg-black border-b border-white/5 fixed top-0 left-0 w-full z-50">
             <nav className="container mx-auto px-6 py-4">
                 <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-4 md:space-x-8">
-                        <Link to="/" className="text-white text-xl font-black font-fuel-decay tracking-[0.15em] hover:text-sor7ed-yellow transition-colors mr-2">
-                            SOR7ED
-                        </Link>
-                        <div className="hidden md:flex space-x-4">
-                            {['Think', 'Care', 'Spend', 'Connect', 'File', 'Live', 'Grow'].map((sec) => (
-                                <Link
-                                    key={sec}
-                                    to={`/section/${sec.toLowerCase()}`}
-                                    className="text-[10px] font-fuel-decay uppercase tracking-[0.2em] text-zinc-500 hover:text-white transition-colors"
-                                >
-                                    {sec}
-                                </Link>
-                            ))}
-                        </div>
-                        <Link to="/vault" className="text-[10px] font-fuel-decay uppercase tracking-[0.2em] text-zinc-400 hover:text-sor7ed-yellow transition-colors border border-white/5 bg-white/[0.03] px-3 md:px-4 py-2 rounded-lg ml-4">
-                            Vault
+                    <div className="flex items-center">
+                        <Link to="/" className="text-white text-[2rem] md:text-[2.5rem] font-normal tracking-[0.15em] hover:text-sor7ed-yellow transition-colors mr-2">
+                            <span className="text-sor7ed-yellow">SOR7ED</span>
                         </Link>
                     </div>
 
-                    <div className="flex items-center space-x-4 md:space-x-6">
+                    <div className="flex items-center space-x-4 md:space-x-8">
+                        <div className="hidden md:flex space-x-4">
+                            <Link to="/vault" className="text-[12px] font-mono-headline uppercase tracking-[0.2em] text-white hover:text-sor7ed-yellow transition-colors border border-white/20 bg-white/[0.03] px-6 py-3 rounded-full">
+                                Vault
+                            </Link>
+                        </div>
+
                         {isLoggedIn ? (
                             <>
                                 <span className="hidden md:inline text-[10px] font-fuel-decay text-sor7ed-yellow uppercase tracking-[0.2em]">
@@ -55,17 +47,17 @@ const Header = ({ onOpenAuth }: HeaderProps) => {
                         ) : (
                             <>
                                 <button
-                                    onClick={() => onOpenAuth('signin')}
-                                    className="text-[10px] font-fuel-decay uppercase tracking-[0.2em] text-zinc-500 hover:text-white transition-colors"
-                                >
-                                    Sign In
-                                </button>
-                                <button
                                     onClick={() => onOpenAuth('signup')}
-                                    className="bg-sor7ed-yellow text-black px-4 md:px-8 py-2 md:py-3 rounded-full font-fuel-decay uppercase text-[10px] md:text-[11px] tracking-[0.15em] hover:bg-yellow-400 hover:scale-105 transition-all shadow-[0_0_20px_rgba(245,198,20,0.1)]"
+                                    className="bg-sor7ed-yellow text-black px-6 md:px-8 py-3 rounded-full font-mono-headline uppercase text-[10px] md:text-[12px] tracking-[0.2em] hover:bg-yellow-400 hover:scale-105 transition-all shadow-[0_0_20px_rgba(245,198,20,0.1)] font-bold"
                                 >
                                     <span className="md:hidden">Start</span>
-                                    <span className="hidden md:inline">Start Operating</span>
+                                    <span className="hidden md:inline">CONTINUE AS GUEST</span>
+                                </button>
+                                <button
+                                    onClick={() => onOpenAuth('signin')}
+                                    className="text-[10px] font-mono-headline uppercase tracking-[0.2em] text-zinc-500 hover:text-white transition-colors"
+                                >
+                                    Sign In
                                 </button>
                             </>
                         )}
