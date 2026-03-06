@@ -42,10 +42,10 @@ export default function SectionDetail() {
                 </div>
 
                 <div className="relative z-10 px-6 container mx-auto max-w-7xl animate-in fade-in slide-in-from-bottom-10 text-center">
-                    <h1 className="text-6xl md:text-9xl font-black font-fuel-decay uppercase tracking-[0.15em] mb-6 drop-shadow-[0_0_30px_rgba(0,0,0,0.8)]" style={{ color: section.color }}>
+                    <h1 className="text-8xl md:text-[10rem] font-black font-fuel-decay uppercase tracking-[0.15em] mb-6 drop-shadow-[0_0_30px_rgba(0,0,0,0.8)]" style={{ color: section.color }}>
                         {section.name}
                     </h1>
-                    <p className="max-w-2xl mx-auto text-white/90 text-xl md:text-2xl font-light leading-relaxed drop-shadow-md bg-black/40 p-4 rounded-xl backdrop-blur-sm border border-white/10">
+                    <p className="max-w-2xl mx-auto text-white/90 text-2xl md:text-3xl font-light leading-relaxed drop-shadow-[0_0_20px_rgba(0,0,0,0.8)]">
                         {section.description}
                     </p>
                 </div>
