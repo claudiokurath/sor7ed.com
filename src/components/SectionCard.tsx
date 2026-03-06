@@ -17,7 +17,7 @@ export default function SectionCard({ section, delay = 0, className = "" }: Sect
         >
             <div className="flex justify-between items-start mb-6 md:mb-12">
                 <h3 className="text-6xl md:text-7xl text-black break-words font-fuel-decay uppercase flex items-center gap-4">
-                    {section.emoji} {section.name}
+                    {section.name}
                 </h3>
             </div>
             <div>

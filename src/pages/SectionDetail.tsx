@@ -29,9 +29,7 @@ export default function SectionDetail() {
 
             <div className="relative z-10 px-6 container mx-auto max-w-7xl animate-in fade-in slide-in-from-bottom-10">
                 <div className="mb-16 md:mb-24 text-center">
-                    <span className="text-6xl md:text-8xl block mb-6 drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]">
-                        {section.emoji}
-                    </span>
+
                     <h1 className="text-5xl md:text-8xl font-black font-fuel-decay uppercase tracking-[0.15em] mb-6" style={{ color: section.color }}>
                         {section.name}
                     </h1>

@@ -116,7 +116,7 @@ const Vault = () => {
                 <section key={section.id} className="animate-in fade-in slide-in-from-bottom-10">
                   <div className="flex items-center gap-6 mb-12">
                     <h2 className="text-2xl md:text-3xl font-fuel-decay text-white uppercase tracking-[0.15em] flex items-center gap-3">
-                      <span>{section.emoji}</span> {section.name}
+                      <span>{section.name}</span>
                     </h2>
                     <div className="h-px flex-1 bg-white/5"></div>
                     <span className="text-[10px] font-mono text-zinc-700 tracking-[0.5em]">// {sectionProtocols.length} NODES</span>

@@ -60,7 +60,7 @@ const Tools = () => {
                                     className={`px-4 py-2 rounded-full border text-xs md:text-sm font-fuel-decay uppercase tracking-[0.1em] transition-all flex items-center gap-2 ${activeSection === sec.name ? 'text-black border-transparent shadow-[0_0_15px_rgba(255,255,255,0.1)]' : 'bg-transparent text-zinc-500 border-zinc-800 hover:border-zinc-500'}`}
                                     style={activeSection === sec.name ? { backgroundColor: sec.color } : {}}
                                 >
-                                    <span>{sec.emoji}</span> {sec.name}
+                                    <span>{sec.name}</span>
                                 </button>
                             ))}
                         </div>

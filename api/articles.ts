@@ -28,10 +28,6 @@ export default async function handler(_req: VercelRequest, res: VercelResponse) 
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                filter: {
-                    property: 'Status',
-                    select: { equals: 'Published' }
-                },
                 sorts: [{ property: 'Publish Date', direction: 'descending' }]
             })
         })
